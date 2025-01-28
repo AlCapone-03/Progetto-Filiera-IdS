@@ -12,6 +12,11 @@ public class GestoreMarketplace {
         return marketplace;
     }
 
-
+    public boolean addProduct(Prodotto prodotto) {
+        return marketplace.getListaProdotti().add(prodotto);
+    }
+    public boolean removeProduct(Prodotto prodotto) {
+        return marketplace.getListaProdotti().remove(prodotto);
+    }
 
 }

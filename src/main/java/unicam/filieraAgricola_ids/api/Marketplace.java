@@ -7,8 +7,9 @@ import java.util.List;
 public class Marketplace {
 
     private List<Prodotto> listaProdotti;
+    private static Marketplace instance;
 
-    public Marketplace(List<Prodotto> listaProdotti) {
+    private Marketplace(List<Prodotto> listaProdotti) {
         this.listaProdotti = listaProdotti;
     }
 
@@ -19,4 +20,13 @@ public class Marketplace {
     public void setListaProdotti(List<Prodotto> listaProdotti) {
         this.listaProdotti = listaProdotti;
     }
+
+    public static Marketplace getInstance(List<Prodotto> listaProdotti) {
+        if (instance == null) {
+            instance = new Marketplace(listaProdotti);
+        }
+        return instance;
+    }
+
 }
+
