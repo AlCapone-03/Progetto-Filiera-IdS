@@ -2,8 +2,6 @@ package unicam.filieraAgricola_ids.api;
 
 import java.util.List;
 
-//Todo implementare il singleton
-
 public class Marketplace {
 
     private List<Prodotto> listaProdotti;
