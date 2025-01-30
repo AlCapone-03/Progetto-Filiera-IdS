@@ -1,4 +1,6 @@
-package unicam.filieraAgricola_ids.api;
+package unicam.filieraAgricola_ids.api.prodotti;
+
+import unicam.filieraAgricola_ids.api.utenti.Venditore;
 
 import java.util.List;
 
@@ -24,8 +26,7 @@ public class ProdottoSingolo implements Prodotto{
 
     public ProdottoSingolo(int id, List<String> listaCertificazioni,
                            Venditore produttore, String specificheProduzione,
-                           String descrizione, float prezzo, int quantita,
-                           boolean validato, String nome) {
+                           String descrizione, float prezzo, int quantita, String nome) {
         this.id = id;
         this.listaCertificazioni = listaCertificazioni;
         this.produttore = produttore;
@@ -37,6 +38,7 @@ public class ProdottoSingolo implements Prodotto{
         this.nome = nome;
     }
 
+    @Override
     public int getId() {
         return id;
     }
@@ -69,6 +71,7 @@ public class ProdottoSingolo implements Prodotto{
         this.specificheProduzione = specificheProduzione;
     }
 
+    @Override
     public String getDescrizione() {
         return descrizione;
     }
@@ -77,6 +80,7 @@ public class ProdottoSingolo implements Prodotto{
         this.descrizione = descrizione;
     }
 
+    @Override
     public float getPrezzo() {
         return prezzo;
     }
@@ -101,11 +105,27 @@ public class ProdottoSingolo implements Prodotto{
         this.validato = validato;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
         this.nome = nome;
+    }
+
+    @Override
+    public String toString() {
+        return "ProdottoSingolo{" +
+                "id=" + id +
+                ", \n listaCertificazioni=" + listaCertificazioni +
+                ", \n produttore=" + produttore.getNome() +
+                ", \n specificheProduzione='" + specificheProduzione + '\'' +
+                ", \n descrizione='" + descrizione + '\'' +
+                ", \n prezzo=" + prezzo +
+                ", \nquantita=" + quantita +
+                ", \nvalidato=" + validato +
+                ", \n nome='" + nome + '\'' +
+                '}';
     }
 }

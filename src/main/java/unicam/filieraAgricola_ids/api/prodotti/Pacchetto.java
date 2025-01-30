@@ -1,4 +1,4 @@
-package unicam.filieraAgricola_ids.api;
+package unicam.filieraAgricola_ids.api.prodotti;
 
 import java.util.List;
 
@@ -28,6 +28,7 @@ public class Pacchetto implements Prodotto{
         this.quantita = quantita;
     }
 
+    @Override
     public int getId() {
         return id;
     }
@@ -36,6 +37,7 @@ public class Pacchetto implements Prodotto{
         this.id = id;
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
@@ -52,6 +54,7 @@ public class Pacchetto implements Prodotto{
         this.prodottiPacchetto = prodottiPacchetto;
     }
 
+    @Override
     public float getPrezzo() {
         return prezzo;
     }
@@ -60,6 +63,7 @@ public class Pacchetto implements Prodotto{
         this.prezzo = prezzo;
     }
 
+    @Override
     public String getDescrizione() {
         return descrizione;
     }
@@ -75,4 +79,6 @@ public class Pacchetto implements Prodotto{
     public void setQuantita(int quantita) {
         this.quantita = quantita;
     }
+
+
 }

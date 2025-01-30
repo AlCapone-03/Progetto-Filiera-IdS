@@ -1,8 +1,8 @@
-package unicam.filieraAgricola_ids.api;
+package unicam.filieraAgricola_ids.api.prodotti;
 
 public class GestoreMarketplace {
 
-    private Marketplace marketplace;
+    private final Marketplace marketplace;
 
     public GestoreMarketplace(Marketplace marketplace) {
         this.marketplace = marketplace;
@@ -13,8 +13,11 @@ public class GestoreMarketplace {
     }
 
     public boolean addProduct(Prodotto prodotto) {
-        return marketplace.getListaProdotti().add(prodotto);
+        if(marketplace.getListaProdotti().add(prodotto))
+            return true;
+        return false;
     }
+
     public boolean removeProduct(Prodotto prodotto) {
         return marketplace.getListaProdotti().remove(prodotto);
     }

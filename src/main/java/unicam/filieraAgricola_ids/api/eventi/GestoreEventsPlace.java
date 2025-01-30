@@ -1,7 +1,8 @@
-package unicam.filieraAgricola_ids.api;
+package unicam.filieraAgricola_ids.api.eventi;
 
 public class GestoreEventsPlace {
-    private EventsPlace eventsPlace;
+
+    private final EventsPlace eventsPlace;
 
     public GestoreEventsPlace(EventsPlace eventsPlace) {
         this.eventsPlace = eventsPlace;

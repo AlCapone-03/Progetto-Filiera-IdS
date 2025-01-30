@@ -1,24 +1,30 @@
-package unicam.filieraAgricola_ids.api;
+package unicam.filieraAgricola_ids.api.utenti;
 
+import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Acquirente {
-    private String nomeAcquirente;
+
+    private String nome;
+
     private List<Prodotto> prodottiAcquistati;
+
     private List<Prodotto> prodottiSalvati;
 
-    public Acquirente(String nomeAcquirente, List<Prodotto> prodottiAcquistati, List<Prodotto> prodottiSalvati) {
-        this.nomeAcquirente = nomeAcquirente;
-        this.prodottiAcquistati = prodottiAcquistati;
-        this.prodottiSalvati = prodottiSalvati;
+    public Acquirente(String nome) {
+        this.nome = nome;
+        this.prodottiAcquistati = new ArrayList<>();
+        this.prodottiSalvati = new ArrayList<>();
     }
 
-    public String getNomeAcquirente() {
-        return nomeAcquirente;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeAcquirente(String nomeAcquirente) {
-        this.nomeAcquirente = nomeAcquirente;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public List<Prodotto> getProdottiAcquistati() {
@@ -37,6 +43,7 @@ public class Acquirente {
         this.prodottiSalvati = prodottiSalvati;
     }
 
+    // todo implementare metodo
     public boolean buyProduct(Prodotto prodotto) {
         return false;
     }

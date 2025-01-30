@@ -1,13 +1,20 @@
-package unicam.filieraAgricola_ids.api;
+package unicam.filieraAgricola_ids.api.eventi;
 
+//c'è la possibilità di inserire il tipo date
 public abstract class Evento {
+
     private String data_inizio;
+
     private String data_fine;
+
     private String luogo;
+
     private String nome;
+
     private int id;
 
-    public Evento(String data_inizio, String data_fine, String luogo, String nome, int id) {
+    public Evento(String data_inizio, String data_fine,
+                  String luogo, String nome, int id) {
         this.data_inizio = data_inizio;
         this.data_fine = data_fine;
         this.luogo = luogo;
@@ -54,4 +61,5 @@ public abstract class Evento {
     public void setId(int id) {
         this.id = id;
     }
+
 }

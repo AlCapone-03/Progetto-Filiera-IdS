@@ -1,14 +1,19 @@
-package unicam.filieraAgricola_ids.api;
+package unicam.filieraAgricola_ids.api.utenti;
 
+import unicam.filieraAgricola_ids.api.eventi.Evento;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Animatore {
+
     private String nome;
+
     private List<Evento> listaEventiCaricati;
 
-    public Animatore(String nome, List<Evento> listaEventiCaricati) {
+    public Animatore(String nome) {
         this.nome = nome;
-        this.listaEventiCaricati = listaEventiCaricati;
+        this.listaEventiCaricati = new ArrayList<>();
     }
 
     public String getNome() {
@@ -27,6 +32,7 @@ public class Animatore {
         this.listaEventiCaricati = listaEventiCaricati;
     }
 
+    // todo implementare metodo
     public void createEvent() {
     }
 }
