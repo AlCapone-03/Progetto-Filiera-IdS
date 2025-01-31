@@ -25,7 +25,7 @@ public class ProdottoSingolo implements Prodotto{
     private String nome;
 
     public ProdottoSingolo(int id, List<String> listaCertificazioni,
-                           Venditore produttore, String specificheProduzione,
+                           Venditore venditore, String specificheProduzione,
                            String descrizione, float prezzo, int quantita, String nome) {
         this.id = id;
         this.listaCertificazioni = listaCertificazioni;
