@@ -4,46 +4,48 @@ import java.util.List;
 
 // Todo : questo prezzo somma
 
-public class Pacchetto implements Prodotto{
-
-    private int id;
-
-    private String nome;
+public class Pacchetto extends Prodotto{
 
     private List<Prodotto> prodottiPacchetto;
 
-    private float prezzo;
-
-    private String descrizione;
-
     private int quantita;
 
-    public Pacchetto(int id, List<Prodotto> prodottiPacchetto, float prezzo, String descrizione,
-                     int quantita, String nome) {
-        this.id = id;
-        this.nome = nome;
+    public Pacchetto(String nome, String descrizione,
+                     float prezzo, List<Prodotto> prodottiPacchetto,
+                     int quantita) {
+        super(nome, descrizione, prezzo);
         this.prodottiPacchetto = prodottiPacchetto;
-        this.prezzo = prezzo;
-        this.descrizione = descrizione;
         this.quantita = quantita;
     }
 
     @Override
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public String getNome() {
+        return super.getNome();
     }
 
     @Override
-    public String getNome() {
-        return nome;
+    public void setNome(String nome) {
+        super.setNome(nome);
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    @Override
+    public String getDescrizione() {
+        return super.getDescrizione();
+    }
+
+    @Override
+    public void setDescrizione(String descrizione) {
+        super.setDescrizione(descrizione);
+    }
+
+    @Override
+    public float getPrezzo() {
+        return super.getPrezzo();
+    }
+
+    @Override
+    public void setPrezzo(float prezzo) {
+        super.setPrezzo(prezzo);
     }
 
     public List<Prodotto> getProdottiPacchetto() {
@@ -54,24 +56,6 @@ public class Pacchetto implements Prodotto{
         this.prodottiPacchetto = prodottiPacchetto;
     }
 
-    @Override
-    public float getPrezzo() {
-        return prezzo;
-    }
-
-    public void setPrezzo(float prezzo) {
-        this.prezzo = prezzo;
-    }
-
-    @Override
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-
     public int getQuantita() {
         return quantita;
     }
@@ -80,5 +64,11 @@ public class Pacchetto implements Prodotto{
         this.quantita = quantita;
     }
 
-
+    @Override
+    public String toString() {
+        return "Pacchetto{ id = " + getId() +
+                ", nome = " + getNome() +
+                ", quantita=" + quantita +
+                '}';
+    }
 }
