@@ -57,13 +57,12 @@ public abstract class Venditore {
     }
 
     // metodo per il caricamento di un prodotto sul marketplace
-    public void loadProduct (int id, List<String> certificazioni, String specifiche,
+    public void loadProduct (List<String> certificazioni, String specifiche,
                              String descrizione, float prezzo, int quantita,
                              String nomeProdotto) {
 
-        Prodotto prodotto = new ProdottoSingolo(id,certificazioni,
-                this,specifiche, descrizione,
-                prezzo, quantita, nomeProdotto);
+        Prodotto prodotto = new ProdottoSingolo(nomeProdotto, descrizione, prezzo,
+                certificazioni, this, specifiche, quantita);
 
         if(controllerProdotto.requestAdd(prodotto)){
             prodottiCaricati.add(prodotto);

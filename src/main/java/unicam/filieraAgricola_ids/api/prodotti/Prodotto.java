@@ -1,13 +1,51 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
-public interface Prodotto {
+public abstract class Prodotto {
 
-    int getId();
+    private static int id = 0;
 
-    String getNome();
+    private String nome;
 
-    float getPrezzo();
+    private String descrizione;
 
-    String getDescrizione();
+    private float prezzo;
 
+    public Prodotto(String nome, String descrizione, float prezzo) {
+        this.id = ++id;
+        this.nome = nome;
+        this.descrizione = descrizione;
+        this.prezzo = prezzo;
+    }
+
+    public static int getId() {
+        return id;
+    }
+
+    public static void setId(int id) {
+        Prodotto.id = id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getDescrizione() {
+        return descrizione;
+    }
+
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
+
+    public float getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(float prezzo) {
+        this.prezzo = prezzo;
+    }
 }

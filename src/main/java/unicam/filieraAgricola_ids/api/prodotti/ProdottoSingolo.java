@@ -4,9 +4,8 @@ import unicam.filieraAgricola_ids.api.utenti.Venditore;
 
 import java.util.List;
 
-public class ProdottoSingolo implements Prodotto{
+public class ProdottoSingolo extends Prodotto{
 
-    private int id;
 
     private List<String> listaCertificazioni;
 
@@ -14,37 +13,50 @@ public class ProdottoSingolo implements Prodotto{
 
     private String specificheProduzione;
 
-    private String descrizione;
-
-    private float prezzo;
-
     private int quantita;
 
     private boolean validato;
 
-    private String nome;
-
-    public ProdottoSingolo(int id, List<String> listaCertificazioni,
-                           Venditore venditore, String specificheProduzione,
-                           String descrizione, float prezzo, int quantita, String nome) {
-        this.id = id;
+    public ProdottoSingolo(String nome, String descrizione,
+                           float prezzo, List<String> listaCertificazioni,
+                           Venditore produttore, String specificheProduzione,
+                           int quantita) {
+        super(nome, descrizione, prezzo);
         this.listaCertificazioni = listaCertificazioni;
         this.produttore = produttore;
         this.specificheProduzione = specificheProduzione;
-        this.descrizione = descrizione;
-        this.prezzo = prezzo;
         this.quantita = quantita;
         this.validato = false;
-        this.nome = nome;
     }
 
     @Override
-    public int getId() {
-        return id;
+    public String getNome() {
+        return super.getNome();
     }
 
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public void setNome(String nome) {
+        super.setNome(nome);
+    }
+
+    @Override
+    public String getDescrizione() {
+        return super.getDescrizione();
+    }
+
+    @Override
+    public void setDescrizione(String descrizione) {
+        super.setDescrizione(descrizione);
+    }
+
+    @Override
+    public float getPrezzo() {
+        return super.getPrezzo();
+    }
+
+    @Override
+    public void setPrezzo(float prezzo) {
+        super.setPrezzo(prezzo);
     }
 
     public List<String> getListaCertificazioni() {
@@ -71,24 +83,6 @@ public class ProdottoSingolo implements Prodotto{
         this.specificheProduzione = specificheProduzione;
     }
 
-    @Override
-    public String getDescrizione() {
-        return descrizione;
-    }
-
-    public void setDescrizione(String descrizione) {
-        this.descrizione = descrizione;
-    }
-
-    @Override
-    public float getPrezzo() {
-        return prezzo;
-    }
-
-    public void setPrezzo(float prezzo) {
-        this.prezzo = prezzo;
-    }
-
     public int getQuantita() {
         return quantita;
     }
@@ -106,26 +100,17 @@ public class ProdottoSingolo implements Prodotto{
     }
 
     @Override
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    @Override
     public String toString() {
         return "ProdottoSingolo{" +
-                "id=" + id +
+                "id=" + getId() +
                 ", \n listaCertificazioni=" + listaCertificazioni +
                 ", \n produttore=" + produttore.getNome() +
                 ", \n specificheProduzione='" + specificheProduzione + '\'' +
-                ", \n descrizione='" + descrizione + '\'' +
-                ", \n prezzo=" + prezzo +
+                ", \n descrizione='" + getDescrizione() + '\'' +
+                ", \n prezzo=" + getPrezzo() +
                 ", \nquantita=" + quantita +
                 ", \nvalidato=" + validato +
-                ", \n nome='" + nome + '\'' +
+                ", \n nome='" + getNome() + '\'' +
                 '}';
     }
 }
