@@ -1,4 +1,11 @@
 package unicam.filieraAgricola_ids.api.handler;
 
-public class ControllerAcquisto {
+import unicam.filieraAgricola_ids.api.gestori.GestoreMarketplace;
+
+public class ControllerAcquisto extends ControllerMarketplace {
+
+    public ControllerAcquisto(GestoreMarketplace gestoreMarketplace) {
+        super(gestoreMarketplace);
+    }
+
 }

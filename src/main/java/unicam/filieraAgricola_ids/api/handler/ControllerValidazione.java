@@ -1,7 +1,11 @@
 package unicam.filieraAgricola_ids.api.handler;
 
-public class ControllerValidazione {
+import unicam.filieraAgricola_ids.api.gestori.GestoreMarketplace;
 
-    //todo si può mettere nel controller prodotto
+public class ControllerValidazione extends ControllerMarketplace {
+    public ControllerValidazione(GestoreMarketplace gestoreMarketplace) {
+        super(gestoreMarketplace);
+    }
+//todo si può mettere nel controller prodotto
 
 }

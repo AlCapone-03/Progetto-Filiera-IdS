@@ -5,26 +5,17 @@ import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Acquirente {
+public class Acquirente extends Utente {
 
-    private String nome;
 
     private List<Prodotto> prodottiAcquistati;
-
     private List<Prodotto> prodottiSalvati;
 
-    public Acquirente(String nome) {
-        this.nome = nome;
-        this.prodottiAcquistati = new ArrayList<>();
-        this.prodottiSalvati = new ArrayList<>();
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public Acquirente(int id, String nome, String email, String password,
+                      List<Prodotto> prodottiAcquistati, List<Prodotto> prodottiSalvati) {
+        super(id, nome, email, password);
+        this.prodottiAcquistati = prodottiAcquistati;
+        this.prodottiSalvati = prodottiSalvati;
     }
 
     public List<Prodotto> getProdottiAcquistati() {

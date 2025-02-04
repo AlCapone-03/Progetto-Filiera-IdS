@@ -1,47 +1,37 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import unicam.filieraAgricola_ids.api.handler.HandlerCaricaProdotto;
-import unicam.filieraAgricola_ids.api.handler.HandlerEliminaProdotto;
-import unicam.filieraAgricola_ids.api.handler.IHandler;
+import unicam.filieraAgricola_ids.api.handler.ControllerMarketplace;
+import unicam.filieraAgricola_ids.api.handler.ControllerProdotto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class Venditore {
-
-    private String nome;
+public abstract class Venditore extends Utente {
 
     private int p_IVA;
-
     private List<Prodotto> prodottiCaricati;
 
     //todo creare una lista di handler che ha il venditore
 
-    private final List<IHandler> handler;
+    private final List<ControllerMarketplace> handler;
 
-    public Venditore(String nome, int p_IVA) {
-        this.nome = nome;
+    public Venditore(int id, String nome, String email, String password, List<ControllerMarketplace> handler,
+                     List<Prodotto> prodottiCaricati, int p_IVA) {
+        super(id, nome, email, password);
+        this.handler = handler;
+        this.prodottiCaricati = prodottiCaricati;
         this.p_IVA = p_IVA;
-        this.prodottiCaricati = new ArrayList<>();
-        this.handler = getHandler();
     }
 
-    private List<IHandler> getHandler(){
-        List<IHandler> appoggio = new ArrayList<>();
-        appoggio.add(new HandlerCaricaProdotto());
-        appoggio.add(new HandlerEliminaProdotto());
+    private List<ControllerMarketplace> getHandler(){
+        List<ControllerMarketplace> appoggio = new ArrayList<>();
+        appoggio.add(new ControllerProdotto());
         return appoggio;
     }
 
-    public String getNome() {
-        return nome;
-    }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
 
     public int getP_IVA() {
         return p_IVA;

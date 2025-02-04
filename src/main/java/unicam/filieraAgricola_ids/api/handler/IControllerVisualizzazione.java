@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface IControllerVisualizzazione<T> {
 
-    List<T> requestVisualizzazione();
+    List<T> showList();
 }
 
 // todo fare una sola interfaccia per la visualizzazione con entrambi i metodi

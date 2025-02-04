@@ -1,9 +1,15 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
+import unicam.filieraAgricola_ids.api.handler.ControllerMarketplace;
+import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
+
+import java.util.List;
+
 public class DistributoreTipicita extends Venditore {
 
-    public DistributoreTipicita(String nome, int p_IVA) {
-        super(nome, p_IVA);
+    public DistributoreTipicita(int id, String nome, String email, String password, List<ControllerMarketplace> handler,
+                                List<Prodotto> prodottiCaricati, int p_IVA) {
+        super(id, nome, email, password, handler, prodottiCaricati, p_IVA);
     }
 
     @Override

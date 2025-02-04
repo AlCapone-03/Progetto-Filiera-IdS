@@ -3,20 +3,10 @@ package unicam.filieraAgricola_ids.api.utenti;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 
 // manca qualche cosa
-public class Curatore {
+public class Curatore extends Utente {
 
-    private String nome;
-
-    public Curatore(String nome) {
-        this.nome = nome;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
+    public Curatore(int id, String nome, String email, String password) {
+        super(id, nome, email, password);
     }
 
     // todo implementare metodo
