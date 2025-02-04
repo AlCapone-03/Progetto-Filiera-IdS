@@ -1,8 +1,12 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
+
 public abstract class Prodotto {
 
-    private static int id = 0;
+
+    private static int index = 0;
+
+    private final int id;
 
     private String nome;
 
@@ -11,18 +15,14 @@ public abstract class Prodotto {
     private float prezzo;
 
     public Prodotto(String nome, String descrizione, float prezzo) {
-        this.id = ++id;
+        this.id = ++index;
         this.nome = nome;
         this.descrizione = descrizione;
         this.prezzo = prezzo;
     }
 
-    public static int getId() {
+    public int getId() {
         return id;
-    }
-
-    public static void setId(int id) {
-        Prodotto.id = id;
     }
 
     public String getNome() {
@@ -48,4 +48,5 @@ public abstract class Prodotto {
     public void setPrezzo(float prezzo) {
         this.prezzo = prezzo;
     }
+
 }

@@ -3,14 +3,22 @@ package unicam.filieraAgricola_ids.api.prodotti;
 import java.util.ArrayList;
 import java.util.List;
 
-//todo era un singleton vedere se rimetterlo
-
+//La classe è un Singleton
 public class Marketplace {
+
+    private static Marketplace marketplace;
 
     private List<Prodotto> listaProdotti;
 
-    public Marketplace() {
+    private Marketplace() {
         this.listaProdotti = new ArrayList<>();
+    }
+
+    public static Marketplace getInstance() {
+        if (marketplace == null) {
+            marketplace = new Marketplace();
+        }
+        return marketplace;
     }
 
     public List<Prodotto> getListaProdotti() {

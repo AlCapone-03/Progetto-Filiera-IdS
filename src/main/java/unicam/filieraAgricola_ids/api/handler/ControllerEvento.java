@@ -1,14 +1,14 @@
 package unicam.filieraAgricola_ids.api.handler;
 
 import unicam.filieraAgricola_ids.api.eventi.Evento;
-import unicam.filieraAgricola_ids.api.eventi.GestoreEventsPlace;
+import unicam.filieraAgricola_ids.api.gestori.GestoreEventsPlace;
 
 public class ControllerEvento implements IControllerGestione<Evento> {
 
     private GestoreEventsPlace gestoreEventi;
 
-    public ControllerEvento(GestoreEventsPlace gestoreEventi) {
-        this.gestoreEventi = gestoreEventi;
+    public ControllerEvento() {
+        this.gestoreEventi = GestoreEventsPlace.getInstance();
     }
 
     @Override

@@ -65,6 +65,15 @@ public class Pacchetto extends Prodotto{
     }
 
     @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        if (!super.equals(obj)) return false;
+        Pacchetto pacchetto = (Pacchetto) obj;
+        return quantita == pacchetto.quantita;
+    }
+
+    @Override
     public String toString() {
         return "Pacchetto{ id = " + getId() +
                 ", nome = " + getNome() +
