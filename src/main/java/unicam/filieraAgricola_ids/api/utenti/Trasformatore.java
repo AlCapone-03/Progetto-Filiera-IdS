@@ -1,14 +1,13 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import unicam.filieraAgricola_ids.api.handler.ControllerProdotto;
-import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
-
-import java.util.List;
-
 public class Trasformatore extends Venditore {
 
-    public Trasformatore(String nome, int p_IVA, ControllerProdotto controllerProdotto) {
-        super(nome, p_IVA, controllerProdotto);
+    public Trasformatore(String nome, int p_IVA) {
+        super(nome, p_IVA);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
 }

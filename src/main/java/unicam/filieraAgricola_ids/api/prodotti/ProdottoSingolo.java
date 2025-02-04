@@ -6,7 +6,6 @@ import java.util.List;
 
 public class ProdottoSingolo extends Prodotto{
 
-
     private List<String> listaCertificazioni;
 
     private Venditore produttore;
@@ -97,6 +96,17 @@ public class ProdottoSingolo extends Prodotto{
 
     public void setValidato(boolean validato) {
         this.validato = validato;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        ProdottoSingolo that = (ProdottoSingolo) obj;
+        return getNome().equals(that.getNome()) && getDescrizione().equals(that.getDescrizione()) &&
+                getPrezzo() == that.getPrezzo() && listaCertificazioni.equals(that.listaCertificazioni) &&
+                produttore.equals(that.produttore) && specificheProduzione.equals(that.specificheProduzione) &&
+                quantita == that.quantita && validato == that.validato;
     }
 
     @Override
