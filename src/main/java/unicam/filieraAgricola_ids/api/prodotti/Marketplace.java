@@ -29,8 +29,9 @@ public class Marketplace {
         this.listaProdotti = listaProdotti;
     }
 
-    //todo aggiungere metodo per mostrare tutti i prodotti e un contains per sapere se
-    // un prodotto è presente nella lista
+
+
+   //TODO contains per sapere se un prodotto è presente nella lista
 
 }
 

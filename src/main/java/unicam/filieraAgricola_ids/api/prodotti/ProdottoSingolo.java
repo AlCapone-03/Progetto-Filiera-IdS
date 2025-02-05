@@ -4,7 +4,7 @@ import unicam.filieraAgricola_ids.api.utenti.Venditore;
 
 import java.util.List;
 
-public class ProdottoSingolo extends Prodotto{
+public class ProdottoSingolo extends Prodotto {
 
     private List<String> listaCertificazioni;
 

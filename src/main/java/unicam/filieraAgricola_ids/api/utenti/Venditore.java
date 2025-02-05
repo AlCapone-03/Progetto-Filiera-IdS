@@ -1,7 +1,7 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import unicam.filieraAgricola_ids.api.handler.ControllerMarketplace;
-import unicam.filieraAgricola_ids.api.handler.ControllerProdotto;
+import unicam.filieraAgricola_ids.api.handler.HandlerMarketplace;
+import unicam.filieraAgricola_ids.api.handler.HandlerProdotto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 
@@ -15,9 +15,9 @@ public abstract class Venditore extends Utente {
 
     //todo creare una lista di handler che ha il venditore
 
-    private final List<ControllerMarketplace> handler;
+    private final List<HandlerMarketplace> handler;
 
-    public Venditore(int id, String nome, String email, String password, List<ControllerMarketplace> handler,
+    public Venditore(int id, String nome, String email, String password, List<HandlerMarketplace> handler,
                      List<Prodotto> prodottiCaricati, int p_IVA) {
         super(id, nome, email, password);
         this.handler = handler;
@@ -25,9 +25,9 @@ public abstract class Venditore extends Utente {
         this.p_IVA = p_IVA;
     }
 
-    private List<ControllerMarketplace> getHandler(){
-        List<ControllerMarketplace> appoggio = new ArrayList<>();
-        appoggio.add(new ControllerProdotto());
+    private List<HandlerMarketplace> getHandler(){
+        List<HandlerMarketplace> appoggio = new ArrayList<>();
+        appoggio.add(new HandlerProdotto());
         return appoggio;
     }
 
@@ -49,29 +49,30 @@ public abstract class Venditore extends Utente {
         this.prodottiCaricati = prodottiCaricati;
     }
 
+    //TODO rivedere i metodi sotto commentati
     // metodo per il caricamento di un prodotto sul marketplace
-    public void loadProduct (List<String> certificazioni, String specifiche,
-                             String descrizione, float prezzo, int quantita,
-                             String nomeProdotto) {
+//    public void loadProduct (List<String> certificazioni, String specifiche,
+//                             String descrizione, float prezzo, int quantita,
+//                             String nomeProdotto) {
+//
+//        Prodotto prodotto = new ProdottoSingolo(nomeProdotto, descrizione, prezzo,
+//                certificazioni, this, specifiche, quantita);
+//
+//        if(handler.get(0).sendRequest(prodotto)){
+//            prodottiCaricati.add(prodotto);
+//            System.out.println("Prodotto caricato con successo");
+//        }
+//        else System.out.println("Errore nel caricamento del prodotto");
+//    }
 
-        Prodotto prodotto = new ProdottoSingolo(nomeProdotto, descrizione, prezzo,
-                certificazioni, this, specifiche, quantita);
-
-        if(handler.get(0).sendRequest(prodotto)){
-            prodottiCaricati.add(prodotto);
-            System.out.println("Prodotto caricato con successo");
-        }
-        else System.out.println("Errore nel caricamento del prodotto");
-    }
-
-    public void deleteProduct(Prodotto prodotto){
-
-        if(handler.get(1).sendRequest(prodotto)){
-            prodottiCaricati.remove(prodotto);
-            System.out.println("Prodotto eliminato con successo");
-        }
-        else System.out.println("Errore nell'eliminazione del prodotto");
-    }
+//    public void deleteProduct(Prodotto prodotto){
+//
+//        if(handler.get(1).sendRequest(prodotto)){
+//            prodottiCaricati.remove(prodotto);
+//            System.out.println("Prodotto eliminato con successo");
+//        }
+//        else System.out.println("Errore nell'eliminazione del prodotto");
+//    }
 
     @Override
     public boolean equals(Object obj) {

@@ -1,9 +1,9 @@
 package unicam.filieraAgricola_ids.api.handler;
 
-public interface IControllerGestione<T> {
+public interface IHandlerGestione<T> {
 
     boolean requestAdd(T obj);
 
-    //todo boolean requestRemove(T obj);
+    boolean requestRemove(int id);
 
 }

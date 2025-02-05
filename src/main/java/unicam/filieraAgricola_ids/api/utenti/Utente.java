@@ -13,4 +13,20 @@ public abstract class Utente {
         this.email = email;
         this.password = password;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
 }
