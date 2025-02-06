@@ -11,15 +11,17 @@ public abstract class Evento {
 
     private String nome;
 
+    private static int index=1;
+
     private int id;
 
     public Evento(String data_inizio, String data_fine,
-                  String luogo, String nome, int id) {
+                  String luogo, String nome) {
         this.data_inizio = data_inizio;
         this.data_fine = data_fine;
         this.luogo = luogo;
         this.nome = nome;
-        this.id = id;
+        id = index++;
     }
 
     public String getData_inizio() {
@@ -58,8 +60,16 @@ public abstract class Evento {
         return id;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        EventoAziendale other = (EventoAziendale) obj;
+        return getId() == other.getId();
     }
 
 }

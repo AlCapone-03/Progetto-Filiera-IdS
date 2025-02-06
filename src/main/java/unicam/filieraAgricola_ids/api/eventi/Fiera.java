@@ -10,9 +10,9 @@ public class Fiera extends Evento{
     private List<Venditore> listaFieristi;
 
     public Fiera(String data_inizio, String data_fine,
-                 String luogo, String nome, int id) {
+                 String luogo, String nome) {
 
-        super(data_inizio, data_fine, luogo, nome, id);
+        super(data_inizio, data_fine, luogo, nome);
         listaFieristi= new ArrayList<>();
     }
 
@@ -59,11 +59,6 @@ public class Fiera extends Evento{
     @Override
     public int getId() {
         return super.getId();
-    }
-
-    @Override
-    public void setId(int id) {
-        super.setId(id);
     }
 
 }

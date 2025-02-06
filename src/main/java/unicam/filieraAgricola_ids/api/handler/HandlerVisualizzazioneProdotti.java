@@ -13,6 +13,6 @@ public class HandlerVisualizzazioneProdotti extends HandlerMarketplace implement
 
     @Override
     public List<Prodotto> showList() {
-        return null;
+        return getGM().getMarketplace().getListaProdotti();
     }
 }

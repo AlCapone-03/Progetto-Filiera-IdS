@@ -13,7 +13,7 @@ public class HandlerVisualizzazioneEventi extends HandlerEventsPlace implements
 
     @Override
     public List<Evento> showList() {
-        return null;
+      return  getGEP().getEventsPlace().getListaEventi();
     }
 
 }

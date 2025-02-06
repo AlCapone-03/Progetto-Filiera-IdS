@@ -6,9 +6,10 @@ public abstract class Utente {
     private String nome;
     private String email;
     private String password;
+    private static int index = 1;
 
-    public Utente(int id, String nome, String email, String password) {
-        this.id = id;
+    public Utente(String nome, String email, String password) {
+        this.id = index++;
         this.nome = nome;
         this.email = email;
         this.password = password;

@@ -26,7 +26,6 @@ public class GestoreEventsPlace {
         return eventsPlace;
     }
 
-    //TODO implementare l'equals sulla classe evento aziendale e fiera
     public boolean addEvent(Evento event) {
         for(Evento e : eventsPlace.getListaEventi())
             if(e.equals(event))

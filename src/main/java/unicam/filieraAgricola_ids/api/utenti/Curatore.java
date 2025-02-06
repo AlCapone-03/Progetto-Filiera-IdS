@@ -5,8 +5,8 @@ import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 // manca qualche cosa
 public class Curatore extends Utente {
 
-    public Curatore(int id, String nome, String email, String password) {
-        super(id, nome, email, password);
+    public Curatore(String nome, String email, String password) {
+        super(nome, email, password);
     }
 
     // todo implementare metodo

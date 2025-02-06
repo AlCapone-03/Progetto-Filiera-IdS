@@ -3,7 +3,6 @@ package unicam.filieraAgricola_ids.api.utenti;
 import unicam.filieraAgricola_ids.api.handler.HandlerMarketplace;
 import unicam.filieraAgricola_ids.api.handler.HandlerProdotto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
-import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +16,10 @@ public abstract class Venditore extends Utente {
 
     private final List<HandlerMarketplace> handler;
 
-    public Venditore(int id, String nome, String email, String password, List<HandlerMarketplace> handler,
-                     List<Prodotto> prodottiCaricati, int p_IVA) {
-        super(id, nome, email, password);
+    public Venditore(String nome, String email, String password,
+                     List<HandlerMarketplace> handler, int p_IVA) {
+        super(nome, email, password);
         this.handler = handler;
-        this.prodottiCaricati = prodottiCaricati;
         this.p_IVA = p_IVA;
     }
 
@@ -71,8 +69,7 @@ public abstract class Venditore extends Utente {
 //            prodottiCaricati.remove(prodotto);
 //            System.out.println("Prodotto eliminato con successo");
 //        }
-//        else System.out.println("Errore nell'eliminazione del prodotto");
-//    }
+//        else System.out.println("Errore nell'eliminazione del prodotto");}
 
     @Override
     public boolean equals(Object obj) {

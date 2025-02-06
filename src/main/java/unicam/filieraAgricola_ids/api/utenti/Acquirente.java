@@ -1,8 +1,6 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
-
-import java.util.ArrayList;
 import java.util.List;
 
 public class Acquirente extends Utente {
@@ -11,9 +9,9 @@ public class Acquirente extends Utente {
     private List<Prodotto> prodottiAcquistati;
     private List<Prodotto> prodottiSalvati;
 
-    public Acquirente(int id, String nome, String email, String password,
+    public Acquirente(String nome, String email, String password,
                       List<Prodotto> prodottiAcquistati, List<Prodotto> prodottiSalvati) {
-        super(id, nome, email, password);
+        super(nome, email, password);
         this.prodottiAcquistati = prodottiAcquistati;
         this.prodottiSalvati = prodottiSalvati;
     }
