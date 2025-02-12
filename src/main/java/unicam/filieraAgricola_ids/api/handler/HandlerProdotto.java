@@ -1,25 +1,28 @@
 package unicam.filieraAgricola_ids.api.handler;
-
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 
-// andrebbe anche cambiato quello che passo ai venditori per passare l'interfaccia
 public class HandlerProdotto extends HandlerMarketplace implements IHandlerGestione<Prodotto> {
 
     public HandlerProdotto() {
         super();
     }
-    //modificato anche sul metodo del venditore il nome del metodo
+
     @Override
     public boolean requestAdd(Prodotto prodotto) {
-        if(getGestore().addProduct(prodotto))
-            return true;
-        return false;
+        return getGestore().addProduct(prodotto);
     }
     @Override
     public boolean requestRemove(int id) {
        return getGestore().removeProduct(id);
     }
 
-    //Todo requestDisponibility, cheskDisponibility, requestAddPackage, requestModifyProduct, requestReloadProduct
+    public boolean requestModifyProduct(Prodotto prodotto, String nome, int prezzo, String descrizione) {
+        return getGestore().modifyProduct(prodotto, nome, prezzo, descrizione);
+    }
+
+    public boolean requestReloadProduct(Prodotto prodotto, int quantita) {
+        return getGestore().reloadQuantity(prodotto, quantita);
+    }
+
 
 }

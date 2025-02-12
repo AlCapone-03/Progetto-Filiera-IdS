@@ -12,13 +12,13 @@ public abstract class Prodotto {
 
     private String descrizione;
 
-    private float prezzo;
+    private int quantita;
 
-    public Prodotto(String nome, String descrizione, float prezzo) {
+    public Prodotto(String nome, String descrizione,int quantita) {
         this.id = ++index;
         this.nome = nome;
         this.descrizione = descrizione;
-        this.prezzo = prezzo;
+        this.quantita = quantita;
     }
 
     public int getId() {
@@ -41,12 +41,11 @@ public abstract class Prodotto {
         this.descrizione = descrizione;
     }
 
-    public float getPrezzo() {
-        return prezzo;
+    public int getQuantita() {
+        return quantita;
     }
 
-    public void setPrezzo(float prezzo) {
-        this.prezzo = prezzo;
+    public void setQuantita(int quantita) {
+        this.quantita = quantita;
     }
-
 }

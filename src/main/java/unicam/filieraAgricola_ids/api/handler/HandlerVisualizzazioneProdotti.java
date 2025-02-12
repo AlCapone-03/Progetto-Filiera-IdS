@@ -15,4 +15,8 @@ public class HandlerVisualizzazioneProdotti extends HandlerMarketplace implement
     public List<Prodotto> showList() {
         return getGestore().getMarketplace().getListaProdotti();
     }
+
+    public Prodotto requestDisponibility(String nome){
+        return getGestore().isAvailable(nome);
+    }
 }

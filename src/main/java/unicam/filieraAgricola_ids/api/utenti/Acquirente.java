@@ -30,8 +30,15 @@ public class Acquirente extends Utente {
         this.prodottiSalvati = prodottiSalvati;
     }
 
-    // todo implementare metodo
-    public boolean buyProduct(Prodotto prodotto) {
-        return false;
+    public boolean buyProduct(Prodotto prodotto, int quantita) {
+        if (prodotto.getQuantita() < quantita) {
+            throw new IllegalArgumentException("Quantità non disponibile");
+        }
+        prodotto.setQuantita(prodotto.getQuantita() - quantita);
+        prodottiAcquistati.add(prodotto);
+        return true;
+
     }
+    //TODO come fare per passare il prodotto per parametro? si puo fare? perchè così non serve l'handler
+
 }

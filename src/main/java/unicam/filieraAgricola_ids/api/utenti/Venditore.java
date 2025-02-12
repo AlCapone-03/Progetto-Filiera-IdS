@@ -20,22 +20,11 @@ public abstract class Venditore extends Utente {
         super(nome, email, password, handlers);
     }
 
-//    private List<HandlerMarketplace> getHandler(){
-//        List<HandlerMarketplace> appoggio = new ArrayList<>();
-//        appoggio.add(new HandlerProdotto());
-//        return appoggio;
-//    }
-
     public List<Prodotto> getProdottiCaricati() {
         return prodottiCaricati;
     }
 
-    public void setProdottiCaricati(List<Prodotto> prodottiCaricati) {
-        this.prodottiCaricati = prodottiCaricati;
-    }
 
-    //TODO rivedere i metodi sotto commentati
-    // metodo per il caricamento di un prodotto sul marketplace
     public boolean loadProduct (List<String> certificazioni, String descrizione,
                                 float prezzo, int quantita, String nomeProdotto) {
 
@@ -64,20 +53,24 @@ public abstract class Venditore extends Utente {
         return false;
     }
 
-
-    //TODO implementare modifyDataProduct, reloadProduct
-
     public boolean registrationFair(Fiera fiera){
         HandlerPrenotazione handlerPrenotazione = (HandlerPrenotazione) getHandlers().get(2);
         return handlerPrenotazione.registrationFair(fiera, this);
     }
 
-    public boolean modifyDataProduct(){
+    public boolean modifyDataProduct(Prodotto prodotto,String nome, int prezzo, String descrizione){
+        HandlerProdotto handlerProdotto = (HandlerProdotto) getHandlers().get(0);
+        if(handlerProdotto.requestModifyProduct(prodotto, nome, prezzo, descrizione)){
+            System.out.println("Prodotto modificato con successo");
+            return true;
+        }
+        else System.out.println("Errore nella modifica del prodotto");
         return false;
     }
 
-    public boolean reloadProduct(){
-        return false;
+    public boolean reloadProduct(Prodotto prodotto, int quantita){
+        HandlerProdotto handlerProdotto = (HandlerProdotto) getHandlers().get(0);
+        return handlerProdotto.requestReloadProduct(prodotto, quantita);
     }
 
     public List<Evento> viewAllEvent(){

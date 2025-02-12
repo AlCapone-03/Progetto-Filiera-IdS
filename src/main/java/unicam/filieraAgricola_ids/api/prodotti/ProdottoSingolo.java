@@ -10,48 +10,26 @@ public class ProdottoSingolo extends Prodotto {
 
     private Venditore produttore;
 
-    private int quantita;
-
     private boolean validato;
+
+    private float prezzo;
 
     public ProdottoSingolo(String nome, String descrizione,
                            float prezzo, List<String> listaCertificazioni,
                            Venditore produttore,int quantita) {
-        super(nome, descrizione, prezzo);
+        super(nome, descrizione,quantita);
         this.listaCertificazioni = listaCertificazioni;
         this.produttore = produttore;
-        this.quantita = quantita;
         this.validato = false;
+        this.prezzo = prezzo;
     }
 
-    @Override
-    public String getNome() {
-        return super.getNome();
-    }
-
-    @Override
-    public void setNome(String nome) {
-        super.setNome(nome);
-    }
-
-    @Override
-    public String getDescrizione() {
-        return super.getDescrizione();
-    }
-
-    @Override
-    public void setDescrizione(String descrizione) {
-        super.setDescrizione(descrizione);
-    }
-
-    @Override
     public float getPrezzo() {
-        return super.getPrezzo();
+        return prezzo;
     }
 
-    @Override
     public void setPrezzo(float prezzo) {
-        super.setPrezzo(prezzo);
+        this.prezzo = prezzo;
     }
 
     public List<String> getListaCertificazioni() {
@@ -64,18 +42,6 @@ public class ProdottoSingolo extends Prodotto {
 
     public Venditore getProduttore() {
         return produttore;
-    }
-
-    public void setProduttore(Venditore produttore) {
-        this.produttore = produttore;
-    }
-
-    public int getQuantita() {
-        return quantita;
-    }
-
-    public void setQuantita(int quantita) {
-        this.quantita = quantita;
     }
 
     public boolean isValidato() {
@@ -93,7 +59,7 @@ public class ProdottoSingolo extends Prodotto {
         ProdottoSingolo that = (ProdottoSingolo) obj;
         return getNome().equals(that.getNome()) && getDescrizione().equals(that.getDescrizione()) &&
                 getPrezzo() == that.getPrezzo() && listaCertificazioni.equals(that.listaCertificazioni) &&
-                produttore.equals(that.produttore) && quantita == that.quantita && validato == that.validato;
+                produttore.equals(that.produttore) && validato == that.validato;
     }
 
     @Override
@@ -104,7 +70,6 @@ public class ProdottoSingolo extends Prodotto {
                 ", \n produttore=" + produttore.getNome() +
                 ", \n descrizione='" + getDescrizione() + '\'' +
                 ", \n prezzo=" + getPrezzo() +
-                ", \nquantita=" + quantita +
                 ", \nvalidato=" + validato +
                 ", \n nome='" + getNome() + '\'' +
                 '}';

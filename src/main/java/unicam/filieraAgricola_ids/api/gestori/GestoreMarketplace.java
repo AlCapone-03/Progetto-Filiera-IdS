@@ -2,8 +2,11 @@ package unicam.filieraAgricola_ids.api.gestori;
 
 
 import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
+import unicam.filieraAgricola_ids.api.prodotti.Pacchetto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
+
+import java.util.NoSuchElementException;
 
 //La classe è un Singleton
 public class GestoreMarketplace implements IGestore{
@@ -81,5 +84,41 @@ public class GestoreMarketplace implements IGestore{
     }
 
 
+    public boolean modifyProduct(Prodotto prodotto, String nome, int prezzo, String descrizione) {
+        if (marketplace.getListaProdotti().isEmpty())
+            throw new NullPointerException("Lista prodotti vuota");
 
+        for (Prodotto p : marketplace.getListaProdotti()) {
+            if (p.equals(prodotto)) {
+                ProdottoSingolo ps = (ProdottoSingolo) p;
+                ps.setNome(nome);
+                ps.setPrezzo(prezzo);
+                ps.setDescrizione(descrizione);
+                return true;
+            }
+        }
+        throw new NoSuchElementException("Prodotto non trovato");
+    }
+
+
+    public boolean reloadQuantity(Prodotto prodotto, int quantita) {
+        if (marketplace.getListaProdotti().isEmpty())
+            throw new NullPointerException("Lista prodotti vuota");
+
+        for (Prodotto p : marketplace.getListaProdotti()) {
+            if (p.equals(prodotto)) {
+                p.setQuantita(p.getQuantita() + quantita);
+                return true;
+            }
+        }
+        throw new NoSuchElementException("Prodotto non trovato");
+    }
+
+    public Prodotto isAvailable(String nome){
+        for(Prodotto p: marketplace.getListaProdotti()){
+            if(p.getNome().equals(nome))
+                return p;
+        }
+        throw new NoSuchElementException("Prodotto non trovato");
+    }
 }
