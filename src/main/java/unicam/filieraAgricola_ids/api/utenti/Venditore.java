@@ -2,6 +2,7 @@ package unicam.filieraAgricola_ids.api.utenti;
 
 import unicam.filieraAgricola_ids.api.handler.HandlerMarketplace;
 import unicam.filieraAgricola_ids.api.handler.HandlerProdotto;
+import unicam.filieraAgricola_ids.api.handler.IHandler;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 
 import java.util.ArrayList;
@@ -14,13 +15,10 @@ public abstract class Venditore extends Utente {
 
     //todo creare una lista di handler che ha il venditore
 
-    private final List<HandlerMarketplace> handler;
 
     public Venditore(String nome, String email, String password,
-                     List<HandlerMarketplace> handler, int p_IVA) {
-        super(nome, email, password);
-        this.handler = handler;
-        this.p_IVA = p_IVA;
+                     List<IHandler> handlers) {
+        super(nome, email, password, handlers);
     }
 
     private List<HandlerMarketplace> getHandler(){

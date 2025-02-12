@@ -11,12 +11,12 @@ public class HandlerProdotto extends HandlerMarketplace implements IHandlerGesti
     //modificato anche sul metodo del venditore il nome del metodo
     @Override
     public boolean requestAdd(Prodotto prodotto) {
-        if(getGM().addProduct(prodotto))
+        if(getGestore().addProduct(prodotto))
             return true;
         return false;
     }
     @Override
     public boolean requestRemove(int id) {
-       return getGM().removeProduct(id);
+       return getGestore().removeProduct(id);
     }
 }

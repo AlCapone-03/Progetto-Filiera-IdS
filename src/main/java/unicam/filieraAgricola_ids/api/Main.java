@@ -87,26 +87,5 @@ public class Main {
 
         */
 
-
-        HandlerVisualizzazioneProdotti handlerVisualizzazioneProdotti = new HandlerVisualizzazioneProdotti();
-        HandlerProdotto handlerProdotto = new HandlerProdotto();
-
-        List<HandlerMarketplace> handlerMarketplaces = new ArrayList<>();
-        handlerMarketplaces.add(new HandlerProdotto());
-        handlerMarketplaces.add(new HandlerVisualizzazioneProdotti());
-
-        Venditore produttore = new Produttore( "Marco", "Marco@culo.org",
-                "12345",handlerMarketplaces,12345);
-        Prodotto pomodori = new ProdottoSingolo("Pomodoro", "Descrizione", 10,
-                certificazioni, produttore, "Specifiche", 1);
-        handlerProdotto.requestAdd(pomodori);
-        Prodotto cipolle = new ProdottoSingolo("Cipolla", "Descrizione", 12,
-                certificazioni, produttore, "Specifiche", 3);
-        handlerProdotto.requestAdd(cipolle);
-        for(Prodotto p : handlerVisualizzazioneProdotti.showList())
-        {
-            System.out.println(p.toString());
-        }
-
     }
 }

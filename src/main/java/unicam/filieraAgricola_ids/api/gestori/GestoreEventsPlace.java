@@ -5,7 +5,7 @@ import unicam.filieraAgricola_ids.api.eventi.EventsPlace;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 
 //La classe è un Singleton
-public class GestoreEventsPlace {
+public class GestoreEventsPlace implements IGestore {
 
     private static GestoreEventsPlace gestoreEventsPlace;
 

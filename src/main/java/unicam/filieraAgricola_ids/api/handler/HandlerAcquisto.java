@@ -10,7 +10,7 @@ public class HandlerAcquisto extends HandlerMarketplace {
     }
 
     public boolean requestBuy(Prodotto prodotto, int quantita) {
-       return getGM().subtractProductQuantity(prodotto, quantita);
+       return getGestore().subtractProductQuantity(prodotto, quantita);
     }
 
 }

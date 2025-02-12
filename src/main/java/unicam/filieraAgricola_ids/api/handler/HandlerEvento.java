@@ -9,11 +9,11 @@ public class HandlerEvento extends HandlerEventsPlace implements IHandlerGestion
 
     @Override
     public boolean requestAdd(Evento evento) {
-        return getGEP().addEvent(evento);
+        return getGestore().addEvent(evento);
     }
     @Override
     public boolean requestRemove(int id) {
-        return getGEP().removeEvent(id);
+        return getGestore().removeEvent(id);
     }
 
 }

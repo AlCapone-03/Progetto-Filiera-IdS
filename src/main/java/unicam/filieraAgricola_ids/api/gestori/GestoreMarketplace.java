@@ -6,7 +6,7 @@ import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 
 //La classe è un Singleton
-public class GestoreMarketplace {
+public class GestoreMarketplace implements IGestore{
 
     private static GestoreMarketplace gestoreMarketplace;
 
