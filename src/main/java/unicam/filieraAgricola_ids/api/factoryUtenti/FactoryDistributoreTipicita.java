@@ -11,7 +11,8 @@ public class FactoryDistributoreTipicita extends FactoryUtente {
 
     @Override
     public Utente createUser(String nome, String email, String password) {
-        List<IHandler> handlers = Arrays.asList(new HandlerProdotto(), new HandlerVisualizzazioneEventi());
+        List<IHandler> handlers = Arrays.asList(new HandlerProdotto(), new HandlerVisualizzazioneEventi(),
+                new HandlerPrenotazione());
         return new DistributoreTipicita(nome, email, password,handlers);
     }
 }

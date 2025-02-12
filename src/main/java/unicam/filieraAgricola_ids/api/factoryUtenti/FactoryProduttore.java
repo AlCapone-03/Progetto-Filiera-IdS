@@ -1,4 +1,5 @@
 package unicam.filieraAgricola_ids.api.factoryUtenti;
+import unicam.filieraAgricola_ids.api.handler.HandlerPrenotazione;
 import unicam.filieraAgricola_ids.api.handler.HandlerProdotto;
 import unicam.filieraAgricola_ids.api.handler.HandlerVisualizzazioneEventi;
 import unicam.filieraAgricola_ids.api.handler.IHandler;
@@ -11,7 +12,8 @@ public class FactoryProduttore extends FactoryUtente {
 
     @Override
     public Utente createUser(String nome, String email, String password) {
-        List<IHandler> handlers = Arrays.asList(new HandlerProdotto(), new HandlerVisualizzazioneEventi());
+        List<IHandler> handlers = Arrays.asList(new HandlerProdotto(), new HandlerVisualizzazioneEventi(),
+                new HandlerPrenotazione());
         return new Produttore(nome, email, password, handlers);
     }
 }

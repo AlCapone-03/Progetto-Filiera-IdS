@@ -36,4 +36,8 @@ public abstract class Utente {
     public String getPassword() {
         return password;
     }
+
+    public List<IHandler> getHandlers() {
+        return handlers;
+    }
 }

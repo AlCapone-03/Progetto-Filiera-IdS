@@ -19,4 +19,7 @@ public class HandlerProdotto extends HandlerMarketplace implements IHandlerGesti
     public boolean requestRemove(int id) {
        return getGestore().removeProduct(id);
     }
+
+    //Todo requestDisponibility, cheskDisponibility, requestAddPackage, requestModifyProduct, requestReloadProduct
+
 }

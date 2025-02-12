@@ -10,20 +10,16 @@ public class ProdottoSingolo extends Prodotto {
 
     private Venditore produttore;
 
-    private String specificheProduzione;
-
     private int quantita;
 
     private boolean validato;
 
     public ProdottoSingolo(String nome, String descrizione,
                            float prezzo, List<String> listaCertificazioni,
-                           Venditore produttore, String specificheProduzione,
-                           int quantita) {
+                           Venditore produttore,int quantita) {
         super(nome, descrizione, prezzo);
         this.listaCertificazioni = listaCertificazioni;
         this.produttore = produttore;
-        this.specificheProduzione = specificheProduzione;
         this.quantita = quantita;
         this.validato = false;
     }
@@ -74,14 +70,6 @@ public class ProdottoSingolo extends Prodotto {
         this.produttore = produttore;
     }
 
-    public String getSpecificheProduzione() {
-        return specificheProduzione;
-    }
-
-    public void setSpecificheProduzione(String specificheProduzione) {
-        this.specificheProduzione = specificheProduzione;
-    }
-
     public int getQuantita() {
         return quantita;
     }
@@ -105,8 +93,7 @@ public class ProdottoSingolo extends Prodotto {
         ProdottoSingolo that = (ProdottoSingolo) obj;
         return getNome().equals(that.getNome()) && getDescrizione().equals(that.getDescrizione()) &&
                 getPrezzo() == that.getPrezzo() && listaCertificazioni.equals(that.listaCertificazioni) &&
-                produttore.equals(that.produttore) && specificheProduzione.equals(that.specificheProduzione) &&
-                quantita == that.quantita && validato == that.validato;
+                produttore.equals(that.produttore) && quantita == that.quantita && validato == that.validato;
     }
 
     @Override
@@ -115,7 +102,6 @@ public class ProdottoSingolo extends Prodotto {
                 "id=" + getId() +
                 ", \n listaCertificazioni=" + listaCertificazioni +
                 ", \n produttore=" + produttore.getNome() +
-                ", \n specificheProduzione='" + specificheProduzione + '\'' +
                 ", \n descrizione='" + getDescrizione() + '\'' +
                 ", \n prezzo=" + getPrezzo() +
                 ", \nquantita=" + quantita +
