@@ -9,11 +9,11 @@ public class HandlerProdotto extends HandlerMarketplace implements IHandlerGesti
 
     @Override
     public boolean requestAdd(Prodotto prodotto) {
-        return getGestore().addProduct(prodotto);
+        return getGestore().addObject(prodotto);
     }
     @Override
     public boolean requestRemove(int id) {
-       return getGestore().removeProduct(id);
+       return getGestore().removeObject(id);
     }
 
     public boolean requestModifyProduct(int idProdotto, String nome, int prezzo, String descrizione) {

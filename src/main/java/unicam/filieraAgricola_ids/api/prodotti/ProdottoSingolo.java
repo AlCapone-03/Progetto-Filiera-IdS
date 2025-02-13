@@ -53,16 +53,6 @@ public class ProdottoSingolo extends Prodotto {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (obj == null || getClass() != obj.getClass()) return false;
-        ProdottoSingolo that = (ProdottoSingolo) obj;
-        return getNome().equals(that.getNome()) && getDescrizione().equals(that.getDescrizione()) &&
-                getPrezzo() == that.getPrezzo() && listaCertificazioni.equals(that.listaCertificazioni) &&
-                produttore.equals(that.produttore) && validato == that.validato;
-    }
-
-    @Override
     public String toString() {
         return "ProdottoSingolo{" +
                 "id=" + getId() +

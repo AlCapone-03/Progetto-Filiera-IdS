@@ -14,9 +14,8 @@ public class DistributoreTipicita extends Venditore {
     }
 
     public boolean createPackage(String nome, String descrizione,List<Prodotto> prodotti, int quantita){
-        HandlerProdotto handlerProdotto = (HandlerProdotto) getHandlers().get(0);
         Pacchetto pacchetto = new Pacchetto(nome, descrizione, prodotti, quantita);
-        if(handlerProdotto.requestAdd(pacchetto)){
+        if(getHandlerProdotto().requestAdd(pacchetto)){
             getProdottiCaricati().add(pacchetto);
             System.out.println("Pacchetto creato con successo");
             return true;
@@ -28,6 +27,5 @@ public class DistributoreTipicita extends Venditore {
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
-
 
 }

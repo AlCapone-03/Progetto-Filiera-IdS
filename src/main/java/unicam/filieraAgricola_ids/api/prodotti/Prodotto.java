@@ -49,5 +49,12 @@ public abstract class Prodotto {
         this.quantita = quantita;
     }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Prodotto that = (Prodotto) obj;
+        return getNome().equals(that.getNome()) && getDescrizione().equals(that.getDescrizione()) &&
+                getQuantita() == that.getQuantita() && getId() == that.getId();
+    }
 }

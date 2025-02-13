@@ -1,5 +1,4 @@
 package unicam.filieraAgricola_ids.api.handler;
-import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 
 
@@ -15,7 +14,7 @@ public class HandlerValidazione extends HandlerMarketplace {
     public boolean requestRemoval(int idProdotto) {
         ProdottoSingolo prodotto = (ProdottoSingolo) getGestore().getProductById(idProdotto);
         if(!prodotto.isValidato())
-            return getGestore().removeProduct(prodotto.getId());
+            return getGestore().removeObject(prodotto.getId());
         else return false;
     }
 }

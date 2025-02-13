@@ -20,10 +20,6 @@ public class Animatore extends Utente {
         return listaEventiCaricati;
     }
 
-    public void setListaEventiCaricati(List<Evento> listaEventiCaricati) {
-        this.listaEventiCaricati = listaEventiCaricati;
-    }
-
     public boolean createEvent(String data_inizio,String data_fine, String luogo, String nome, List<Venditore> listaInvitati) {
         Evento eventoAziendale = new EventoAziendale(data_inizio, data_fine, luogo, nome, listaInvitati);
         return getHandlerEvento().requestAdd(eventoAziendale);
@@ -39,8 +35,6 @@ public class Animatore extends Utente {
     public boolean deleteEvent(int idEvento) {
         return getHandlerEvento().requestRemove(idEvento);
     }
-
-
 
     public HandlerEvento getHandlerEvento() {
         return (HandlerEvento) getHandlers().get(0);

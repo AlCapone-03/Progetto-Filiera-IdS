@@ -8,7 +8,7 @@ import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 import java.util.NoSuchElementException;
 
 //La classe è un Singleton
-public class GestoreMarketplace implements IGestore{
+public class GestoreMarketplace implements IGestore<Prodotto>{
 
     private static GestoreMarketplace gestoreMarketplace;
 
@@ -29,15 +29,16 @@ public class GestoreMarketplace implements IGestore{
         return marketplace;
     }
 
-    public boolean addProduct(Prodotto prodotto) {
+    @Override
+    public boolean addObject(Prodotto prodotto) {
         for (Prodotto p : marketplace.getListaProdotti())
             if (p.equals(prodotto))
                 throw new IllegalArgumentException("Prodotto già presente");
         return marketplace.getListaProdotti().add(prodotto);
     }
 
-    public boolean removeProduct(int index) {
-
+    @Override
+    public boolean removeObject(int index) {
         if (marketplace.getListaProdotti().isEmpty())
             throw new IllegalArgumentException("Lista prodotti vuota");
 

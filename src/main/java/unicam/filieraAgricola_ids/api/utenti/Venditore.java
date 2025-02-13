@@ -38,11 +38,15 @@ public abstract class Venditore extends Utente {
         return false;
     }
 
-    public boolean deleteProduct(Prodotto prodotto){
-        if(getHandlerProdotto().requestRemove(prodotto.getId())){
-            prodottiCaricati.remove(prodotto);
-            System.out.println("Prodotto eliminato con successo");
-            return true;
+    public boolean deleteProduct(int idProdotto){
+        if(getHandlerProdotto().requestRemove(idProdotto)){
+            for(Prodotto p : prodottiCaricati){
+                if(p.getId() == idProdotto){
+                    prodottiCaricati.remove(p);
+                    System.out.println("Prodotto eliminato con successo");
+                    return true;
+                }
+            }
         }
         else System.out.println("Errore nell'eliminazione del prodotto");
         return false;

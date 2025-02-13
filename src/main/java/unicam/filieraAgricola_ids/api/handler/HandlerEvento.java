@@ -9,11 +9,11 @@ public class HandlerEvento extends HandlerEventsPlace implements IHandlerGestion
 
     @Override
     public boolean requestAdd(Evento evento) {
-        return getGestore().addEvent(evento);
+        return getGestore().addObject(evento);
     }
     @Override
     public boolean requestRemove(int id) {
-        return getGestore().removeEvent(id);
+        return getGestore().removeObject(id);
     }
 
     public boolean requestModify(int idEvento, String data_inizio, String data_fine, String nome, String luogo) {

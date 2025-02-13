@@ -7,7 +7,7 @@ import unicam.filieraAgricola_ids.api.utenti.Acquirente;
 import unicam.filieraAgricola_ids.api.utenti.Venditore;
 
 //La classe è un Singleton
-public class GestoreEventsPlace implements IGestore {
+public class GestoreEventsPlace implements IGestore<Evento> {
 
     private static GestoreEventsPlace gestoreEventsPlace;
 
@@ -28,15 +28,16 @@ public class GestoreEventsPlace implements IGestore {
         return eventsPlace;
     }
 
-    public boolean addEvent(Evento event) {
+    @Override
+    public boolean addObject(Evento event) {
         for(Evento e : eventsPlace.getListaEventi())
             if(e.equals(event))
                 throw new IllegalArgumentException("Evento già presente");
         return eventsPlace.getListaEventi().add(event);
     }
 
-
-    public boolean removeEvent(int index) {
+    @Override
+    public boolean removeObject(int index) {
         if(eventsPlace.getListaEventi().isEmpty())
             throw new IllegalArgumentException("Lista Eventi vuota");
 
