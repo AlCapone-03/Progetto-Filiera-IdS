@@ -25,13 +25,5 @@ public class Marketplace {
         return listaProdotti;
     }
 
-    public void setListaProdotti(List<Prodotto> listaProdotti) {
-        this.listaProdotti = listaProdotti;
-    }
-
-
-
-   //TODO contains per sapere se un prodotto è presente nella lista
-
 }
 

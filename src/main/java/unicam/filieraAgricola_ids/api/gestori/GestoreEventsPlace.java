@@ -2,7 +2,9 @@ package unicam.filieraAgricola_ids.api.gestori;
 
 import unicam.filieraAgricola_ids.api.eventi.Evento;
 import unicam.filieraAgricola_ids.api.eventi.EventsPlace;
+import unicam.filieraAgricola_ids.api.eventi.Fiera;
 import unicam.filieraAgricola_ids.api.utenti.Acquirente;
+import unicam.filieraAgricola_ids.api.utenti.Venditore;
 
 //La classe è un Singleton
 public class GestoreEventsPlace implements IGestore {
@@ -46,35 +48,43 @@ public class GestoreEventsPlace implements IGestore {
         throw new IllegalArgumentException("Evento non trovato");
     }
 
-    public boolean modifyEvent(Evento evento,String data_inizio, String data_fine, String nome, String luogo) {
+    public boolean modifyEvent(int idEvento,String data_inizio, String data_fine, String nome, String luogo) {
         if(eventsPlace.getListaEventi().isEmpty())
             throw new IllegalArgumentException("Lista Eventi vuota");
 
         for (Evento e : eventsPlace.getListaEventi()) {
-            if (e.equals(evento)) {
+            if (e.getId() == idEvento) {
                 e.setData_inizio(data_inizio);
                 e.setData_fine(data_fine);
-                e.setLuogo(luogo);
                 e.setNome(nome);
+                e.setLuogo(luogo);
                 return true;
             }
         }
         throw new IllegalArgumentException("Evento non trovato");
     }
 
-public boolean addPartecipant(Evento evento, Acquirente acquirente){
+public boolean addPartecipant(int idEvento, Acquirente acquirente){
     if(eventsPlace.getListaEventi().isEmpty())
         throw new IllegalArgumentException("Lista Eventi vuota");
 
     for (Evento e : eventsPlace.getListaEventi()) {
-        if (e.equals(evento)) {
+        if (e.getId() == idEvento) {
             return e.getListaPartecipanti().add(acquirente);
         }
     }
     throw new IllegalArgumentException("Evento non trovato");
 }
 
-   //TODO newRegistration non funziona a meno che non si passi un id anziche la fiera stessa
+public boolean newRegistration(int idEvento, Venditore venditore) {
+    if (eventsPlace.getListaEventi().isEmpty())
+        throw new IllegalArgumentException("Lista Eventi vuota");
 
-
+    for (Evento e : eventsPlace.getListaEventi()) {
+        if (e.getId() == idEvento && e instanceof Fiera) {
+            return ((Fiera) e).addFierista(venditore);
+        }
+    }
+    throw new IllegalArgumentException("Evento non trovato");
+    }
 }

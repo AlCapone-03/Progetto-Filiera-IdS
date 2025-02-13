@@ -1,6 +1,7 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import unicam.filieraAgricola_ids.api.handler.IHandler;
+import unicam.filieraAgricola_ids.api.eventi.Evento;
+import unicam.filieraAgricola_ids.api.handler.*;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import java.util.List;
 
@@ -18,27 +19,41 @@ public class Acquirente extends Utente {
         return prodottiAcquistati;
     }
 
-    public void setProdottiAcquistati(List<Prodotto> prodottiAcquistati) {
-        this.prodottiAcquistati = prodottiAcquistati;
-    }
-
     public List<Prodotto> getProdottiSalvati() {
         return prodottiSalvati;
     }
 
-    public void setProdottiSalvati(List<Prodotto> prodottiSalvati) {
-        this.prodottiSalvati = prodottiSalvati;
+    public boolean buyProduct(int idProdotto, int quantita) {
+      return getHandlerAcquisto().requestBuy(idProdotto, quantita);
     }
 
-    public boolean buyProduct(Prodotto prodotto, int quantita) {
-        if (prodotto.getQuantita() < quantita) {
-            throw new IllegalArgumentException("Quantità non disponibile");
-        }
-        prodotto.setQuantita(prodotto.getQuantita() - quantita);
-        prodottiAcquistati.add(prodotto);
-        return true;
-
+    public Prodotto searchProduct(String nome) {
+        return getHandlerVisualizzazioneProdotti().requestDisponibility(nome);
     }
-    //TODO come fare per passare il prodotto per parametro? si puo fare? perchè così non serve l'handler
+
+    public boolean bookEvent(int idEvento) {
+        return getHandlerPrenotazione().requestBookEvent(idEvento,this);
+    }
+
+    public List<Prodotto> viewAllEvents() {
+        return getHandlerVisualizzazioneProdotti().showList();
+    }
+
+    public List<Evento> viewAllProducts() {
+        return getHandlerVisualizzazioneEventi().showList();
+    }
+
+    public HandlerAcquisto getHandlerAcquisto() {
+        return (HandlerAcquisto) getHandlers().get(0);
+    }
+    public HandlerVisualizzazioneProdotti getHandlerVisualizzazioneProdotti() {
+        return (HandlerVisualizzazioneProdotti) getHandlers().get(1);
+    }
+    public HandlerVisualizzazioneEventi getHandlerVisualizzazioneEventi() {
+        return (HandlerVisualizzazioneEventi) getHandlers().get(2);
+    }
+    public HandlerPrenotazione getHandlerPrenotazione() {
+        return (HandlerPrenotazione) getHandlers().get(3);
+    }
 
 }

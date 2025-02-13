@@ -1,7 +1,6 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
 import unicam.filieraAgricola_ids.api.eventi.Evento;
-import unicam.filieraAgricola_ids.api.eventi.Fiera;
 import unicam.filieraAgricola_ids.api.handler.HandlerPrenotazione;
 import unicam.filieraAgricola_ids.api.handler.HandlerProdotto;
 import unicam.filieraAgricola_ids.api.handler.HandlerVisualizzazioneEventi;
@@ -25,26 +24,22 @@ public abstract class Venditore extends Utente {
     }
 
 
-    public boolean loadProduct (List<String> certificazioni, String descrizione,
-                                float prezzo, int quantita, String nomeProdotto) {
+    public boolean loadProduct(List<String> certificazioni, String descrizione,
+                               float prezzo, int quantita, String nomeProdotto) {
 
         Prodotto prodotto = new ProdottoSingolo(nomeProdotto, descrizione, prezzo,
                 certificazioni, this, quantita);
 
-        HandlerProdotto handlerProdotto = (HandlerProdotto) getHandlers().get(0);
-        if(handlerProdotto.requestAdd(prodotto)){
+        if (getHandlerProdotto().requestAdd(prodotto)) {
             prodottiCaricati.add(prodotto);
             System.out.println("Prodotto caricato con successo");
             return true;
-        }
-        else System.out.println("Errore nel caricamento del prodotto");
+        } else System.out.println("Errore nel caricamento del prodotto");
         return false;
     }
 
     public boolean deleteProduct(Prodotto prodotto){
-        HandlerProdotto handlerProdotto = (HandlerProdotto) getHandlers().get(0);
-
-        if(handlerProdotto.requestRemove(prodotto.getId())){
+        if(getHandlerProdotto().requestRemove(prodotto.getId())){
             prodottiCaricati.remove(prodotto);
             System.out.println("Prodotto eliminato con successo");
             return true;
@@ -53,14 +48,12 @@ public abstract class Venditore extends Utente {
         return false;
     }
 
-    public boolean registrationFair(Fiera fiera){
-        HandlerPrenotazione handlerPrenotazione = (HandlerPrenotazione) getHandlers().get(2);
-        return handlerPrenotazione.registrationFair(fiera, this);
+    public boolean registrationFair(int idEvento){
+        return getHandlerPrenotazione().requestReg(this, idEvento);
     }
 
-    public boolean modifyDataProduct(Prodotto prodotto,String nome, int prezzo, String descrizione){
-        HandlerProdotto handlerProdotto = (HandlerProdotto) getHandlers().get(0);
-        if(handlerProdotto.requestModifyProduct(prodotto, nome, prezzo, descrizione)){
+    public boolean modifyDataProduct(int idProdotto,String nome, int prezzo, String descrizione){
+        if(getHandlerProdotto().requestModifyProduct(idProdotto, nome, prezzo, descrizione)){
             System.out.println("Prodotto modificato con successo");
             return true;
         }
@@ -68,14 +61,12 @@ public abstract class Venditore extends Utente {
         return false;
     }
 
-    public boolean reloadProduct(Prodotto prodotto, int quantita){
-        HandlerProdotto handlerProdotto = (HandlerProdotto) getHandlers().get(0);
-        return handlerProdotto.requestReloadProduct(prodotto, quantita);
+    public boolean reloadProduct(int idProdotto, int quantita){
+        return getHandlerProdotto().requestReloadProduct(idProdotto, quantita);
     }
 
     public List<Evento> viewAllEvent(){
-        HandlerVisualizzazioneEventi handlerVisualizzazione=(HandlerVisualizzazioneEventi) getHandlers().get(1);
-        return handlerVisualizzazione.showList();
+        return getHandlerVisualizzazioneEventi().showList();
     }
 
     @Override
@@ -84,4 +75,17 @@ public abstract class Venditore extends Utente {
         if (!(obj instanceof Venditore venditore)) return false;
         return getNome().equals(venditore.getNome());
     }
+
+    public HandlerProdotto getHandlerProdotto(){
+        return (HandlerProdotto) getHandlers().get(0);
+    }
+
+    public HandlerVisualizzazioneEventi getHandlerVisualizzazioneEventi(){
+        return (HandlerVisualizzazioneEventi) getHandlers().get(1);
+    }
+
+    public HandlerPrenotazione getHandlerPrenotazione(){
+        return (HandlerPrenotazione) getHandlers().get(2);
+    }
+
 }

@@ -8,12 +8,13 @@ public class HandlerValidazione extends HandlerMarketplace {
         super();
     }
 
-    public boolean requestValidation(Prodotto prodotto) {
-        return getGestore().validateRequest(prodotto);
+    public boolean requestValidation(int idProdotto) {
+        return getGestore().validateRequest(idProdotto);
     }
-    public boolean requestRemoval(Prodotto prodotto) {
-        ProdottoSingolo ps = (ProdottoSingolo) prodotto;
-        if(!ps.isValidato())
+
+    public boolean requestRemoval(int idProdotto) {
+        ProdottoSingolo prodotto = (ProdottoSingolo) getGestore().getProductById(idProdotto);
+        if(!prodotto.isValidato())
             return getGestore().removeProduct(prodotto.getId());
         else return false;
     }

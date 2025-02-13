@@ -12,8 +12,15 @@ public class Curatore extends Utente {
         super(nome, email, password, handlers);
     }
 
-    public boolean certifyProduct(Prodotto prodotto) {
-        HandlerValidazione handlerValidazione = (HandlerValidazione) getHandlers().get(0);
-        return handlerValidazione.requestValidation(prodotto);
+    public boolean certifyProduct(int idProdotto) {
+        return getHandlerValidazione().requestValidation(idProdotto);
+    }
+
+    public boolean rejectProduct(int idProdotto) {
+        return getHandlerValidazione().requestRemoval(idProdotto);
+    }
+
+    public HandlerValidazione getHandlerValidazione() {
+        return (HandlerValidazione) getHandlers().get(0);
     }
 }

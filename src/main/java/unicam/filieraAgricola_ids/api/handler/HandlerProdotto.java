@@ -16,12 +16,12 @@ public class HandlerProdotto extends HandlerMarketplace implements IHandlerGesti
        return getGestore().removeProduct(id);
     }
 
-    public boolean requestModifyProduct(Prodotto prodotto, String nome, int prezzo, String descrizione) {
-        return getGestore().modifyProduct(prodotto, nome, prezzo, descrizione);
+    public boolean requestModifyProduct(int idProdotto, String nome, int prezzo, String descrizione) {
+        return getGestore().modifyProduct(idProdotto, nome, prezzo, descrizione);
     }
 
-    public boolean requestReloadProduct(Prodotto prodotto, int quantita) {
-        return getGestore().reloadQuantity(prodotto, quantita);
+    public boolean requestReloadProduct(int idProdotto, int quantita) {
+        return getGestore().reloadQuantity(idProdotto, quantita);
     }
 
 

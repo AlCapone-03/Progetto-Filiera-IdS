@@ -25,7 +25,4 @@ public class EventsPlace {
         return listaEventi;
     }
 
-    public void setListaEventi(List<Evento> listaEventi) {
-        this.listaEventi = listaEventi;
-    }
 }

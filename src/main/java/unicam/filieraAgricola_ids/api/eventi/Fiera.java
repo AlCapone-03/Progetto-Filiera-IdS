@@ -20,4 +20,5 @@ public class Fiera extends Evento{
     public boolean addFierista(Venditore venditore){
         return listaFieristi.add(venditore);
     }
+
 }

@@ -74,4 +74,5 @@ public class ProdottoSingolo extends Prodotto {
                 ", \n nome='" + getNome() + '\'' +
                 '}';
     }
+    //TODO scrivere l'equals per entrambi nella classe prodotto
 }

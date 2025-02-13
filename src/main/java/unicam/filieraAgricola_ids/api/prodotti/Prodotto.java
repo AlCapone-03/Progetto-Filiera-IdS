@@ -48,4 +48,6 @@ public abstract class Prodotto {
     public void setQuantita(int quantita) {
         this.quantita = quantita;
     }
+
+
 }
