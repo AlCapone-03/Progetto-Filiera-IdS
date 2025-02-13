@@ -35,11 +35,11 @@ public class Acquirente extends Utente {
         return getHandlerPrenotazione().requestBookEvent(idEvento,this);
     }
 
-    public List<Prodotto> viewAllEvents() {
+    public List<Prodotto> viewAllProducts() {
         return getHandlerVisualizzazioneProdotti().showList();
     }
 
-    public List<Evento> viewAllProducts() {
+    public List<Evento> viewAllEvents() {
         return getHandlerVisualizzazioneEventi().showList();
     }
 

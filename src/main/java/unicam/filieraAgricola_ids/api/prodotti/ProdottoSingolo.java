@@ -8,14 +8,14 @@ public class ProdottoSingolo extends Prodotto {
 
     private List<String> listaCertificazioni;
 
-    private Venditore produttore;
+    private final Venditore produttore;
 
     private boolean validato;
 
-    private float prezzo;
+    private double prezzo;
 
     public ProdottoSingolo(String nome, String descrizione,
-                           float prezzo, List<String> listaCertificazioni,
+                           double prezzo, List<String> listaCertificazioni,
                            Venditore produttore,int quantita) {
         super(nome, descrizione,quantita);
         this.listaCertificazioni = listaCertificazioni;
@@ -24,11 +24,11 @@ public class ProdottoSingolo extends Prodotto {
         this.prezzo = prezzo;
     }
 
-    public float getPrezzo() {
+    public double getPrezzo() {
         return prezzo;
     }
 
-    public void setPrezzo(float prezzo) {
+    public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
     }
 
@@ -54,7 +54,7 @@ public class ProdottoSingolo extends Prodotto {
 
     @Override
     public String toString() {
-        return "ProdottoSingolo{" +
+        return "\n ProdottoSingolo{" +
                 "id=" + getId() +
                 ", \n listaCertificazioni=" + listaCertificazioni +
                 ", \n produttore=" + produttore.getNome() +
@@ -62,6 +62,7 @@ public class ProdottoSingolo extends Prodotto {
                 ", \n prezzo=" + getPrezzo() +
                 ", \nvalidato=" + validato +
                 ", \n nome='" + getNome() + '\'' +
+                ", \n quantita= " + getQuantita() +
                 '}';
     }
     //TODO scrivere l'equals per entrambi nella classe prodotto

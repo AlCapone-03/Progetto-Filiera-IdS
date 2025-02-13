@@ -12,7 +12,7 @@ import java.util.List;
 
 public class FactoryTrasformatore extends FactoryUtente{
      @Override
-    public Utente createUser(String nome, String email, String password) {
+    public Trasformatore createUser(String nome, String email, String password) {
          List<IHandler> handlers = Arrays.asList(new HandlerProdotto(), new HandlerVisualizzazioneEventi(),
                  new HandlerPrenotazione());
          return new Trasformatore(nome, email, password, handlers);

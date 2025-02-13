@@ -8,6 +8,7 @@ import unicam.filieraAgricola_ids.api.handler.IHandler;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public abstract class Venditore extends Utente {
@@ -17,6 +18,7 @@ public abstract class Venditore extends Utente {
     public Venditore(String nome, String email, String password,
                      List<IHandler> handlers) {
         super(nome, email, password, handlers);
+        this.prodottiCaricati = new ArrayList<>();
     }
 
     public List<Prodotto> getProdottiCaricati() {
@@ -25,7 +27,7 @@ public abstract class Venditore extends Utente {
 
 
     public boolean loadProduct(List<String> certificazioni, String descrizione,
-                               float prezzo, int quantita, String nomeProdotto) {
+                               double prezzo, int quantita, String nomeProdotto) {
 
         Prodotto prodotto = new ProdottoSingolo(nomeProdotto, descrizione, prezzo,
                 certificazioni, this, quantita);

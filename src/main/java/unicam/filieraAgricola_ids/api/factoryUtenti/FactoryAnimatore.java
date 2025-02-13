@@ -9,7 +9,7 @@ import java.util.List;
 public class FactoryAnimatore extends FactoryUtente {
 
     @Override
-    public Utente createUser(String nome, String email, String password) {
+    public Animatore createUser(String nome, String email, String password) {
         List<IHandler> handlers = List.of(new HandlerEvento());
         return new Animatore(nome, email, password, handlers);
     }

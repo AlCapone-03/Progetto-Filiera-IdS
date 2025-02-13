@@ -7,18 +7,24 @@ public class Pacchetto extends Prodotto{
 
     private List<Prodotto> prodottiPacchetto;
 
+    private double prezzo;
 
     public Pacchetto(String nome, String descrizione, List<Prodotto> prodottiPacchetto, int quantita) {
         super(nome, descrizione,quantita);
         this.prodottiPacchetto = prodottiPacchetto;
+        prezzo = getPrezzoInziale();
     }
 
-    public float getPrezzo() {
-        float prezzo = 0;
+    private double getPrezzoInziale() {
+        double prezzo = 0;
         for (Prodotto prodotto : prodottiPacchetto) {
             ProdottoSingolo prodottoSingolo = (ProdottoSingolo) prodotto;
             prezzo += prodottoSingolo.getPrezzo();
         }
+        return prezzo;
+    }
+
+    public double getPrezzo() {
         return prezzo;
     }
 

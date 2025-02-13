@@ -66,7 +66,7 @@ public class GestoreMarketplace implements IGestore<Prodotto>{
             p.setQuantita(p.getQuantita() - quantita);
             return true;
 
-        } else return false;
+        } else throw new IllegalArgumentException("Quantità non disponibile");
     }
 
 

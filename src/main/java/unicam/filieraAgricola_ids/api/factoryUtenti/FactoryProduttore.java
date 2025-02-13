@@ -11,7 +11,7 @@ import java.util.List;
 public class FactoryProduttore extends FactoryUtente {
 
     @Override
-    public Utente createUser(String nome, String email, String password) {
+    public Produttore createUser(String nome, String email, String password) {
         List<IHandler> handlers = Arrays.asList(new HandlerProdotto(), new HandlerVisualizzazioneEventi(),
                 new HandlerPrenotazione());
         return new Produttore(nome, email, password, handlers);

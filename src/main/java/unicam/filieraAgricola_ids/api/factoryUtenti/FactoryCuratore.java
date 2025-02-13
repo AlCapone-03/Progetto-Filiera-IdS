@@ -10,7 +10,7 @@ import java.util.List;
 public class FactoryCuratore extends FactoryUtente {
 
     @Override
-    public Utente createUser(String nome, String email, String password) {
+    public Curatore createUser(String nome, String email, String password) {
         List<IHandler> handlers = List.of(new HandlerValidazione());
         return new Curatore(nome, email, password,handlers);
     }
