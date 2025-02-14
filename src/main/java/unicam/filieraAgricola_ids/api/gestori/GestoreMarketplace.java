@@ -59,12 +59,11 @@ public class GestoreMarketplace implements IGestore<Prodotto>{
         return false;
     }
 
-    public boolean subtractProductQuantity(int idProdotto, int quantita) {
+    public Prodotto subtractProductQuantity(int idProdotto, int quantita) {
         Prodotto p = getProductById(idProdotto);
         if (p.getQuantita() >= quantita) {
             p.setQuantita(p.getQuantita() - quantita);
-            return true;
-
+            return p;
         } else throw new IllegalArgumentException("Quantità non disponibile");
     }
 
