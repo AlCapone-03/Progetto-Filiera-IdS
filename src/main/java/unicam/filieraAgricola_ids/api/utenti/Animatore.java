@@ -41,8 +41,8 @@ public class Animatore extends Utente {
         return false;
     }
 
-    public boolean modifyEvent(int idEvento, String data_inizio, String data_fine, String nome, String luogo) {
-        return getHandlerEvento().requestModify(idEvento, data_inizio, data_fine, nome, luogo);
+    public boolean modifyDataEvent(int idEvento, String data_inizio, String data_fine, String nome, String luogo) {
+        return getHandlerEvento().requestModifyEvent(idEvento, data_inizio, data_fine, nome, luogo);
     }
 
     public boolean deleteEvent(int idEvento) {

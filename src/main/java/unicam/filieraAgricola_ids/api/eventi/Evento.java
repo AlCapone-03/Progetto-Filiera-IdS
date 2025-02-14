@@ -18,7 +18,7 @@ public abstract class Evento {
 
     private final int id;
 
-    private List<Acquirente> listaPartecipanti;
+    private final List<Acquirente> listaPartecipanti;
 
     public Evento(String data_inizio, String data_fine,
                   String luogo, String nome) {

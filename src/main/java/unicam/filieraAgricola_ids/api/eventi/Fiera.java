@@ -9,7 +9,7 @@ public class Fiera extends Evento{
 
     private final String dettagli;
 
-    private List<Venditore> listaFieristi;
+    private final List<Venditore> listaFieristi;
 
     public Fiera(String data_inizio, String data_fine,String nome, String luogo, String dettagli ) {
 

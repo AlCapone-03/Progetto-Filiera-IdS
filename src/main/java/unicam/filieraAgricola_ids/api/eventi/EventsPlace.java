@@ -8,7 +8,7 @@ public class EventsPlace {
 
     private static EventsPlace eventsPlace;
 
-    private List<Evento> listaEventi;
+    private final List<Evento> listaEventi;
 
     private EventsPlace() {
         this.listaEventi = new ArrayList<>();

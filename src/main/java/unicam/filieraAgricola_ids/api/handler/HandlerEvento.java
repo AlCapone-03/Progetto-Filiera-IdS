@@ -18,7 +18,7 @@ public class HandlerEvento extends HandlerEventsPlace implements IHandlerGestion
         return getGestore().removeObject(id);
     }
 
-    public boolean requestModify(int idEvento, String data_inizio, String data_fine, String nome, String luogo) {
+    public boolean requestModifyEvent(int idEvento, String data_inizio, String data_fine, String nome, String luogo) {
         return getGestore().modifyEvent(idEvento, data_inizio, data_fine, nome, luogo);
     }
 

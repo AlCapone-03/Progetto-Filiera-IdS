@@ -11,10 +11,10 @@ public class Pacchetto extends Prodotto{
     public Pacchetto(String nome, String descrizione, List<Prodotto> prodottiPacchetto, int quantita) {
         super(nome, descrizione,quantita);
         this.prodottiPacchetto = prodottiPacchetto;
-        prezzo = getPrezzoInziale();
+        prezzo = getPrezzoIniziale();
     }
 
-    private double getPrezzoInziale() {
+    private double getPrezzoIniziale() {
         double prezzo = 0;
         for (Prodotto prodotto : prodottiPacchetto) {
             ProdottoSingolo prodottoSingolo = (ProdottoSingolo) prodotto;

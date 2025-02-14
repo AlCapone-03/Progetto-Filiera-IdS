@@ -17,7 +17,7 @@ public class HandlerProdotto extends HandlerMarketplace implements IHandlerGesti
        return getGestore().removeObject(id);
     }
 
-    public boolean requestModifyProduct(int idProdotto, String nome, int prezzo, String descrizione) {
+    public boolean requestModifyProduct(int idProdotto, String nome, double prezzo, String descrizione) {
         return getGestore().modifyProduct(idProdotto, nome, prezzo, descrizione);
     }
 

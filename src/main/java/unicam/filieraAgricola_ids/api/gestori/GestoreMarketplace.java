@@ -67,7 +67,7 @@ public class GestoreMarketplace implements IGestore<Prodotto>{
         } else throw new IllegalArgumentException("Quantità non disponibile");
     }
 
-    public boolean modifyProduct(int idProdotto, String nome, int prezzo, String descrizione) {
+    public boolean modifyProduct(int idProdotto, String nome, double prezzo, String descrizione) {
         if (marketplace.getListaProdotti().isEmpty())
             throw new NullPointerException("Lista prodotti vuota");
 

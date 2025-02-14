@@ -13,7 +13,7 @@ import java.util.List;
 
 public abstract class Venditore extends Utente {
 
-    private List<Prodotto> prodottiCaricati;
+    private final List<Prodotto> prodottiCaricati;
 
     public Venditore(String nome, String email, String password,
                      List<IHandler> handlers) {
@@ -71,7 +71,7 @@ public abstract class Venditore extends Utente {
         return getHandlerProdotto().requestReloadProduct(idProdotto, quantita);
     }
 
-    public List<Evento> viewAllEvent(){
+    public List<Evento> viewAllEvents(){
         return getHandlerVisualizzazioneEventi().showList();
     }
 
