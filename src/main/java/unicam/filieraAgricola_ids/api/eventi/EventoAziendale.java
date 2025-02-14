@@ -14,5 +14,8 @@ public class EventoAziendale extends Evento{
         listaInvitati = lista;
     }
 
+    public List<Venditore> getListaInvitati() {
+        return listaInvitati;
+    }
 
 }

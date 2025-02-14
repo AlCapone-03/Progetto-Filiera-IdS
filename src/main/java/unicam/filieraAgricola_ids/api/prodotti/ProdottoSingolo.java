@@ -65,5 +65,5 @@ public class ProdottoSingolo extends Prodotto {
                 ", \n quantita= " + getQuantita() +
                 '}';
     }
-    //TODO scrivere l'equals per entrambi nella classe prodotto
+
 }

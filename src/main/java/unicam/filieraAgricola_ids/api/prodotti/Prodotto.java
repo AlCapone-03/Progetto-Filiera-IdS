@@ -3,7 +3,6 @@ package unicam.filieraAgricola_ids.api.prodotti;
 
 public abstract class Prodotto {
 
-
     private static int index = 0;
 
     private final int id;

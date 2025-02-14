@@ -2,7 +2,6 @@ package unicam.filieraAgricola_ids.api.factoryUtenti;
 
 import unicam.filieraAgricola_ids.api.handler.*;
 import unicam.filieraAgricola_ids.api.utenti.Animatore;
-import unicam.filieraAgricola_ids.api.utenti.Utente;
 
 import java.util.List;
 

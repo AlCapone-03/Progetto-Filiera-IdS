@@ -1,10 +1,8 @@
 package unicam.filieraAgricola_ids.api.gestori;
 
-
 import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
-
 import java.util.NoSuchElementException;
 
 //La classe è un Singleton
@@ -60,6 +58,7 @@ public class GestoreMarketplace implements IGestore<Prodotto>{
         }
         return false;
     }
+
     public boolean subtractProductQuantity(int idProdotto, int quantita) {
         Prodotto p = getProductById(idProdotto);
         if (p.getQuantita() >= quantita) {
@@ -68,7 +67,6 @@ public class GestoreMarketplace implements IGestore<Prodotto>{
 
         } else throw new IllegalArgumentException("Quantità non disponibile");
     }
-
 
     public boolean modifyProduct(int idProdotto, String nome, int prezzo, String descrizione) {
         if (marketplace.getListaProdotti().isEmpty())
@@ -83,7 +81,6 @@ public class GestoreMarketplace implements IGestore<Prodotto>{
         } else
             throw new NoSuchElementException("Prodotto non trovato");
     }
-
 
     public boolean reloadQuantity(int idProdotto, int quantita) {
         if (marketplace.getListaProdotti().isEmpty())
@@ -112,6 +109,5 @@ public class GestoreMarketplace implements IGestore<Prodotto>{
         }
         throw new NoSuchElementException("Prodotto non trovato");
     }
-
 
 }

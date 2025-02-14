@@ -1,10 +1,9 @@
 package unicam.filieraAgricola_ids.api.eventi;
 
 import unicam.filieraAgricola_ids.api.utenti.Acquirente;
-
+import java.util.ArrayList;
 import java.util.List;
 
-//c'è la possibilità di inserire il tipo date
 public abstract class Evento {
 
     private String data_inizio;
@@ -17,7 +16,7 @@ public abstract class Evento {
 
     private static int index=1;
 
-    private int id;
+    private final int id;
 
     private List<Acquirente> listaPartecipanti;
 
@@ -28,6 +27,7 @@ public abstract class Evento {
         this.luogo = luogo;
         this.nome = nome;
         id = index++;
+        listaPartecipanti = new ArrayList<>();
     }
 
     public String getData_inizio() {
@@ -82,4 +82,13 @@ public abstract class Evento {
         return getId() == other.getId();
     }
 
+    @Override
+    public String toString() {
+        return " \n Evento [" +
+                " id=" + id +
+                ", \n data_inizio= " + data_inizio +
+                ", \n data_fine= " + data_fine +
+                ", \n luogo= " + luogo +
+                ", \n nome= " + nome +"]";
+    }
 }

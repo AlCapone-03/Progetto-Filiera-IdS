@@ -2,7 +2,6 @@ package unicam.filieraAgricola_ids.api.utenti;
 
 import unicam.filieraAgricola_ids.api.handler.HandlerValidazione;
 import unicam.filieraAgricola_ids.api.handler.IHandler;
-import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 
 import java.util.List;
 

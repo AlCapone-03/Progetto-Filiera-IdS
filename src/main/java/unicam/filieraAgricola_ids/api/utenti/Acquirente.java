@@ -3,16 +3,20 @@ package unicam.filieraAgricola_ids.api.utenti;
 import unicam.filieraAgricola_ids.api.eventi.Evento;
 import unicam.filieraAgricola_ids.api.handler.*;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Acquirente extends Utente {
 
-
     private List<Prodotto> prodottiAcquistati;
+
     private List<Prodotto> prodottiSalvati;
 
     public Acquirente(String nome, String email, String password, List<IHandler> handlers) {
         super(nome, email, password, handlers);
+        prodottiAcquistati = new ArrayList<>();
+        prodottiSalvati = new ArrayList<>();
     }
 
     public List<Prodotto> getProdottiAcquistati() {
@@ -46,12 +50,15 @@ public class Acquirente extends Utente {
     public HandlerAcquisto getHandlerAcquisto() {
         return (HandlerAcquisto) getHandlers().get(0);
     }
+
     public HandlerVisualizzazioneProdotti getHandlerVisualizzazioneProdotti() {
         return (HandlerVisualizzazioneProdotti) getHandlers().get(1);
     }
+
     public HandlerVisualizzazioneEventi getHandlerVisualizzazioneEventi() {
         return (HandlerVisualizzazioneEventi) getHandlers().get(2);
     }
+
     public HandlerPrenotazione getHandlerPrenotazione() {
         return (HandlerPrenotazione) getHandlers().get(3);
     }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public abstract class Utente {
 
-    private int id;
+    private final int id;
     private String nome;
     private String email;
     private String password;

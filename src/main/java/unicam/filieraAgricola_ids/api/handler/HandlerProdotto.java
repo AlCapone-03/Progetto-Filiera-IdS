@@ -11,6 +11,7 @@ public class HandlerProdotto extends HandlerMarketplace implements IHandlerGesti
     public boolean requestAdd(Prodotto prodotto) {
         return getGestore().addObject(prodotto);
     }
+
     @Override
     public boolean requestRemove(int id) {
        return getGestore().removeObject(id);
@@ -23,6 +24,5 @@ public class HandlerProdotto extends HandlerMarketplace implements IHandlerGesti
     public boolean requestReloadProduct(int idProdotto, int quantita) {
         return getGestore().reloadQuantity(idProdotto, quantita);
     }
-
 
 }

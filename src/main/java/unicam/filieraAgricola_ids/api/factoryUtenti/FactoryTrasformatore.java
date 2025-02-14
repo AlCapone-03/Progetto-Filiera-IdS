@@ -5,7 +5,6 @@ import unicam.filieraAgricola_ids.api.handler.HandlerProdotto;
 import unicam.filieraAgricola_ids.api.handler.HandlerVisualizzazioneEventi;
 import unicam.filieraAgricola_ids.api.handler.IHandler;
 import unicam.filieraAgricola_ids.api.utenti.Trasformatore;
-import unicam.filieraAgricola_ids.api.utenti.Utente;
 
 import java.util.Arrays;
 import java.util.List;

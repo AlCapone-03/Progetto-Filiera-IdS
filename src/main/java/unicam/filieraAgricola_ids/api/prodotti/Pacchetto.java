@@ -2,7 +2,6 @@ package unicam.filieraAgricola_ids.api.prodotti;
 
 import java.util.List;
 
-
 public class Pacchetto extends Prodotto{
 
     private List<Prodotto> prodottiPacchetto;
@@ -35,7 +34,9 @@ public class Pacchetto extends Prodotto{
     @Override
     public String toString() {
         return "Pacchetto{ id = " + getId() +
-                ", nome = " + getNome() +
+                ", \n nome = " + getNome() +
+                ", \n descrizione = " + getDescrizione() +
+                ", \n prezzo = " + prezzo +
                 '}';
     }
 }

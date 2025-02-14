@@ -3,7 +3,6 @@ package unicam.filieraAgricola_ids.api.factoryUtenti;
 import unicam.filieraAgricola_ids.api.handler.HandlerValidazione;
 import unicam.filieraAgricola_ids.api.handler.IHandler;
 import unicam.filieraAgricola_ids.api.utenti.Curatore;
-import unicam.filieraAgricola_ids.api.utenti.Utente;
 
 import java.util.List;
 

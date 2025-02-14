@@ -3,6 +3,7 @@ import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 
 
 public class HandlerValidazione extends HandlerMarketplace {
+
     public HandlerValidazione() {
         super();
     }

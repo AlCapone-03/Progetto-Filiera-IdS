@@ -7,7 +7,8 @@ import java.util.List;
 
 public class Fiera extends Evento{
 
-    private String dettagli;
+    private final String dettagli;
+
     private List<Venditore> listaFieristi;
 
     public Fiera(String data_inizio, String data_fine,String nome, String luogo, String dettagli ) {
@@ -15,6 +16,10 @@ public class Fiera extends Evento{
         super(data_inizio, data_fine, luogo, nome);
         this.dettagli=dettagli;
         listaFieristi= new ArrayList<>();
+    }
+
+    public List<Venditore> getListaFieristi() {
+        return listaFieristi;
     }
 
     public boolean addFierista(Venditore venditore){

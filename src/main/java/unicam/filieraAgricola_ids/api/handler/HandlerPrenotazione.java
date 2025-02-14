@@ -4,6 +4,7 @@ import unicam.filieraAgricola_ids.api.utenti.Acquirente;
 import unicam.filieraAgricola_ids.api.utenti.Venditore;
 
 public class HandlerPrenotazione extends HandlerEventsPlace {
+
     public HandlerPrenotazione() {
         super();
     }
