@@ -1,10 +1,12 @@
 package unicam.filieraAgricola_ids.api.gestori;
 
+import org.springframework.stereotype.Service;
 import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 import java.util.NoSuchElementException;
 
+@Service
 //La classe è un Singleton
 public class GestoreMarketplace implements IGestore<Prodotto>{
 
