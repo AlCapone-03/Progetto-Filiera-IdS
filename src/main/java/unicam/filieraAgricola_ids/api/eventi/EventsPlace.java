@@ -1,9 +1,11 @@
 package unicam.filieraAgricola_ids.api.eventi;
 
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
-//La classe è un Singleton
+@Service
 public class EventsPlace {
 
     private static EventsPlace eventsPlace;

@@ -1,8 +1,19 @@
 package unicam.filieraAgricola_ids.api.handler;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RestController;
+import unicam.filieraAgricola_ids.api.gestori.ServiceValidazione;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 
-
+@RestController
 public class HandlerValidazione extends HandlerMarketplace {
+
+    private ServiceValidazione serviceValidazione;
+
+    @Autowired
+    public HandlerValidazione(ServiceValidazione serviceValidazione) {
+        this.serviceValidazione = serviceValidazione;
+    }
 
     public HandlerValidazione() {
         super();

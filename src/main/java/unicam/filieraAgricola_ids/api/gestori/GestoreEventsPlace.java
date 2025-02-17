@@ -1,13 +1,12 @@
 package unicam.filieraAgricola_ids.api.gestori;
 
-import org.springframework.stereotype.Service;
 import unicam.filieraAgricola_ids.api.eventi.Evento;
 import unicam.filieraAgricola_ids.api.eventi.EventsPlace;
 import unicam.filieraAgricola_ids.api.eventi.Fiera;
 import unicam.filieraAgricola_ids.api.utenti.Acquirente;
 import unicam.filieraAgricola_ids.api.utenti.Venditore;
 
-@Service
+
 public class GestoreEventsPlace implements IGestore<Evento> {
 
     private static GestoreEventsPlace gestoreEventsPlace;
