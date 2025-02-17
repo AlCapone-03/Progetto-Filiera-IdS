@@ -1,5 +1,7 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
+import unicam.filieraAgricola_ids.api.utenti.Venditore;
+
 import java.util.List;
 
 public class Pacchetto extends Prodotto{
@@ -8,8 +10,8 @@ public class Pacchetto extends Prodotto{
 
     private double prezzo;
 
-    public Pacchetto(String nome, String descrizione, List<Prodotto> prodottiPacchetto, int quantita) {
-        super(nome, descrizione,quantita);
+    public Pacchetto(String nome, Venditore produttore, String descrizione, List<Prodotto> prodottiPacchetto, int quantita) {
+        super(nome, produttore, descrizione,quantita);
         this.prodottiPacchetto = prodottiPacchetto;
         prezzo = getPrezzoIniziale();
     }

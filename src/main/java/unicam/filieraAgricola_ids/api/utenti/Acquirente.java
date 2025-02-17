@@ -27,13 +27,7 @@ public class Acquirente extends Utente {
         return prodottiSalvati;
     }
 
-    public boolean buyProduct(int idProdotto, int quantita) {
-        Prodotto p = getHandlerAcquisto().requestBuy(idProdotto, quantita);
-        if (p != null && !(prodottiAcquistati.contains(p))) {
-            prodottiAcquistati.add(p);
-            return true;
-        } else return false;
-    }
+
 
     public Prodotto searchProduct(String nome) {
         return getHandlerVisualizzazioneProdotti().requestDisponibility(nome);

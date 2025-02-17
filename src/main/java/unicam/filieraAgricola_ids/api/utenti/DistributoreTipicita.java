@@ -13,8 +13,8 @@ public class DistributoreTipicita extends Venditore {
         super(nome, email, password, handlers);
     }
 
-    public boolean createPackage(String nome, String descrizione,List<Prodotto> prodotti, int quantita){
-        Pacchetto pacchetto = new Pacchetto(nome, descrizione, prodotti, quantita);
+    public boolean createPackage(String nome, Venditore produttore,String descrizione,List<Prodotto> prodotti, int quantita){
+        Pacchetto pacchetto = new Pacchetto(nome, produttore, descrizione, prodotti, quantita);
         if(getHandlerProdotto().requestAdd(pacchetto)){
             getProdottiCaricati().add(pacchetto);
             System.out.println("Pacchetto creato con successo");

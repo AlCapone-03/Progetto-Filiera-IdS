@@ -1,11 +1,15 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
 
+import unicam.filieraAgricola_ids.api.utenti.Venditore;
+
 public abstract class Prodotto {
 
     private static int index = 0;
 
     private final int id;
+
+    private final Venditore produttore;
 
     private String nome;
 
@@ -13,11 +17,16 @@ public abstract class Prodotto {
 
     private int quantita;
 
-    public Prodotto(String nome, String descrizione,int quantita) {
+    public Prodotto(String nome,Venditore creatore, String descrizione,int quantita) {
         this.id = ++index;
+        this.produttore = creatore;
         this.nome = nome;
         this.descrizione = descrizione;
         this.quantita = quantita;
+    }
+
+    public Venditore getProduttore() {
+        return produttore;
     }
 
     public int getId() {

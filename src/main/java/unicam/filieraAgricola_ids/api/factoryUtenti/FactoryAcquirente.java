@@ -10,7 +10,7 @@ public class FactoryAcquirente extends FactoryUtente {
 
     @Override
     public Acquirente createUser(String nome, String email, String password) {
-        List<IHandler> handlers = Arrays.asList(new HandlerAcquisto(), new HandlerVisualizzazioneProdotti(),
+        List<IHandler> handlers = Arrays.asList(new HandlerVisualizzazioneProdotti(),
                 new HandlerVisualizzazioneEventi(), new HandlerPrenotazione());
         return new Acquirente(nome, email, password, handlers);
     }

@@ -8,8 +8,6 @@ public class ProdottoSingolo extends Prodotto {
 
     private List<String> listaCertificazioni;
 
-    private final Venditore produttore;
-
     private boolean validato;
 
     private double prezzo;
@@ -17,9 +15,8 @@ public class ProdottoSingolo extends Prodotto {
     public ProdottoSingolo(String nome, String descrizione,
                            double prezzo, List<String> listaCertificazioni,
                            Venditore produttore,int quantita) {
-        super(nome, descrizione,quantita);
+        super(nome, produttore, descrizione,quantita);
         this.listaCertificazioni = listaCertificazioni;
-        this.produttore = produttore;
         this.validato = false;
         this.prezzo = prezzo;
     }
@@ -40,10 +37,6 @@ public class ProdottoSingolo extends Prodotto {
         this.listaCertificazioni = listaCertificazioni;
     }
 
-    public Venditore getProduttore() {
-        return produttore;
-    }
-
     public boolean isValidato() {
         return validato;
     }
@@ -57,10 +50,10 @@ public class ProdottoSingolo extends Prodotto {
         return "\n ProdottoSingolo{" +
                 "id=" + getId() +
                 ", \n listaCertificazioni=" + listaCertificazioni +
-                ", \n produttore=" + produttore.getNome() +
+                ", \n produttore=" + getProduttore().getNome()+
                 ", \n descrizione='" + getDescrizione() + '\'' +
                 ", \n prezzo=" + getPrezzo() +
-                ", \nvalidato=" + validato +
+                ", \n validato=" + validato +
                 ", \n nome='" + getNome() + '\'' +
                 ", \n quantita= " + getQuantita() +
                 '}';
