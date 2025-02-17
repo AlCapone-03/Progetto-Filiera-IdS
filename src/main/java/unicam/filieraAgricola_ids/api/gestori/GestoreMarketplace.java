@@ -7,7 +7,6 @@ import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 import java.util.NoSuchElementException;
 
 @Service
-//La classe è un Singleton
 public class GestoreMarketplace implements IGestore<Prodotto>{
 
     private static GestoreMarketplace gestoreMarketplace;
