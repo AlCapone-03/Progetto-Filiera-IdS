@@ -1,7 +1,9 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
+import unicam.filieraAgricola_ids.api.repository.ProdottoRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,24 +11,15 @@ import java.util.List;
 @Service
 public class Marketplace {
 
-    private static Marketplace marketplace;
+    private final ProdottoRepository listaProdotti;
 
-    private List<Prodotto> listaProdotti;
-
-    private Marketplace() {
-        this.listaProdotti = new ArrayList<>();
+    @Autowired
+    public Marketplace(ProdottoRepository listaProdotti) {
+        this.listaProdotti = listaProdotti;
     }
 
-    public static Marketplace getInstance() {
-        if (marketplace == null) {
-            marketplace = new Marketplace();
-        }
-        return marketplace;
-    }
-
-    public List<Prodotto> getListaProdotti() {
+    public ProdottoRepository getListaProdotti() {
         return listaProdotti;
     }
-
 }
 

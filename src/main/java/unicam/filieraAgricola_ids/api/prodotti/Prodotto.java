@@ -1,15 +1,17 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
 
-import unicam.filieraAgricola_ids.api.utenti.Venditore;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
+@Entity
 public abstract class Prodotto {
 
     private static int index = 0;
+    @Id
+    private int id;
 
-    private final int id;
-
-    private final Venditore produttore;
+    private int idProduttore;
 
     private String nome;
 
@@ -17,20 +19,24 @@ public abstract class Prodotto {
 
     private int quantita;
 
-    public Prodotto(String nome,Venditore creatore, String descrizione,int quantita) {
+    public Prodotto(String nome, int idProduttore, String descrizione,int quantita) {
         this.id = ++index;
-        this.produttore = creatore;
+        this.idProduttore = idProduttore;
         this.nome = nome;
         this.descrizione = descrizione;
         this.quantita = quantita;
     }
 
-    public Venditore getProduttore() {
-        return produttore;
+    public Prodotto() {
+        id = index++;
     }
 
-    public int getId() {
-        return id;
+    public int getIdProduttore() {
+        return idProduttore;
+    }
+
+    public void setIdProduttore(int idProduttore) {
+        this.idProduttore = idProduttore;
     }
 
     public String getNome() {
@@ -65,4 +71,13 @@ public abstract class Prodotto {
         return getNome().equals(that.getNome()) && getDescrizione().equals(that.getDescrizione()) &&
                 getQuantita() == that.getQuantita() && getId() == that.getId();
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
 }

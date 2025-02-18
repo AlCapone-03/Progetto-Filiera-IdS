@@ -1,18 +1,20 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
+import jakarta.persistence.Entity;
 import unicam.filieraAgricola_ids.api.utenti.Venditore;
 
 import java.util.List;
 
+@Entity
 public class ProdottoSingolo extends Prodotto {
 
     private List<String> listaCertificazioni;
 
-    private boolean validato;
+    private boolean validato = false;
 
     private double prezzo;
 
-    public ProdottoSingolo(String nome, String descrizione,
+  /*  public ProdottoSingolo(String nome, String descrizione,
                            double prezzo, List<String> listaCertificazioni,
                            Venditore produttore,int quantita) {
         super(nome, produttore, descrizione,quantita);
@@ -20,6 +22,7 @@ public class ProdottoSingolo extends Prodotto {
         this.validato = false;
         this.prezzo = prezzo;
     }
+*/
 
     public double getPrezzo() {
         return prezzo;
@@ -29,9 +32,9 @@ public class ProdottoSingolo extends Prodotto {
         this.prezzo = prezzo;
     }
 
-    public List<String> getListaCertificazioni() {
-        return listaCertificazioni;
-    }
+//    public List<String> getListaCertificazioni() {
+//        return listaCertificazioni;
+//    }
 
     public void setListaCertificazioni(List<String> listaCertificazioni) {
         this.listaCertificazioni = listaCertificazioni;
@@ -50,7 +53,6 @@ public class ProdottoSingolo extends Prodotto {
         return "\n ProdottoSingolo{" +
                 "id=" + getId() +
                 ", \n listaCertificazioni=" + listaCertificazioni +
-                ", \n produttore=" + getProduttore().getNome()+
                 ", \n descrizione='" + getDescrizione() + '\'' +
                 ", \n prezzo=" + getPrezzo() +
                 ", \n validato=" + validato +

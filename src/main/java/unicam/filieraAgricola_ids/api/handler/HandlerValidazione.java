@@ -6,7 +6,7 @@ import unicam.filieraAgricola_ids.api.gestori.ServiceValidazione;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 
 @RestController
-public class HandlerValidazione extends HandlerMarketplace {
+public class HandlerValidazione{
 
     private ServiceValidazione serviceValidazione;
 
@@ -15,18 +15,15 @@ public class HandlerValidazione extends HandlerMarketplace {
         this.serviceValidazione = serviceValidazione;
     }
 
-    public HandlerValidazione() {
-        super();
-    }
 
-    public boolean requestValidation(int idProdotto) {
-        return getGestore().validateRequest(idProdotto);
-    }
-
-    public boolean requestRemoval(int idProdotto) {
-        ProdottoSingolo prodotto = (ProdottoSingolo) getGestore().getProductById(idProdotto);
-        if(!prodotto.isValidato())
-            return getGestore().removeObject(prodotto.getId());
-        else return false;
-    }
+//    public boolean requestValidation(int idProdotto) {
+//        return getGestore().validateRequest(idProdotto);
+//    }
+//
+//    public boolean requestRemoval(int idProdotto) {
+//        ProdottoSingolo prodotto = (ProdottoSingolo) getGestore().getProductById(idProdotto);
+//        if(!prodotto.isValidato())
+//            return getGestore().removeObject(prodotto.getId());
+//        else return false;
+//    }
 }

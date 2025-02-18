@@ -1,6 +1,9 @@
 package unicam.filieraAgricola_ids.api.eventi;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import unicam.filieraAgricola_ids.api.repository.EventoRepository;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,23 +11,14 @@ import java.util.List;
 @Service
 public class EventsPlace {
 
-    private static EventsPlace eventsPlace;
+    private final EventoRepository listaEventi;
 
-    private final List<Evento> listaEventi;
-
-    private EventsPlace() {
-        this.listaEventi = new ArrayList<>();
+    @Autowired
+    public EventsPlace(EventoRepository listaEventi) {
+        this.listaEventi = listaEventi;
     }
 
-    public static EventsPlace getInstance() {
-        if (eventsPlace == null) {
-            eventsPlace = new EventsPlace();
-        }
-        return eventsPlace;
-    }
-
-    public List<Evento> getListaEventi() {
+    public EventoRepository getListaEventi() {
         return listaEventi;
     }
-
 }

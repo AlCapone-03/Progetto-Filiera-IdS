@@ -1,6 +1,5 @@
 package unicam.filieraAgricola_ids.api;
 
-import unicam.filieraAgricola_ids.api.handler.HandlerMarketplace;
 import unicam.filieraAgricola_ids.api.handler.HandlerProdotto;
 import unicam.filieraAgricola_ids.api.handler.HandlerVisualizzazioneProdotti;
 import unicam.filieraAgricola_ids.api.prodotti.*;
@@ -17,9 +16,9 @@ public class Main {
         //produttore
 //        Venditore produttore = new Produttore("Marco", 12345);
         //prodotto
-        List<String> certificazioni = new ArrayList<>();
-        certificazioni.add("Biologico");
-        certificazioni.add("DOP");
+//        List<String> certificazioni = new ArrayList<>();
+//        certificazioni.add("Biologico");
+//        certificazioni.add("DOP");
 
 
    /*     marketplace.getListaProdotti().clear();

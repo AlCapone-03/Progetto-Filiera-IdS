@@ -1,24 +1,28 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import unicam.filieraAgricola_ids.api.handler.IHandler;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 
 import java.util.List;
 
+@Entity
 public abstract class Utente {
 
-    private final int id;
+    @Id
+    private int id;
     private String nome;
     private String email;
     private String password;
     private static int index = 1;
-    private final List<IHandler> handlers;
 
-    public Utente(String nome, String email, String password, List<IHandler> handlers) {
+    public Utente(String nome, String email, String password) {
         this.id = index++;
         this.nome = nome;
         this.email = email;
         this.password = password;
-        this.handlers = handlers;
+    }
+
+    public Utente() {
     }
 
     public int getId() {
@@ -49,7 +53,4 @@ public abstract class Utente {
         this.password = password;
     }
 
-    public List<IHandler> getHandlers() {
-        return handlers;
-    }
 }

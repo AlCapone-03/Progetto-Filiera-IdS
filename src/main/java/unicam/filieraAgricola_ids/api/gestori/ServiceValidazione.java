@@ -18,23 +18,23 @@ public class ServiceValidazione {
         this.marketplace = marketplace;
     }
 
-    public boolean validateRequest(int idProdotto) {
-        Prodotto p = getProductById(idProdotto);
-        if (p instanceof ProdottoSingolo) {
-            ProdottoSingolo ps = (ProdottoSingolo) p;
-            ps.setValidato(true);
-            return true;
-        }
-        return false;
-    }
+//    public boolean validateRequest(int idProdotto) {
+//        Prodotto p = getProductById(idProdotto);
+//        if (p instanceof ProdottoSingolo) {
+//            ProdottoSingolo ps = (ProdottoSingolo) p;
+//            ps.setValidato(true);
+//            return true;
+//        }
+//        return false;
+//    }
 
-    public Prodotto getProductById(int id){
-        for(Prodotto p: marketplace.getListaProdotti()){
-            if(p.getId() == id)
-                return p;
-        }
-        throw new NoSuchElementException("Prodotto non trovato");
-    }
+//    public Prodotto getProductById(int id){
+//        for(Prodotto p: marketplace.getListaProdotti()){
+//            if(p.getId() == id)
+//                return p;
+//        }
+//        throw new NoSuchElementException("Prodotto non trovato");
+//    }
 
 
 }

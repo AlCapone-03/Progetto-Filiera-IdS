@@ -1,9 +1,12 @@
 package unicam.filieraAgricola_ids.api.eventi;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
 import unicam.filieraAgricola_ids.api.utenti.Acquirente;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public abstract class Evento {
 
     private String data_inizio;
@@ -16,9 +19,10 @@ public abstract class Evento {
 
     private static int index=1;
 
+    @Id
     private final int id;
 
-    private final List<Acquirente> listaPartecipanti;
+   // private final List<Acquirente> listaPartecipanti;
 
     public Evento(String data_inizio, String data_fine,
                   String luogo, String nome) {
@@ -27,7 +31,11 @@ public abstract class Evento {
         this.luogo = luogo;
         this.nome = nome;
         id = index++;
-        listaPartecipanti = new ArrayList<>();
+    //    listaPartecipanti = new ArrayList<>();
+    }
+
+    public Evento() {
+        this.id = index++;
     }
 
     public String getData_inizio() {
@@ -66,9 +74,9 @@ public abstract class Evento {
         return id;
     }
 
-    public List<Acquirente> getListaPartecipanti() {
-        return listaPartecipanti;
-    }
+//    public List<Acquirente> getListaPartecipanti() {
+//        return listaPartecipanti;
+//    }
 
     @Override
     public boolean equals(Object obj) {

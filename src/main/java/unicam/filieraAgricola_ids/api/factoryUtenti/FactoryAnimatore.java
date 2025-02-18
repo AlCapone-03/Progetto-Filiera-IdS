@@ -9,7 +9,6 @@ public class FactoryAnimatore extends FactoryUtente {
 
     @Override
     public Animatore createUser(String nome, String email, String password) {
-        List<IHandler> handlers = List.of(new HandlerEvento());
-        return new Animatore(nome, email, password, handlers);
+        return new Animatore(nome, email, password);
     }
 }

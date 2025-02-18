@@ -13,8 +13,8 @@ public class Acquirente extends Utente {
 
     private List<Prodotto> prodottiSalvati;
 
-    public Acquirente(String nome, String email, String password, List<IHandler> handlers) {
-        super(nome, email, password, handlers);
+    public Acquirente(String nome, String email, String password) {
+        super(nome, email, password);
         prodottiAcquistati = new ArrayList<>();
         prodottiSalvati = new ArrayList<>();
     }
@@ -29,36 +29,36 @@ public class Acquirente extends Utente {
 
 
 
-    public Prodotto searchProduct(String nome) {
-        return getHandlerVisualizzazioneProdotti().requestDisponibility(nome);
-    }
-
-    public boolean bookEvent(int idEvento) {
-        return getHandlerPrenotazione().requestBookEvent(idEvento,this);
-    }
-
-    public List<Prodotto> viewAllProducts() {
-        return getHandlerVisualizzazioneProdotti().showList();
-    }
-
-    public List<Evento> viewAllEvents() {
-        return getHandlerVisualizzazioneEventi().showList();
-    }
-
-    public HandlerAcquisto getHandlerAcquisto() {
-        return (HandlerAcquisto) getHandlers().get(0);
-    }
-
-    public HandlerVisualizzazioneProdotti getHandlerVisualizzazioneProdotti() {
-        return (HandlerVisualizzazioneProdotti) getHandlers().get(1);
-    }
-
-    public HandlerVisualizzazioneEventi getHandlerVisualizzazioneEventi() {
-        return (HandlerVisualizzazioneEventi) getHandlers().get(2);
-    }
-
-    public HandlerPrenotazione getHandlerPrenotazione() {
-        return (HandlerPrenotazione) getHandlers().get(3);
-    }
+//    public Prodotto searchProduct(String nome) {
+//        return getHandlerVisualizzazioneProdotti().requestDisponibility(nome);
+//    }
+//
+//    public boolean bookEvent(int idEvento) {
+//        return getHandlerPrenotazione().requestBookEvent(idEvento,this);
+//    }
+//
+//    public List<Prodotto> viewAllProducts() {
+//        return getHandlerVisualizzazioneProdotti().showList();
+//    }
+//
+//    public List<Evento> viewAllEvents() {
+//        return getHandlerVisualizzazioneEventi().showList();
+//    }
+//
+//    public HandlerAcquisto getHandlerAcquisto() {
+//        return (HandlerAcquisto) getHandlers().get(0);
+//    }
+//
+//    public HandlerVisualizzazioneProdotti getHandlerVisualizzazioneProdotti() {
+//        return (HandlerVisualizzazioneProdotti) getHandlers().get(1);
+//    }
+//
+//    public HandlerVisualizzazioneEventi getHandlerVisualizzazioneEventi() {
+//        return (HandlerVisualizzazioneEventi) getHandlers().get(2);
+//    }
+//
+//    public HandlerPrenotazione getHandlerPrenotazione() {
+//        return (HandlerPrenotazione) getHandlers().get(3);
+//    }
 
 }
