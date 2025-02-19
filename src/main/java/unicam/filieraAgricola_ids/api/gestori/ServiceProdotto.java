@@ -38,15 +38,15 @@ public class ServiceProdotto {
         return new ResponseEntity<>("Product "+id+" Deleted", HttpStatus.OK);
     }
 
-    public ResponseEntity<Object> addPacchetto(Pacchetto pacchetto) {
-        if (marketplace.getRepository().existsById(pacchetto.getId())) {
-            return new ResponseEntity<>("Product Already Exists", HttpStatus.BAD_REQUEST);
-        }else {
-            marketplace.getRepository().save(pacchetto);
-            return new ResponseEntity<>("Product Created", HttpStatus.CREATED);
-        }
-
-    }
+//    public ResponseEntity<Object> addPacchetto(Pacchetto pacchetto) {
+//        if (marketplace.getRepository().existsById(pacchetto.getId())) {
+//            return new ResponseEntity<>("Product Already Exists", HttpStatus.BAD_REQUEST);
+//        }else {
+//            marketplace.getRepository().save(pacchetto);
+//            return new ResponseEntity<>("Product Created", HttpStatus.CREATED);
+//        }
+//
+//    }
 
 //    public boolean modifyProduct(int idProdotto, String nome, double prezzo, String descrizione) {
 //        if (marketplace.getRepository().isEmpty())

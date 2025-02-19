@@ -22,7 +22,7 @@ public class HandlerProdotto {
 
     @PostMapping("/addProduct")
     public ResponseEntity<Object> requestAdd(@RequestBody ProdottoSingoloDto prodotto) {
-        Prodotto p = ProdottoConverter.convertDtoToProdotto(prodotto);
+        Prodotto p = ProdottoConverter.DtoToProdotto(prodotto);
         return serviceProdotto.addObject(p);
     }
 
@@ -34,8 +34,9 @@ public class HandlerProdotto {
 
     @PostMapping("/addPackage")
     public ResponseEntity<Object> requestAddPackage(@RequestBody PacchettoDto prodotto) {
-        Pacchetto pacchetto = ProdottoConverter.convertDtoToPacchetto(prodotto);
-        return serviceProdotto.addPacchetto(pacchetto);
+        System.out.println(prodotto);
+        Pacchetto pacchetto = ProdottoConverter.DtoToPacchetto(prodotto);
+        return serviceProdotto.addObject(pacchetto);
     }
 
 

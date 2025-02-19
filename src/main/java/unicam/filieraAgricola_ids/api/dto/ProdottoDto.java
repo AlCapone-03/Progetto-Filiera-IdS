@@ -1,5 +1,13 @@
 package unicam.filieraAgricola_ids.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "tipo")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = ProdottoSingoloDto.class, name = "prodottoSingolo"),
+        @JsonSubTypes.Type(value = PacchettoDto.class, name = "pacchetto")
+})
 public abstract class ProdottoDto {
     private String nome;
 
@@ -10,14 +18,6 @@ public abstract class ProdottoDto {
     private double prezzo;
 
     private int idProduttore;
-
-    public ProdottoDto(String nome, String descrizione, int quantita, double prezzo, int idProduttore) {
-        this.nome = nome;
-        this.descrizione = descrizione;
-        this.quantita = quantita;
-        this.prezzo = prezzo;
-        this.idProduttore = idProduttore;
-    }
 
     public String getNome() {
         return nome;
