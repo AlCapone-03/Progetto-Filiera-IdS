@@ -1,18 +1,18 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
+import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
-import unicam.filieraAgricola_ids.api.utenti.Venditore;
 
 import java.util.List;
 
 @Entity
+@DiscriminatorValue("SINGOLO")
 public class ProdottoSingolo extends Prodotto {
 
     private List<String> listaCertificazioni;
 
     private boolean validato = false;
 
-    private double prezzo;
 
   /*  public ProdottoSingolo(String nome, String descrizione,
                            double prezzo, List<String> listaCertificazioni,
@@ -24,13 +24,6 @@ public class ProdottoSingolo extends Prodotto {
     }
 */
 
-    public double getPrezzo() {
-        return prezzo;
-    }
-
-    public void setPrezzo(double prezzo) {
-        this.prezzo = prezzo;
-    }
 
 //    public List<String> getListaCertificazioni() {
 //        return listaCertificazioni;

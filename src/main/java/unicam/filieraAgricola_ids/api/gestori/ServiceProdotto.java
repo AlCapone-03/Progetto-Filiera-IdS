@@ -24,7 +24,7 @@ public class ServiceProdotto {
         this.marketplace = marketplace;
     }
 
-    public ResponseEntity<Object> addObject(ProdottoSingolo prodotto) {
+    public ResponseEntity<Object> addObject(Prodotto prodotto) {
         if(!marketplace.getListaProdotti().existsById(prodotto.getId())){
             marketplace.getListaProdotti().save(prodotto);
             return new ResponseEntity<>("Prodotto creato",HttpStatus.CREATED);

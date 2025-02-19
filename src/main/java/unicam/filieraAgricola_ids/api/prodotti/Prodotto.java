@@ -1,14 +1,14 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public abstract class Prodotto {
-
-    private static int index = 0;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     private int idProduttore;
@@ -19,16 +19,26 @@ public abstract class Prodotto {
 
     private int quantita;
 
-    public Prodotto(String nome, int idProduttore, String descrizione,int quantita) {
-        this.id = ++index;
+    private double prezzo;
+
+    public Prodotto(String nome, int idProduttore, String descrizione,int quantita,double prezzo) {
         this.idProduttore = idProduttore;
         this.nome = nome;
         this.descrizione = descrizione;
         this.quantita = quantita;
+        this.prezzo = prezzo;
     }
 
     public Prodotto() {
-        id = index++;
+    }
+
+
+    public double getPrezzo() {
+        return prezzo;
+    }
+
+    public void setPrezzo(double prezzo) {
+        this.prezzo = prezzo;
     }
 
     public int getIdProduttore() {
@@ -63,6 +73,15 @@ public abstract class Prodotto {
         this.quantita = quantita;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -70,14 +89,6 @@ public abstract class Prodotto {
         Prodotto that = (Prodotto) obj;
         return getNome().equals(that.getNome()) && getDescrizione().equals(that.getDescrizione()) &&
                 getQuantita() == that.getQuantita() && getId() == that.getId();
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
 }

@@ -1,6 +1,8 @@
 package unicam.filieraAgricola_ids.api.dto;
 
-public class ProdottoDto {
+import java.util.List;
+
+public class PacchettoDto {
 
     private String nome;
 
@@ -10,11 +12,14 @@ public class ProdottoDto {
 
     private double prezzo;
 
-    public ProdottoDto(String nome, String descrizione, int quantita, double prezzo) {
+    private List<ProdottoDto> prodottiPacchetto;
+
+    public PacchettoDto(String nome, String descrizione, int quantita, double prezzo, List<ProdottoDto> prodottiPacchetto) {
         this.nome = nome;
         this.descrizione = descrizione;
         this.quantita = quantita;
         this.prezzo = prezzo;
+        this.prodottiPacchetto = prodottiPacchetto;
     }
 
     public String getNome() {
@@ -47,5 +52,13 @@ public class ProdottoDto {
 
     public void setPrezzo(double prezzo) {
         this.prezzo = prezzo;
+    }
+
+    public List<ProdottoDto> getProdottiPacchetto() {
+        return prodottiPacchetto;
+    }
+
+    public void setProdottiPacchetto(List<ProdottoDto> prodottiPacchetto) {
+        this.prodottiPacchetto = prodottiPacchetto;
     }
 }

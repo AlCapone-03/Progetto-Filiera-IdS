@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface ProdottoRepository extends JpaRepository<Prodotto, Integer> {
 
-    
+    Prodotto findByNome(String nome);
+    //List<Prodotto> findByValidato(boolean validato);
 }
 
