@@ -25,7 +25,7 @@ public class ProdottoConverter {
         return prodottoList;
     }
 
-    public static Pacchetto convertDtoToPacchetto(ProdottoDto dto) {
+    public static Pacchetto convertDtoToPacchetto(PacchettoDto dto) {
         Pacchetto pacchetto = new Pacchetto();
         pacchetto.setNome(dto.getNome());
         pacchetto.setDescrizione(dto.getDescrizione());
@@ -49,6 +49,7 @@ public class ProdottoConverter {
         }
         return dtoList;
     }
+
 
 
 

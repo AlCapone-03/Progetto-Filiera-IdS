@@ -37,9 +37,9 @@ public class HandlerProdotto {
     }
 
     @PostMapping("/addPackage")
-    public ResponseEntity<Object> requestAddPackage(@RequestBody ProdottoDto prodotto) {
+    public ResponseEntity<Object> requestAddPackage(@RequestBody PacchettoDto prodotto) {
       Pacchetto pacchetto = ProdottoConverter.convertDtoToPacchetto(prodotto);
-      return serviceProdotto.addObject(pacchetto);
+      return serviceProdotto.addPacchetto(pacchetto);
     }
 
 

@@ -17,6 +17,8 @@ public abstract class Prodotto {
 
     private String descrizione;
 
+    private boolean validato = false;
+
     private int quantita;
 
     private double prezzo;
@@ -32,6 +34,13 @@ public abstract class Prodotto {
     public Prodotto() {
     }
 
+    public boolean isValidato() {
+        return validato;
+    }
+
+    public void setValidato(boolean validato) {
+        this.validato = validato;
+    }
 
     public double getPrezzo() {
         return prezzo;

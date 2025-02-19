@@ -6,10 +6,12 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
+import unicam.filieraAgricola_ids.api.prodotti.Pacchetto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 import unicam.filieraAgricola_ids.api.repository.ProdottoRepository;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
@@ -25,7 +27,7 @@ public class ServiceProdotto {
     }
 
     public ResponseEntity<Object> addObject(Prodotto prodotto) {
-        if(!marketplace.getListaProdotti().existsById(prodotto.getId())){
+        if(marketplace.getListaProdotti().findByNome(prodotto.getNome())!=null){
             marketplace.getListaProdotti().save(prodotto);
             return new ResponseEntity<>("Prodotto creato",HttpStatus.CREATED);
         }
@@ -40,6 +42,10 @@ public class ServiceProdotto {
         return new ResponseEntity<>("Product "+id+" Deleted", HttpStatus.OK);
     }
 
+    public ResponseEntity<Object> addPacchetto(Pacchetto pacchetto) {
+        marketplace.getListaProdotti().save(pacchetto);
+        return new ResponseEntity<>("Pacchetto creato", HttpStatus.CREATED);
+    }
 
 //    public boolean modifyProduct(int idProdotto, String nome, double prezzo, String descrizione) {
 //        if (marketplace.getListaProdotti().isEmpty())

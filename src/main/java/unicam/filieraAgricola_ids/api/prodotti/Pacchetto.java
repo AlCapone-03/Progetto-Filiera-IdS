@@ -10,13 +10,13 @@ import java.util.List;
 @DiscriminatorValue("PACCHETTO")
 public class Pacchetto extends Prodotto{
 
-//    @OneToMany
-//    @JoinTable(
-//            name = "pacchetto_prodotti",
-//            joinColumns = @JoinColumn(name = "pacchetto_id"),
-//            inverseJoinColumns = @JoinColumn(name = "prodotto_id")
-//    )
- //   private List<Prodotto> prodottiPacchetto = new ArrayList<>();
+    @OneToMany
+    @JoinTable(
+            name = "pacchetto_prodotti",
+            joinColumns = @JoinColumn(name = "pacchetto_id"),
+            inverseJoinColumns = @JoinColumn(name = "prodotto_id")
+    )
+    private List<Prodotto> prodottiPacchetto = new ArrayList<>();
 
 
 //    public Pacchetto(String nome, Venditore produttore, String descrizione, List<Prodotto> prodottiPacchetto, int quantita) {

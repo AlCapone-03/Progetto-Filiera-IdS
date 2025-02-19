@@ -3,18 +3,16 @@ package unicam.filieraAgricola_ids.api.prodotti;
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
-import java.util.List;
-
 @Entity
 @DiscriminatorValue("SINGOLO")
 public class ProdottoSingolo extends Prodotto {
 
-    private List<String> listaCertificazioni;
+    private String certificazioni;
 
-    private boolean validato = false;
+    private int idPacchetto;
 
 
-  /*  public ProdottoSingolo(String nome, String descrizione,
+/*  public ProdottoSingolo(String nome, String descrizione,
                            double prezzo, List<String> listaCertificazioni,
                            Venditore produttore,int quantita) {
         super(nome, produttore, descrizione,quantita);
@@ -24,34 +22,21 @@ public class ProdottoSingolo extends Prodotto {
     }
 */
 
-
-//    public List<String> getListaCertificazioni() {
-//        return listaCertificazioni;
-//    }
-
-    public void setListaCertificazioni(List<String> listaCertificazioni) {
-        this.listaCertificazioni = listaCertificazioni;
+    public int getIdPacchetto() {
+       return idPacchetto;
     }
 
-    public boolean isValidato() {
-        return validato;
+    public void setIdPacchetto(int idPacchetto) {
+        this.idPacchetto = idPacchetto;
     }
 
-    public void setValidato(boolean validato) {
-        this.validato = validato;
+    public void setCertificazioni(String certificazioni) {
+        this.certificazioni = certificazioni;
     }
 
-    @Override
-    public String toString() {
-        return "\n ProdottoSingolo{" +
-                "id=" + getId() +
-                ", \n listaCertificazioni=" + listaCertificazioni +
-                ", \n descrizione='" + getDescrizione() + '\'' +
-                ", \n prezzo=" + getPrezzo() +
-                ", \n validato=" + validato +
-                ", \n nome='" + getNome() + '\'' +
-                ", \n quantita= " + getQuantita() +
-                '}';
+    public String getCertificazioni() {
+        return certificazioni;
     }
+
 
 }
