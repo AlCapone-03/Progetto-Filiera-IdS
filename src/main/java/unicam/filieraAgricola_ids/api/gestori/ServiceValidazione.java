@@ -3,10 +3,7 @@ package unicam.filieraAgricola_ids.api.gestori;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
-import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
-import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
 
-import java.util.NoSuchElementException;
 
 @Service
 public class ServiceValidazione {
@@ -29,12 +26,12 @@ public class ServiceValidazione {
 //    }
 
 //    public Prodotto getProductById(int id){
-//        for(Prodotto p: marketplace.getListaProdotti()){
+//        for(Prodotto p: marketplace.getRepository()){
 //            if(p.getId() == id)
 //                return p;
 //        }
 //        throw new NoSuchElementException("Prodotto non trovato");
-//    }
+//}
 
 
 }

@@ -8,19 +8,25 @@ import java.util.List;
 
 public class ProdottoConverter {
 
-    public static ProdottoSingolo convertDtoToProdotto(ProdottoDto dto) {
+    public static ProdottoSingolo convertDtoToProdotto(ProdottoSingoloDto dto) {
         ProdottoSingolo prodotto = new ProdottoSingolo();
         prodotto.setNome(dto.getNome());
         prodotto.setDescrizione(dto.getDescrizione());
         prodotto.setQuantita(dto.getQuantita());
         prodotto.setPrezzo(dto.getPrezzo());
+        prodotto.setIdProduttore(dto.getIdProduttore());
+        prodotto.setCertificazioni(dto.getCertificazioni());
         return prodotto;
     }
 
     public static List<Prodotto> convertDtoListToProdottoList(List<ProdottoDto> dtoList) {
         List<Prodotto> prodottoList = new ArrayList<>();
         for (ProdottoDto dto : dtoList) {
-            prodottoList.add(convertDtoToProdotto(dto));
+            if(dto instanceof ProdottoSingoloDto){
+                prodottoList.add(convertDtoToProdotto((ProdottoSingoloDto) dto));
+            }else if(dto instanceof PacchettoDto){
+                prodottoList.add(convertDtoToPacchetto((PacchettoDto) dto));
+            }
         }
         return prodottoList;
     }
@@ -31,28 +37,33 @@ public class ProdottoConverter {
         pacchetto.setDescrizione(dto.getDescrizione());
         pacchetto.setQuantita(dto.getQuantita());
         pacchetto.setPrezzo(dto.getPrezzo());
-     //   List<Prodotto> prodotti = convertDtoListToProdottoList(dto.getProdottiPacchetto());
-//        pacchetto.setProdottiPacchetto(prodotti);
+        pacchetto.setIdProduttore(dto.getIdProduttore());
+        List<Prodotto> prodotti = convertDtoListToProdottoList(dto.getProdottiPacchetto());
+        pacchetto.setProdottiPacchetto(prodotti);
         return pacchetto;
     }
 
-    public static ProdottoDto convertProdottoToDto(Prodotto prodotto) {
-        ProdottoDto dto = new ProdottoDto(prodotto.getNome(), prodotto.getDescrizione(),
-                prodotto.getQuantita(), prodotto.getPrezzo());
+    public static ProdottoSingoloDto convertProdottoToDto(ProdottoSingolo prodotto) {
+        ProdottoSingoloDto dto = new ProdottoSingoloDto(prodotto.getNome(), prodotto.getDescrizione(),
+                prodotto.getQuantita(), prodotto.getPrezzo(), prodotto.getIdProduttore(), prodotto.getCertificazioni());
         return dto;
     }
 
     public static List<ProdottoDto> convertProdottoListToDtoList(List<Prodotto> prodottoList) {
         List<ProdottoDto> dtoList = new ArrayList<>();
         for (Prodotto prodotto : prodottoList) {
-            dtoList.add(convertProdottoToDto(prodotto));
+            if(prodotto instanceof ProdottoSingolo){
+                dtoList.add(convertProdottoToDto((ProdottoSingolo) prodotto));
+            }else if(prodotto instanceof Pacchetto){
+                dtoList.add(convertPacchettoToDto((Pacchetto) prodotto));
+            }
         }
         return dtoList;
     }
 
-
-
-
-
-
+    public static PacchettoDto convertPacchettoToDto(Pacchetto pacchetto) {
+        PacchettoDto dto = new PacchettoDto(pacchetto.getNome(), pacchetto.getDescrizione(),
+                pacchetto.getQuantita(), pacchetto.getPrezzo(), pacchetto.getIdProduttore(), convertProdottoListToDtoList(pacchetto.getProdottiPacchetto()));
+        return dto;
+}
 }

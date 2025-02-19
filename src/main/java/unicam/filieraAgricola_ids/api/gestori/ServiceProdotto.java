@@ -2,19 +2,13 @@ package unicam.filieraAgricola_ids.api.gestori;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
 import unicam.filieraAgricola_ids.api.prodotti.Pacchetto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
-import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
-import unicam.filieraAgricola_ids.api.repository.ProdottoRepository;
 
 import java.util.List;
-import java.util.NoSuchElementException;
-
-import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class ServiceProdotto {
@@ -27,28 +21,35 @@ public class ServiceProdotto {
     }
 
     public ResponseEntity<Object> addObject(Prodotto prodotto) {
-        if(marketplace.getListaProdotti().findByNome(prodotto.getNome())!=null){
-            marketplace.getListaProdotti().save(prodotto);
+        List<Prodotto> prodotti = marketplace.getRepository().findByNome(prodotto.getNome());
+        List<Prodotto> prodotti1 = marketplace.getRepository().findByDescrizione(prodotto.getDescrizione());
+        if(prodotti.isEmpty() || prodotti1.isEmpty()){
+            marketplace.getRepository().save(prodotto);
             return new ResponseEntity<>("Prodotto creato",HttpStatus.CREATED);
         }
         return new ResponseEntity<>("Product Already Exists", HttpStatus.BAD_REQUEST);
     }
 
     public ResponseEntity<Object> removeObject(int id) {
-        if(!marketplace.getListaProdotti().existsById(id)){
+        if(!marketplace.getRepository().existsById(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
         }
-        marketplace.getListaProdotti().deleteById(id);
+        marketplace.getRepository().deleteById(id);
         return new ResponseEntity<>("Product "+id+" Deleted", HttpStatus.OK);
     }
 
     public ResponseEntity<Object> addPacchetto(Pacchetto pacchetto) {
-        marketplace.getListaProdotti().save(pacchetto);
-        return new ResponseEntity<>("Pacchetto creato", HttpStatus.CREATED);
+        if (marketplace.getRepository().existsById(pacchetto.getId())) {
+            return new ResponseEntity<>("Product Already Exists", HttpStatus.BAD_REQUEST);
+        }else {
+            marketplace.getRepository().save(pacchetto);
+            return new ResponseEntity<>("Product Created", HttpStatus.CREATED);
+        }
+
     }
 
 //    public boolean modifyProduct(int idProdotto, String nome, double prezzo, String descrizione) {
-//        if (marketplace.getListaProdotti().isEmpty())
+//        if (marketplace.getRepository().isEmpty())
 //            throw new NullPointerException("Lista prodotti vuota");
 //
 //        ProdottoSingolo ps = (ProdottoSingolo) getProductById(idProdotto);
@@ -62,7 +63,7 @@ public class ServiceProdotto {
 //    }
 
 //    public boolean reloadQuantity(int idProdotto, int quantita) {
-//        if (marketplace.getListaProdotti().isEmpty())
+//        if (marketplace.getRepository().isEmpty())
 //            throw new NullPointerException("Lista prodotti vuota");
 //
 //        Prodotto p = getProductById(idProdotto);
@@ -75,12 +76,12 @@ public class ServiceProdotto {
 //
 //
 //    public Prodotto getProductById(int id) {
-//        for (Prodotto p : marketplace.getListaProdotti()) {
+//        for (Prodotto p : marketplace.getRepository()) {
 //            if (p.getId() == id)
 //                return p;
 //        }
 //        throw new NoSuchElementException("Prodotto non trovato");
-//    }
+//}
 
 
 }

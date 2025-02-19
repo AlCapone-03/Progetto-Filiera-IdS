@@ -10,6 +10,6 @@ import java.util.List;
 public interface ProdottoRepository extends JpaRepository<Prodotto, Integer> {
 
     List<Prodotto> findByNome(String nome);
+    List<Prodotto> findByDescrizione(String descrizione);
     //List<Prodotto> findByValidato(boolean validato);
 }
-
