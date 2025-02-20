@@ -1,18 +1,16 @@
-package unicam.filieraAgricola_ids.api.handler;
+package unicam.filieraAgricola_ids.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RestController;
-import unicam.filieraAgricola_ids.api.eventi.Evento;
-import unicam.filieraAgricola_ids.api.gestori.ServiceEvento;
+import unicam.filieraAgricola_ids.api.service.ServiceEvento;
 
 @RestController
-public class HandlerEvento{
+public class ControllerEvento {
 
     private ServiceEvento serviceEvento;
 
     @Autowired
-    public HandlerEvento(ServiceEvento serviceEvento) {
+    public ControllerEvento(ServiceEvento serviceEvento) {
         this.serviceEvento = serviceEvento;
     }
 

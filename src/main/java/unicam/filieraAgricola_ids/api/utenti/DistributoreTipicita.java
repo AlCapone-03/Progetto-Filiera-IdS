@@ -1,14 +1,22 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import java.util.List;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
+
+@Entity
+@DiscriminatorValue("DISTRIBUTORE")
 public class DistributoreTipicita extends Venditore {
 
-    public DistributoreTipicita(String nome, String email, String password) {
-        super(nome, email, password);
+    public DistributoreTipicita(String nome, String email, String password, Ruolo ruolo) {
+        super(nome, email, password, ruolo);
     }
 
-//    public boolean createPackage(String nome, Venditore produttore,String descrizione,List<Prodotto> prodotti, int quantita){
+    public DistributoreTipicita() {
+
+    }
+
+    //    public boolean createPackage(String nome, Venditore produttore,String descrizione,List<Prodotto> prodotti, int quantita){
 //        Pacchetto pacchetto = new Pacchetto(nome, produttore, descrizione, prodotti, quantita);
 //        if(getHandlerProdotto().requestAdd(pacchetto)){
 //            getProdottiCaricati().add(pacchetto);

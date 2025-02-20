@@ -1,13 +1,9 @@
-package unicam.filieraAgricola_ids.api.handler;
+package unicam.filieraAgricola_ids.api.controller;
 
 import org.springframework.web.bind.annotation.RestController;
-import unicam.filieraAgricola_ids.api.eventi.Evento;
-
-import java.util.List;
-import java.util.NoSuchElementException;
 
 @RestController
-public class HandlerVisualizzazioneEventi {
+public class ControllerVisualizzazioneEventi {
 
 
 //    public List<Evento> showList() {

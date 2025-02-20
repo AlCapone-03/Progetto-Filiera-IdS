@@ -1,28 +1,40 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
-import java.util.List;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "ruolo", discriminatorType = DiscriminatorType.STRING)
 public abstract class Utente {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String nome;
     private String email;
     private String password;
-    private static int index = 1;
 
-    public Utente(String nome, String email, String password) {
-        this.id = index++;
+    @Column(name = "ruolo", insertable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
+    private Ruolo ruolo;
+
+    public Utente(String nome, String email, String password, Ruolo ruolo) {
         this.nome = nome;
         this.email = email;
         this.password = password;
+        this.ruolo = ruolo;
     }
 
     public Utente() {
+    }
+
+    public Ruolo getRuolo() {
+        return ruolo;
+    }
+
+    public void setRuolo(Ruolo ruolo) {
+        this.ruolo = ruolo;
     }
 
     public int getId() {

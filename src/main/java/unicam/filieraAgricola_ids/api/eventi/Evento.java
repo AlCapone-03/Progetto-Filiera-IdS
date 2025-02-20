@@ -1,13 +1,27 @@
 package unicam.filieraAgricola_ids.api.eventi;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import unicam.filieraAgricola_ids.api.utenti.Acquirente;
+
 import java.util.ArrayList;
 import java.util.List;
 
+
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public abstract class Evento {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    @ManyToMany
+    @JoinTable(
+            name = "evento_acquirente",
+            joinColumns = @JoinColumn(name = "evento_id"),
+            inverseJoinColumns = @JoinColumn(name = "acquirente_id")
+    )
+    private List<Acquirente> listaPartecipanti = new ArrayList<>();
 
     private String data_inizio;
 
@@ -17,12 +31,6 @@ public abstract class Evento {
 
     private String nome;
 
-    private static int index=1;
-
-    @Id
-    private final int id;
-
-   // private final List<Acquirente> listaPartecipanti;
 
     public Evento(String data_inizio, String data_fine,
                   String luogo, String nome) {
@@ -30,12 +38,10 @@ public abstract class Evento {
         this.data_fine = data_fine;
         this.luogo = luogo;
         this.nome = nome;
-        id = index++;
-    //    listaPartecipanti = new ArrayList<>();
     }
 
     public Evento() {
-        this.id = index++;
+
     }
 
     public String getData_inizio() {
@@ -74,9 +80,14 @@ public abstract class Evento {
         return id;
     }
 
-//    public List<Acquirente> getListaPartecipanti() {
-//        return listaPartecipanti;
-//    }
+    public List<Acquirente> getListaPartecipanti() {
+        return listaPartecipanti;
+    }
+
+    public void setListaPartecipanti(List<Acquirente> listaPartecipanti) {
+        this.listaPartecipanti = listaPartecipanti;
+    }
+
 
     @Override
     public boolean equals(Object obj) {
@@ -99,4 +110,5 @@ public abstract class Evento {
                 ", \n luogo= " + luogo +
                 ", \n nome= " + nome +"]";
     }
+
 }

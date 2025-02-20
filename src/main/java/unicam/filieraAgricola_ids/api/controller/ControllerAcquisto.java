@@ -1,4 +1,4 @@
-package unicam.filieraAgricola_ids.api.handler;
+package unicam.filieraAgricola_ids.api.controller;
 
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -6,17 +6,17 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import unicam.filieraAgricola_ids.api.gestori.ServiceAcquisto;
+import unicam.filieraAgricola_ids.api.service.ServiceAcquisto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import java.util.List;
 
 @RestController
-public class HandlerAcquisto{
+public class ControllerAcquisto {
 
     private ServiceAcquisto serviceAcquisto;
 
     @Autowired
-    public HandlerAcquisto(ServiceAcquisto serviceAcquisto) {
+    public ControllerAcquisto(ServiceAcquisto serviceAcquisto) {
         this.serviceAcquisto = serviceAcquisto;
     }
 

@@ -1,26 +1,21 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import unicam.filieraAgricola_ids.api.eventi.Evento;
-import unicam.filieraAgricola_ids.api.eventi.EventoAziendale;
-import unicam.filieraAgricola_ids.api.eventi.Fiera;
-import unicam.filieraAgricola_ids.api.handler.HandlerEvento;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Entity
+@DiscriminatorValue("ANIMATORE")
 public class Animatore extends Utente {
 
-    private List<Evento> listaEventiCaricati;
+    public Animatore(String nome, String email, String password, Ruolo ruolo) {
+        super(nome, email, password, ruolo);
 
-    public Animatore(String nome, String email, String password) {
-        super(nome, email, password);
-
-        listaEventiCaricati = new ArrayList<>();
     }
 
-    public List<Evento> getListaEventiCaricati() {
-        return listaEventiCaricati;
+    public Animatore() {
+
     }
+
 
 //    public boolean createEvent(String data_inizio, String data_fine, String luogo, String nome, List<Venditore> listaInvitati) {
 //        Evento eventoAziendale = new EventoAziendale(data_inizio, data_fine, luogo, nome, listaInvitati);

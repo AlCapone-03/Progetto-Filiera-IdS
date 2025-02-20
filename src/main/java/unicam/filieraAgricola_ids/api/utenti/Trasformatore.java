@@ -1,11 +1,19 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import java.util.List;
 
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+
+@Entity
+@DiscriminatorValue("TRASFORMATORE")
 public class Trasformatore extends Venditore {
 
-    public Trasformatore(String nome, String email, String password) {
-        super(nome, email, password);
+    public Trasformatore(String nome, String email, String password, Ruolo ruolo) {
+        super(nome, email, password,ruolo);
+    }
+
+    public Trasformatore() {
+
     }
 
     @Override

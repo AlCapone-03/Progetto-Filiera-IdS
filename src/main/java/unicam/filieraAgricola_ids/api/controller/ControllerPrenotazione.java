@@ -1,19 +1,16 @@
-package unicam.filieraAgricola_ids.api.handler;
+package unicam.filieraAgricola_ids.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RestController;
-import unicam.filieraAgricola_ids.api.gestori.ServiceValidazione;
-import unicam.filieraAgricola_ids.api.utenti.Acquirente;
-import unicam.filieraAgricola_ids.api.utenti.Venditore;
+import unicam.filieraAgricola_ids.api.service.ServiceValidazione;
 
 @RestController
-public class HandlerPrenotazione {
+public class ControllerPrenotazione {
 
     private ServiceValidazione serviceValidazione;
 
     @Autowired
-    public HandlerPrenotazione(ServiceValidazione serviceValidazione) {
+    public ControllerPrenotazione(ServiceValidazione serviceValidazione) {
         this.serviceValidazione = serviceValidazione;
     }
 

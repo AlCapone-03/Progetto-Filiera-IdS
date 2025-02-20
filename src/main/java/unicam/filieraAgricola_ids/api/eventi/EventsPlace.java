@@ -11,14 +11,14 @@ import java.util.List;
 @Service
 public class EventsPlace {
 
-    private final EventoRepository listaEventi;
+    private final EventoRepository eventoRepository;
 
     @Autowired
-    public EventsPlace(EventoRepository listaEventi) {
-        this.listaEventi = listaEventi;
+    public EventsPlace(EventoRepository eventoRepository) {
+        this.eventoRepository = eventoRepository;
     }
 
-    public EventoRepository getListaEventi() {
-        return listaEventi;
+    public EventoRepository getEventRepository() {
+        return eventoRepository;
     }
 }

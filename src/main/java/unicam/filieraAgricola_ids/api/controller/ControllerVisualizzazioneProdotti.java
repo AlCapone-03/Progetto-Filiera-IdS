@@ -1,4 +1,4 @@
-package unicam.filieraAgricola_ids.api.handler;
+package unicam.filieraAgricola_ids.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import unicam.filieraAgricola_ids.api.repository.ProdottoRepository;
 
 @RestController
-public class HandlerVisualizzazioneProdotti {
+public class ControllerVisualizzazioneProdotti {
 
     @Autowired
     private ProdottoRepository prodottoRepository;

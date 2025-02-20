@@ -1,34 +1,19 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import unicam.filieraAgricola_ids.api.eventi.Evento;
-import unicam.filieraAgricola_ids.api.handler.*;
-import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Entity
+@DiscriminatorValue("ACQUIRENTE")
 public class Acquirente extends Utente {
 
-    private List<Prodotto> prodottiAcquistati;
 
-    private List<Prodotto> prodottiSalvati;
-
-    public Acquirente(String nome, String email, String password) {
-        super(nome, email, password);
-        prodottiAcquistati = new ArrayList<>();
-        prodottiSalvati = new ArrayList<>();
+    public Acquirente(String nome, String email, String password, Ruolo ruolo) {
+        super(nome, email, password, ruolo);
     }
 
-    public List<Prodotto> getProdottiAcquistati() {
-        return prodottiAcquistati;
+    public Acquirente() {
     }
-
-    public List<Prodotto> getProdottiSalvati() {
-        return prodottiSalvati;
-    }
-
-
-
 //    public Prodotto searchProduct(String nome) {
 //        return getHandlerVisualizzazioneProdotti().requestDisponibility(nome);
 //    }

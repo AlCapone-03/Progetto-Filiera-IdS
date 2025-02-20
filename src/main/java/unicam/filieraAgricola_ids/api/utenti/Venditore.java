@@ -1,25 +1,26 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
+import jakarta.persistence.Entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
+@Entity
 public abstract class Venditore extends Utente {
 
-    private final List<Prodotto> prodottiCaricati;
-
-    public Venditore(String nome, String email, String password) {
-        super(nome, email, password);
-        this.prodottiCaricati = new ArrayList<>();
+    public Venditore(String nome, String email, String password, Ruolo ruolo) {
+        super(nome, email, password, ruolo);
     }
 
-    public List<Prodotto> getProdottiCaricati() {
-        return prodottiCaricati;
+    public Venditore() {
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Venditore venditore)) return false;
+        return getNome().equals(venditore.getNome());
     }
 
 
-//    public boolean loadProduct(List<String> certificazioni, String descrizione,
+    //    public boolean loadProduct(List<String> certificazioni, String descrizione,
 //                               double prezzo, int quantita, String nomeProdotto) {
 //
 //        Prodotto prodotto = new ProdottoSingolo(nomeProdotto, descrizione, prezzo,
@@ -68,11 +69,5 @@ public abstract class Venditore extends Utente {
 //        return getHandlerVisualizzazioneEventi().showList();
 //    }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) return true;
-        if (!(obj instanceof Venditore venditore)) return false;
-        return getNome().equals(venditore.getNome());
-    }
 
 }

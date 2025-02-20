@@ -1,22 +1,22 @@
-package unicam.filieraAgricola_ids.api.handler;
+package unicam.filieraAgricola_ids.api.controller;
 
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import unicam.filieraAgricola_ids.api.gestori.ServiceProdotto;
-import unicam.filieraAgricola_ids.api.gestori.ServiceValidazione;
+import unicam.filieraAgricola_ids.api.service.ServiceProdotto;
+import unicam.filieraAgricola_ids.api.service.ServiceValidazione;
 
 @RestController
-public class HandlerValidazione{
+public class ControllerValidazione {
 
     private ServiceValidazione serviceValidazione;
 
     private ServiceProdotto serviceProdotto;
 
     @Autowired
-    public HandlerValidazione(ServiceValidazione serviceValidazione,
-                              ServiceProdotto serviceProdotto) {
+    public ControllerValidazione(ServiceValidazione serviceValidazione,
+                                 ServiceProdotto serviceProdotto) {
         this.serviceValidazione = serviceValidazione;
         this.serviceProdotto = serviceProdotto;
     }
