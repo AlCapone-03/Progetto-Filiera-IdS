@@ -5,9 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
-import unicam.filieraAgricola_ids.api.prodotti.Pacchetto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
-
 import java.util.List;
 
 @Service
@@ -48,40 +46,26 @@ public class ServiceProdotto {
 //
 //    }
 
-//    public boolean modifyProduct(int idProdotto, String nome, double prezzo, String descrizione) {
-//        if (marketplace.getRepository().isEmpty())
-//            throw new NullPointerException("Lista prodotti vuota");
-//
-//        ProdottoSingolo ps = (ProdottoSingolo) getProductById(idProdotto);
-//        if (ps != null) {
-//            ps.setNome(nome);
-//            ps.setPrezzo(prezzo);
-//            ps.setDescrizione(descrizione);
-//            return true;
-//        } else
-//            throw new NoSuchElementException("Prodotto non trovato");
-//    }
+    public ResponseEntity<Object> modifyProduct(int id, String nome, double prezzo, String descrizione) {
+        if(!marketplace.getRepository().existsById(id)){
+            return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
+        }
+        Prodotto prodotto = marketplace.getRepository().findById(id).get();
+        prodotto.setNome(nome);
+        prodotto.setPrezzo(prezzo);
+        prodotto.setDescrizione(descrizione);
+        marketplace.getRepository().save(prodotto);
+        return new ResponseEntity<>("Prodotto modificato", HttpStatus.OK);
+    }
 
-//    public boolean reloadQuantity(int idProdotto, int quantita) {
-//        if (marketplace.getRepository().isEmpty())
-//            throw new NullPointerException("Lista prodotti vuota");
-//
-//        Prodotto p = getProductById(idProdotto);
-//        if (p != null) {
-//            p.setQuantita(p.getQuantita() + quantita);
-//            return true;
-//        } else
-//            throw new NoSuchElementException("Prodotto non trovato");
-//    }
-//
-//
-//    public Prodotto getProductById(int id) {
-//        for (Prodotto p : marketplace.getRepository()) {
-//            if (p.getId() == id)
-//                return p;
-//        }
-//        throw new NoSuchElementException("Prodotto non trovato");
-//}
-
+    public ResponseEntity<Object> reloadQuantity(int id, int quantita) {
+        if(!marketplace.getRepository().existsById(id)){
+            return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
+        }
+        Prodotto prodotto = marketplace.getRepository().findById(id).get();
+        prodotto.setQuantita(quantita);
+        marketplace.getRepository().save(prodotto);
+        return new ResponseEntity<>("Prodotto ricaricato", HttpStatus.OK);
+    }
 
 }

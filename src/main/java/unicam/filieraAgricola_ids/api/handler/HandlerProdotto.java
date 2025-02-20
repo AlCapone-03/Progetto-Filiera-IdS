@@ -1,4 +1,6 @@
 package unicam.filieraAgricola_ids.api.handler;
+
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,10 +28,9 @@ public class HandlerProdotto {
         return serviceProdotto.addObject(p);
     }
 
-    @DeleteMapping("/deleteProduct/{id}")
-    public ResponseEntity<Object> requestRemove(@PathVariable("id") String id) {
-        Integer idProdotto = Integer.parseInt(id);
-        return serviceProdotto.removeObject(idProdotto);
+    @DeleteMapping(value = "/deleteProduct")
+    public ResponseEntity<Object> requestRemove(@PathParam("id") int id) {
+        return serviceProdotto.removeObject(id);
     }
 
     @PostMapping("/addPackage")
@@ -39,15 +40,17 @@ public class HandlerProdotto {
         return serviceProdotto.addObject(pacchetto);
     }
 
+    @RequestMapping(value="/update", method=RequestMethod.PUT)
+    public ResponseEntity<Object> requestModifyProduct(@PathParam("id") int id, @PathParam("nome") String nome,
+                                                       @PathParam("prezzo") double prezzo,
+                                                       @PathParam("descrizione") String descrizione) {
+        return serviceProdotto.modifyProduct(id, nome, prezzo, descrizione);
+    }
 
-    //todo va modificato come farlo
-//    @RequestMapping(value="/update", method=RequestMethod.PUT)
-//    public boolean requestModifyProduct(@PathParam("id") String id, @RequestBody ProdottoDto product) {
-//        return serviceProdotto.modifyProduct(idProdotto, nome, prezzo, descrizione);
-//    }
-
-//    public boolean requestReloadProduct(int idProdotto, int quantita) {
-//        return serviceProdotto.reloadQuantity(idProdotto, quantita);
-//}
+    @RequestMapping(value="/reload", method=RequestMethod.PUT)
+    public ResponseEntity<Object> requestReloadProduct(@PathParam("id") int id,
+                                                       @PathParam("quantita") int quantita) {
+        return serviceProdotto.reloadQuantity(id, quantita);
+    }
 
 }
