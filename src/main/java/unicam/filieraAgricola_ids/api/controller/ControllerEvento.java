@@ -19,12 +19,12 @@ public class ControllerEvento {
 
     @PostMapping("/addEvento")
     public ResponseEntity<String> requestAdd(@RequestBody Evento evento) {
-        return serviceEvento.addObject(evento);
+        return serviceEvento.addEvent(evento);
     }
 
     @DeleteMapping("/removeEvento")
     public ResponseEntity<String> requestRemove(@PathParam("id") int id) {
-        return serviceEvento.removeObject(id);
+        return serviceEvento.removeEvent(id);
     }
 
     @RequestMapping("/modifyEvento")

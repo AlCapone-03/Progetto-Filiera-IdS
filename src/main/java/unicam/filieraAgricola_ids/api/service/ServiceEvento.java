@@ -18,17 +18,17 @@ public class ServiceEvento {
         this.eventsPlace = eventsPlace;
     }
 
-    public ResponseEntity<String> addObject(Evento evento) {
+    public ResponseEntity<String> addEvent(Evento evento) {
         List<Evento> eventi = eventsPlace.getEventRepository().findByNome((evento.getNome()));
         List<Evento> eventi1 = eventsPlace.getEventRepository().findByLuogo(evento.getLuogo());
-        if(eventi.isEmpty() && eventi1.isEmpty()) {
+        if(eventi.isEmpty() || eventi1.isEmpty()) {
             eventsPlace.getEventRepository().save(evento);
             return new ResponseEntity<>("Evento creato", HttpStatus.CREATED);
         }
         return new ResponseEntity<>("Evento esistente", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<String> removeObject(int id) {
+    public ResponseEntity<String> removeEvent(int id) {
         if(!eventsPlace.getEventRepository().existsById(id))
             return new ResponseEntity<>("Evento non trovato", HttpStatus.BAD_REQUEST);
         eventsPlace.getEventRepository().deleteById(id);

@@ -8,8 +8,9 @@ import unicam.filieraAgricola_ids.api.dto.ProdottoConverter;
 import unicam.filieraAgricola_ids.api.dto.ProdottoDto;
 import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
+import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
+
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class ServiceProdotto {
@@ -21,7 +22,7 @@ public class ServiceProdotto {
         this.marketplace = marketplace;
     }
 
-    public ResponseEntity<Object> addObject(Prodotto prodotto) {
+    public ResponseEntity<Object> addProduct(Prodotto prodotto) {
         List<Prodotto> prodotti = marketplace.getRepository().findByNome(prodotto.getNome());
         List<Prodotto> prodotti1 = marketplace.getRepository().findByDescrizione(prodotto.getDescrizione());
         if(prodotti.isEmpty() || prodotti1.isEmpty()){
@@ -31,7 +32,7 @@ public class ServiceProdotto {
         return new ResponseEntity<>("Product Already Exists", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<Object> removeObject(int id) {
+    public ResponseEntity<Object> removeProduct(int id) {
         if(!marketplace.getRepository().existsById(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
         }
@@ -61,16 +62,13 @@ public class ServiceProdotto {
         return new ResponseEntity<>("Prodotto ricaricato", HttpStatus.OK);
     }
 
-    //todo occorre trovare un modo per filtrare i prodotti che non fanno parte di un pacchetto
     public ResponseEntity<List<ProdottoDto>> showList(){
         List<Prodotto> prodotti = marketplace.getRepository().findAll();
         if(prodotti.isEmpty())
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         prodotti.removeIf(p -> !p.isValidato());
-        /*
-        List<Prodotto> filteredProdotti = prodotti.stream()
-                .filter(prodotto -> !prodotto.isPartOfPackage())
-                .collect(Collectors.toList()); */
+        List<Prodotto> elimina = marketplace.getRepository().findProdottiSingoliInPacchetti();
+        prodotti.removeAll(elimina);
         List<ProdottoDto> prodottiDtos = ProdottoConverter.ProdottiToDtoList(prodotti);
         return new ResponseEntity<>(prodottiDtos, HttpStatus.OK);
     }

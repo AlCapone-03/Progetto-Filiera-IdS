@@ -24,19 +24,19 @@ public class ControllerProdotto {
     @PostMapping("/addProduct")
     public ResponseEntity<Object> requestAdd(@RequestBody ProdottoSingoloDto prodotto) {
         Prodotto p = ProdottoConverter.DtoToProdotto(prodotto);
-        return serviceProdotto.addObject(p);
+        return serviceProdotto.addProduct(p);
     }
 
     @DeleteMapping(value = "/deleteProduct")
     public ResponseEntity<Object> requestRemove(@PathParam("id") int id) {
-        return serviceProdotto.removeObject(id);
+        return serviceProdotto.removeProduct(id);
     }
 
     @PostMapping("/addPackage")
     public ResponseEntity<Object> requestAddPackage(@RequestBody PacchettoDto prodotto) {
         System.out.println(prodotto);
         Pacchetto pacchetto = ProdottoConverter.DtoToPacchetto(prodotto);
-        return serviceProdotto.addObject(pacchetto);
+        return serviceProdotto.addProduct(pacchetto);
     }
 
     @RequestMapping(value="/update", method=RequestMethod.PUT)

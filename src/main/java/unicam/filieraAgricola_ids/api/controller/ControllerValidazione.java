@@ -28,7 +28,7 @@ public class ControllerValidazione {
 
     @DeleteMapping(value = "/unvalidate")
     public ResponseEntity<Object> requestRemoval(@PathParam("id") int id) {
-        return serviceProdotto.removeObject(id);
+        return serviceProdotto.removeProduct(id);
     }
 
 }

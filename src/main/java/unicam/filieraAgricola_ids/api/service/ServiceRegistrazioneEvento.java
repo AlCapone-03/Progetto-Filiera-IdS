@@ -1,6 +1,8 @@
 package unicam.filieraAgricola_ids.api.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import unicam.filieraAgricola_ids.api.eventi.EventsPlace;
 
@@ -14,28 +16,14 @@ public class ServiceRegistrazioneEvento {
         this.eventsPlace = eventsPlace;
     }
 
-//    public boolean addPartecipant(int idEvento, Acquirente acquirente){
-//        if(eventsPlace.getListaEventi().isEmpty())
-//            throw new IllegalArgumentException("Lista Eventi vuota");
-//
-//        for (Evento e : eventsPlace.getListaEventi()) {
-//            if (e.getId() == idEvento) {
-//                return e.getListaPartecipanti().add(acquirente);
-//            }
-//        }
-//        throw new IllegalArgumentException("Evento non trovato");
-//    }
-//
-//    public boolean newRegistration(int idEvento, Venditore venditore) {
-//        if (eventsPlace.getListaEventi().isEmpty())
-//            throw new IllegalArgumentException("Lista Eventi vuota");
-//
-//        for (Evento e : eventsPlace.getListaEventi()) {
-//            if (e.getId() == idEvento && e instanceof Fiera) {
-//                return ((Fiera) e).addFierista(venditore);
-//            }
-//        }
-//        throw new IllegalArgumentException("Evento non trovato");
-//    }
+    public ResponseEntity<String> addPartecipant(int idEvento){
+        return new ResponseEntity<>("", HttpStatus.OK);
+    }
 
+    public ResponseEntity<String> newRegistration(int idEvento, int idVenditore) {
+
+
+            return new ResponseEntity<>("", HttpStatus.OK);
+
+    }
 }

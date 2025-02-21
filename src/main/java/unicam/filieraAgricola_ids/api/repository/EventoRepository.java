@@ -11,11 +11,12 @@ import java.util.List;
 
 @Repository
 public interface EventoRepository extends JpaRepository<Evento, Integer> {
+
     @Query("SELECT e.listaInvitati FROM EventoAziendale e WHERE e.id = :eventoId")
-    List<Venditore> findVenditoriByEventoAziendale(@Param("eventoId") Long eventoId);
+    List<Venditore> findVenditoriByEventoAziendale(@Param("eventoId") Integer eventoId);
 
     @Query("SELECT f.listaFieristi FROM Fiera f WHERE f.id = :eventoId")
-    List<Venditore> findVenditoriByFiera(@Param("eventoId") Long eventoId);
+    List<Venditore> findVenditoriByFiera(@Param("eventoId") Integer eventoId);
 
     List<Evento> findByNome(String nome);
 

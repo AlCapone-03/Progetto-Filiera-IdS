@@ -1,24 +1,32 @@
 package unicam.filieraAgricola_ids.api.controller;
 
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import unicam.filieraAgricola_ids.api.service.ServiceRegistrazioneEvento;
 import unicam.filieraAgricola_ids.api.service.ServiceValidazione;
 
 @RestController
 public class ControllerPrenotazione {
 
-    private ServiceValidazione serviceValidazione;
+    private ServiceRegistrazioneEvento serviceRegistrazioneEvento;
 
     @Autowired
-    public ControllerPrenotazione(ServiceValidazione serviceValidazione) {
-        this.serviceValidazione = serviceValidazione;
+    public ControllerPrenotazione(ServiceRegistrazioneEvento
+                                              serviceRegistrazioneEvento) {
+        this.serviceRegistrazioneEvento = serviceRegistrazioneEvento;
     }
 
-//    public boolean requestReg(Venditore venditore, int idEvento){
-//        return getGestore().newRegistration(idEvento, venditore);
-//    }
-//
-//    public boolean requestBookEvent(int idEvento, Acquirente acquirente){
-//        return getGestore().addPartecipant(idEvento, acquirente);
-//    }
+    @RequestMapping("/RegVenditoreFiera")
+    public ResponseEntity<String> requestReg(@PathParam("idEvento") int idEvento,
+                                             @PathParam("idVenditore") int idVenditore){
+        return serviceRegistrazioneEvento.newRegistration(idEvento,idVenditore);
+    }
+
+    @RequestMapping("/RegAcquirenteEvento")
+    public ResponseEntity<String> requestBookEvent(int idEvento){
+        return serviceRegistrazioneEvento.addPartecipant(idEvento);
+    }
 }
