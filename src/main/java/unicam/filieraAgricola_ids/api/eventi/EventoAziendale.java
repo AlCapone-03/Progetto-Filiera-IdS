@@ -2,7 +2,6 @@ package unicam.filieraAgricola_ids.api.eventi;
 
 import jakarta.persistence.*;
 import unicam.filieraAgricola_ids.api.utenti.Venditore;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +14,11 @@ public class EventoAziendale extends Evento{
             inverseJoinColumns = @JoinColumn(name = "venditore_id"))
     private final List<Venditore> listaInvitati= new ArrayList<>();
 
-
     public EventoAziendale() {
     }
 
     public List<Venditore> getListaInvitati() {
         return listaInvitati;
     }
+
 }

@@ -16,5 +16,6 @@ public class Marketplace {
 
     public ProdottoRepository getRepository() {
         return repository;
-}
+    }
+
 }

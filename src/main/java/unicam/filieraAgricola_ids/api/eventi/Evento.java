@@ -1,16 +1,24 @@
 package unicam.filieraAgricola_ids.api.eventi;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import unicam.filieraAgricola_ids.api.utenti.Acquirente;
-
 import java.util.ArrayList;
 import java.util.List;
 
-
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "tipo"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = Fiera.class, name = "fiera"),
+        @JsonSubTypes.Type(value = EventoAziendale.class, name = "eventoaziendale"),
+})
 public abstract class Evento {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -21,6 +29,7 @@ public abstract class Evento {
             joinColumns = @JoinColumn(name = "evento_id"),
             inverseJoinColumns = @JoinColumn(name = "acquirente_id")
     )
+
     private List<Acquirente> listaPartecipanti = new ArrayList<>();
 
     private String data_inizio;
@@ -30,7 +39,6 @@ public abstract class Evento {
     private String luogo;
 
     private String nome;
-
 
     public Evento(String data_inizio, String data_fine,
                   String luogo, String nome) {
@@ -88,7 +96,6 @@ public abstract class Evento {
         this.listaPartecipanti = listaPartecipanti;
     }
 
-
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -99,16 +106,6 @@ public abstract class Evento {
             return false;
         EventoAziendale other = (EventoAziendale) obj;
         return getId() == other.getId();
-    }
-
-    @Override
-    public String toString() {
-        return " \n Evento [" +
-                " id=" + id +
-                ", \n data_inizio= " + data_inizio +
-                ", \n data_fine= " + data_fine +
-                ", \n luogo= " + luogo +
-                ", \n nome= " + nome +"]";
     }
 
 }

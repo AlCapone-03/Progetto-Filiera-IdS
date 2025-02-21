@@ -10,9 +10,9 @@ import unicam.filieraAgricola_ids.api.service.ServiceValidazione;
 @RestController
 public class ControllerValidazione {
 
-    private ServiceValidazione serviceValidazione;
+    private final ServiceValidazione serviceValidazione;
 
-    private ServiceProdotto serviceProdotto;
+    private final ServiceProdotto serviceProdotto;
 
     @Autowired
     public ControllerValidazione(ServiceValidazione serviceValidazione,
@@ -25,8 +25,7 @@ public class ControllerValidazione {
     public ResponseEntity<Object> requestValidation(@PathParam("id") int id) {
         return serviceValidazione.validateRequest(id);
     }
-    // todo per questo ho aggiunto il serviceProdotto, o si fa così oppure si
-    // rifà in serviceValidazione un metodo con la logica simile a RemoveObject in serviceProdotto
+
     @DeleteMapping(value = "/unvalidate")
     public ResponseEntity<Object> requestRemoval(@PathParam("id") int id) {
         return serviceProdotto.removeObject(id);

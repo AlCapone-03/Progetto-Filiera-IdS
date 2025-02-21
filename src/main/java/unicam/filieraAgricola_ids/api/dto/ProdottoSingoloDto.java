@@ -10,6 +10,6 @@ public class ProdottoSingoloDto extends ProdottoDto {
 
     public void setCertificazioni(String certificazioni) {
         this.certificazioni = certificazioni;
-}
+    }
 
 }

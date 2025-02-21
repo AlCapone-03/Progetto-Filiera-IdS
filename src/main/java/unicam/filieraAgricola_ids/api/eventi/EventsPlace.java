@@ -4,10 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import unicam.filieraAgricola_ids.api.repository.EventoRepository;
 
-
-import java.util.ArrayList;
-import java.util.List;
-
 @Service
 public class EventsPlace {
 
@@ -21,4 +17,5 @@ public class EventsPlace {
     public EventoRepository getEventRepository() {
         return eventoRepository;
     }
+
 }

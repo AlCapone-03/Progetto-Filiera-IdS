@@ -1,12 +1,12 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
-
 import jakarta.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public abstract class Prodotto {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -89,7 +89,6 @@ public abstract class Prodotto {
     public void setId(int id) {
         this.id = id;
     }
-
 
     @Override
     public boolean equals(Object obj) {

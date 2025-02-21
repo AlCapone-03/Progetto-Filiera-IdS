@@ -11,11 +11,10 @@ import unicam.filieraAgricola_ids.api.service.ServiceProdotto;
 import unicam.filieraAgricola_ids.api.prodotti.Pacchetto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 
-
 @RestController
 public class ControllerProdotto {
 
-    private ServiceProdotto serviceProdotto;
+    private final ServiceProdotto serviceProdotto;
 
     @Autowired
     public ControllerProdotto(ServiceProdotto serviceProdotto) {

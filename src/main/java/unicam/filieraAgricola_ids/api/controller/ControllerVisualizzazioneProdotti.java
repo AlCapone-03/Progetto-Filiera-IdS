@@ -2,35 +2,27 @@ package unicam.filieraAgricola_ids.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
-import unicam.filieraAgricola_ids.api.repository.ProdottoRepository;
+import unicam.filieraAgricola_ids.api.dto.ProdottoDto;
+import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
+import unicam.filieraAgricola_ids.api.service.ServiceProdotto;
+
+import java.util.List;
 
 @RestController
 public class ControllerVisualizzazioneProdotti {
 
-    @Autowired
-    private ProdottoRepository prodottoRepository;
+    private final ServiceProdotto serviceProdotto;
 
-    @RequestMapping("/showProducts")
-    public ResponseEntity<Object> showList() {
-//        if(prodottoRepository.findAll().isEmpty()){
-//            throw new NoSuchElementException("Non ci sono prodotti disponibili");
-//        }else {
-//          //  List<ProdottoDto> prodotti = ProdottoConverter.convertProdottoListToDtoList(prodottoRepository.findAll());
-//            return new ResponseEntity<>(prodotti, HttpStatus.OK);
-//        }
-        return null;
+    @Autowired
+    public ControllerVisualizzazioneProdotti(ServiceProdotto serviceProdotto) {
+        this.serviceProdotto = serviceProdotto;
     }
 
-
-//    public List<Prodotto> showList() {
-//        if(getGestore().getMarketplace().getRepository().isEmpty()){
-//            throw new NoSuchElementException("Non ci sono prodotti disponibili");
-//        }else return getGestore().getMarketplace().getRepository();
-//    }
-//
-//    public Prodotto requestDisponibility(String nome){
-//        return getGestore().isAvailable(nome);
+   @GetMapping("/Prodotti")
+    public ResponseEntity<List<ProdottoDto>> showList() {
+        return serviceProdotto.showList();
+    }
 
 }

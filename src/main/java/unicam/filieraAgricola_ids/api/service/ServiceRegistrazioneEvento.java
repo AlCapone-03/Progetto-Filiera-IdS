@@ -7,7 +7,7 @@ import unicam.filieraAgricola_ids.api.eventi.EventsPlace;
 @Service
 public class ServiceRegistrazioneEvento {
 
-    private EventsPlace eventsPlace;
+    private final EventsPlace eventsPlace;
 
     @Autowired
     public ServiceRegistrazioneEvento(EventsPlace eventsPlace) {
@@ -37,6 +37,5 @@ public class ServiceRegistrazioneEvento {
 //        }
 //        throw new IllegalArgumentException("Evento non trovato");
 //    }
-
 
 }

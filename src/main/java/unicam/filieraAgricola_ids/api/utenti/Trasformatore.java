@@ -1,6 +1,5 @@
 package unicam.filieraAgricola_ids.api.utenti;
 
-
 import jakarta.persistence.DiscriminatorValue;
 import jakarta.persistence.Entity;
 
@@ -20,4 +19,5 @@ public class Trasformatore extends Venditore {
     public boolean equals(Object obj) {
         return super.equals(obj);
     }
+
 }

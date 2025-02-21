@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import unicam.filieraAgricola_ids.api.dto.ProdottoDto;
 import unicam.filieraAgricola_ids.api.service.ServiceAcquisto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @RestController
 public class ControllerAcquisto {
 
-    private ServiceAcquisto serviceAcquisto;
+    private final ServiceAcquisto serviceAcquisto;
 
     @Autowired
     public ControllerAcquisto(ServiceAcquisto serviceAcquisto) {
@@ -26,15 +27,10 @@ public class ControllerAcquisto {
         return serviceAcquisto.subtractProductQuantity(id, quantita);
     }
 
-//    public boolean buyProduct(int idProdotto, int quantita, Acquirente acquirente) {
-//        serviceAcquisto.subtractProductQuantity(idProdotto, quantita);
-//        acquirente.getProdottiAcquistati().add(serviceAcquisto.getProductById(idProdotto));
-//        return true;
-//    }
-
     @GetMapping("/isAvailable")
-    public ResponseEntity<List<Prodotto>> requestDisponibility
+    public ResponseEntity<List<ProdottoDto>> requestDisponibility
             (@PathParam("nome") String nome) {
         return serviceAcquisto.isAvailable(nome);
     }
+
 }

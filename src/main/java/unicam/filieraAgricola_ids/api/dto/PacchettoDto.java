@@ -12,5 +12,6 @@ public class PacchettoDto extends ProdottoDto {
 
     public void setProdottiPacchetto(List<ProdottoDto> prodottiPacchetto) {
         this.prodottiPacchetto = prodottiPacchetto;
-}
+    }
+
 }

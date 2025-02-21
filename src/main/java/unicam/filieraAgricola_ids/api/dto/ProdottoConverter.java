@@ -43,4 +43,32 @@ public class ProdottoConverter {
         return prodottoList;
     }
 
+    public static List<ProdottoDto> ProdottiToDtoList(List<Prodotto> prodotti) {
+        List<ProdottoDto> dtoList = new ArrayList<>();
+        for (Prodotto prodotto : prodotti) {
+            if (prodotto instanceof ProdottoSingolo) {
+                ProdottoSingoloDto dto = new ProdottoSingoloDto();
+                dto.setNome(prodotto.getNome());
+                dto.setDescrizione(prodotto.getDescrizione());
+                dto.setQuantita(prodotto.getQuantita());
+                dto.setPrezzo(prodotto.getPrezzo());
+                dto.setIdProduttore(prodotto.getIdProduttore());
+                dto.setCertificazioni(((ProdottoSingolo) prodotto).getCertificazioni());
+                dtoList.add(dto);
+            } else if (prodotto instanceof Pacchetto) {
+                PacchettoDto dto = new PacchettoDto();
+                dto.setNome(prodotto.getNome());
+                dto.setDescrizione(prodotto.getDescrizione());
+                dto.setQuantita(prodotto.getQuantita());
+                dto.setPrezzo(prodotto.getPrezzo());
+                dto.setIdProduttore(prodotto.getIdProduttore());
+                List<ProdottoDto> prodottiPacchetto =
+                        ProdottiToDtoList(((Pacchetto) prodotto).getProdottiPacchetto());
+                dto.setProdottiPacchetto(prodottiPacchetto);
+                dtoList.add(dto);
+            }
+        }
+        return dtoList;
+    }
+
 }

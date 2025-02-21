@@ -4,9 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import unicam.filieraAgricola_ids.api.dto.ProdottoConverter;
+import unicam.filieraAgricola_ids.api.dto.ProdottoDto;
 import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ServiceProdotto {
@@ -36,16 +39,6 @@ public class ServiceProdotto {
         return new ResponseEntity<>("Product "+id+" Deleted", HttpStatus.OK);
     }
 
-//    public ResponseEntity<Object> addPacchetto(Pacchetto pacchetto) {
-//        if (marketplace.getRepository().existsById(pacchetto.getId())) {
-//            return new ResponseEntity<>("Product Already Exists", HttpStatus.BAD_REQUEST);
-//        }else {
-//            marketplace.getRepository().save(pacchetto);
-//            return new ResponseEntity<>("Product Created", HttpStatus.CREATED);
-//        }
-//
-//    }
-
     public ResponseEntity<Object> modifyProduct(int id, String nome, double prezzo, String descrizione) {
         if(!marketplace.getRepository().existsById(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
@@ -66,6 +59,20 @@ public class ServiceProdotto {
         prodotto.setQuantita(quantita);
         marketplace.getRepository().save(prodotto);
         return new ResponseEntity<>("Prodotto ricaricato", HttpStatus.OK);
+    }
+
+    //todo occorre trovare un modo per filtrare i prodotti che non fanno parte di un pacchetto
+    public ResponseEntity<List<ProdottoDto>> showList(){
+        List<Prodotto> prodotti = marketplace.getRepository().findAll();
+        if(prodotti.isEmpty())
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        prodotti.removeIf(p -> !p.isValidato());
+        /*
+        List<Prodotto> filteredProdotti = prodotti.stream()
+                .filter(prodotto -> !prodotto.isPartOfPackage())
+                .collect(Collectors.toList()); */
+        List<ProdottoDto> prodottiDtos = ProdottoConverter.ProdottiToDtoList(prodotti);
+        return new ResponseEntity<>(prodottiDtos, HttpStatus.OK);
     }
 
 }

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.annotation.JsonTypeInfo;
         @JsonSubTypes.Type(value = PacchettoDto.class, name = "pacchetto")
 })
 public abstract class ProdottoDto {
+
     private String nome;
 
     private String descrizione;
@@ -57,5 +58,6 @@ public abstract class ProdottoDto {
 
     public void setIdProduttore(int idProduttore) {
         this.idProduttore = idProduttore;
-}
+    }
+
 }

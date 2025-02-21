@@ -8,11 +8,10 @@ import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
 import unicam.filieraAgricola_ids.api.prodotti.Pacchetto;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 
-
 @Service
 public class ServiceValidazione {
 
-    private Marketplace marketplace;
+    private final Marketplace marketplace;
 
     @Autowired
     public ServiceValidazione(Marketplace marketplace) {

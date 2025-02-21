@@ -16,4 +16,9 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
 
     @Query("SELECT f.listaFieristi FROM Fiera f WHERE f.id = :eventoId")
     List<Venditore> findVenditoriByFiera(@Param("eventoId") Long eventoId);
+
+    List<Evento> findByNome(String nome);
+
+    List<Evento> findByLuogo(String luogo);
+
 }

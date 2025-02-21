@@ -1,7 +1,6 @@
 package unicam.filieraAgricola_ids.api.prodotti;
 
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,6 +14,7 @@ public class Pacchetto extends Prodotto{
             joinColumns = @JoinColumn(name = "pacchetto_id"),
             inverseJoinColumns = @JoinColumn(name = "prodotto_id")
     )
+
     private List<Prodotto> prodottiPacchetto = new ArrayList<>();
 
     public void setProdottiPacchetto(List<Prodotto> prodotti) {
@@ -22,5 +22,6 @@ public class Pacchetto extends Prodotto{
     }
     public List<Prodotto> getProdottiPacchetto() {
         return prodottiPacchetto;
-}
+    }
+
 }

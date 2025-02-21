@@ -15,7 +15,6 @@ public class ProdottoSingolo extends Prodotto {
 
     public String getCertificazioni() {
         return certificazioni;
-}
-
+    }
 
 }
