@@ -25,8 +25,8 @@ public class ServiceAcquisto {
             return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
         }
         Prodotto prodotto = marketplace.getRepository().findById(id).get();
-        if(prodotto.getQuantita() < quantita){
-            return new ResponseEntity<>("Quantita non disponibile", HttpStatus.BAD_REQUEST);
+        if(prodotto.getQuantita() < quantita || !prodotto.isValidato()){
+            return new ResponseEntity<>("Errore nella richiesta del prodotto", HttpStatus.BAD_REQUEST);
         }
         prodotto.setQuantita(prodotto.getQuantita()-quantita);
         marketplace.getRepository().save(prodotto);

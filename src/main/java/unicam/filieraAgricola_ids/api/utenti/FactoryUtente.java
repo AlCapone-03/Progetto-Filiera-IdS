@@ -11,7 +11,6 @@ public  class FactoryUtente {
             case DISTRIBUTORE -> new DistributoreTipicita(nome, email, password, ruolo);
             case ANIMATORE -> new Animatore(nome, email, password, ruolo);
             case CURATORE -> new Curatore(nome, email, password, ruolo);
-            default -> throw new IllegalArgumentException("Ruolo non valido");
         };
     }
 

@@ -19,6 +19,7 @@ public class ControllerVisualizzazioneEventi {
         this.serviceEvento = serviceEvento;
     }
 
+    //TODO ritornare la lista di eventiDTO
     @GetMapping("/Eventi")
     public ResponseEntity<List<Evento>> showList() {
         return serviceEvento.showList();

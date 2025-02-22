@@ -1,22 +1,13 @@
 package unicam.filieraAgricola_ids.api.eventi;
 
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.persistence.*;
 import unicam.filieraAgricola_ids.api.utenti.Acquirente;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@JsonTypeInfo(
-        use = JsonTypeInfo.Id.NAME,
-        include = JsonTypeInfo.As.PROPERTY,
-        property = "tipo"
-)
-@JsonSubTypes({
-        @JsonSubTypes.Type(value = Fiera.class, name = "fiera"),
-        @JsonSubTypes.Type(value = EventoAziendale.class, name = "eventoaziendale"),
-})
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public abstract class Evento {
 
     @Id
@@ -40,13 +31,6 @@ public abstract class Evento {
 
     private String nome;
 
-    public Evento(String data_inizio, String data_fine,
-                  String luogo, String nome) {
-        this.data_inizio = data_inizio;
-        this.data_fine = data_fine;
-        this.luogo = luogo;
-        this.nome = nome;
-    }
 
     public Evento() {
 

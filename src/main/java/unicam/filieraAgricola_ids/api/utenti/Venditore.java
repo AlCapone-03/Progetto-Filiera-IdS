@@ -5,11 +5,11 @@ import jakarta.persistence.Entity;
 @Entity
 public abstract class Venditore extends Utente {
 
-    public Venditore(String nome, String email, String password, Ruolo ruolo) {
-        super(nome, email, password, ruolo);
+    public Venditore() {
     }
 
-    public Venditore() {
+    public Venditore(String nome, String email, String password, Ruolo ruolo) {
+        super(nome, email, password, ruolo);
     }
 
     @Override

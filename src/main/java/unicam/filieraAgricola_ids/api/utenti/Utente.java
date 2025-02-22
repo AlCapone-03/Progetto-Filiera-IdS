@@ -37,6 +37,10 @@ public abstract class Utente {
         this.ruolo = ruolo;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public int getId() {
         return id;
     }

@@ -22,12 +22,12 @@ public class ControllerValidazione {
     }
 
     @RequestMapping(value = "/validate", method = RequestMethod.PUT)
-    public ResponseEntity<Object> requestValidation(@PathParam("id") int id) {
+    public ResponseEntity<String> requestValidation(@PathParam("id") int id) {
         return serviceValidazione.validateRequest(id);
     }
 
     @DeleteMapping(value = "/unvalidate")
-    public ResponseEntity<Object> requestRemoval(@PathParam("id") int id) {
+    public ResponseEntity<String> requestRemoval(@PathParam("id") int id) {
         return serviceProdotto.removeProduct(id);
     }
 

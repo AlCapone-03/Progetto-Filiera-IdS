@@ -9,6 +9,7 @@ import unicam.filieraAgricola_ids.api.dto.ProdottoDto;
 import unicam.filieraAgricola_ids.api.prodotti.Marketplace;
 import unicam.filieraAgricola_ids.api.prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.prodotti.ProdottoSingolo;
+import unicam.filieraAgricola_ids.api.repository.UtenteRepository;
 
 import java.util.List;
 
@@ -16,23 +17,29 @@ import java.util.List;
 public class ServiceProdotto {
 
     private final Marketplace marketplace;
+    private final UtenteRepository utenteRepository;
 
     @Autowired
-    public ServiceProdotto(Marketplace marketplace) {
+    public ServiceProdotto(Marketplace marketplace, UtenteRepository utenteRepository) {
         this.marketplace = marketplace;
+        this.utenteRepository = utenteRepository;
     }
 
-    public ResponseEntity<Object> addProduct(Prodotto prodotto) {
-        List<Prodotto> prodotti = marketplace.getRepository().findByNome(prodotto.getNome());
-        List<Prodotto> prodotti1 = marketplace.getRepository().findByDescrizione(prodotto.getDescrizione());
-        if(prodotti.isEmpty() || prodotti1.isEmpty()){
-            marketplace.getRepository().save(prodotto);
-            return new ResponseEntity<>("Prodotto creato",HttpStatus.CREATED);
+    public ResponseEntity<String> addProduct(Prodotto prodotto) {
+        if (utenteRepository.existsById(prodotto.getIdProduttore())) {
+            List<Prodotto> prodotti = marketplace.getRepository().findByNomeAndDescrizioneAndPrezzo(prodotto.getNome(),
+                    prodotto.getDescrizione(),prodotto.getPrezzo());
+            if (prodotti.isEmpty()) {
+                marketplace.getRepository().save(prodotto);
+                return new ResponseEntity<>("Prodotto creato", HttpStatus.CREATED);
+            }
+            return new ResponseEntity<>("Il Prodotto esiste già", HttpStatus.BAD_REQUEST);
+        } else {
+            return new ResponseEntity<>("Il Produttore non esiste", HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>("Product Already Exists", HttpStatus.BAD_REQUEST);
     }
 
-    public ResponseEntity<Object> removeProduct(int id) {
+    public ResponseEntity<String> removeProduct(int id) {
         if(!marketplace.getRepository().existsById(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
         }
@@ -40,7 +47,7 @@ public class ServiceProdotto {
         return new ResponseEntity<>("Product "+id+" Deleted", HttpStatus.OK);
     }
 
-    public ResponseEntity<Object> modifyProduct(int id, String nome, double prezzo, String descrizione) {
+    public ResponseEntity<String> modifyProduct(int id, String nome, double prezzo, String descrizione) {
         if(!marketplace.getRepository().existsById(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
         }
@@ -52,12 +59,12 @@ public class ServiceProdotto {
         return new ResponseEntity<>("Prodotto modificato", HttpStatus.OK);
     }
 
-    public ResponseEntity<Object> reloadQuantity(int id, int quantita) {
+    public ResponseEntity<String> reloadQuantity(int id, int quantita) {
         if(!marketplace.getRepository().existsById(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
         }
         Prodotto prodotto = marketplace.getRepository().findById(id).get();
-        prodotto.setQuantita(quantita);
+        prodotto.setQuantita(prodotto.getQuantita()+quantita);
         marketplace.getRepository().save(prodotto);
         return new ResponseEntity<>("Prodotto ricaricato", HttpStatus.OK);
     }

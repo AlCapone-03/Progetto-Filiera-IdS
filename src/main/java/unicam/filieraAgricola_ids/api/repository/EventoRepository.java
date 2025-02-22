@@ -20,6 +20,6 @@ public interface EventoRepository extends JpaRepository<Evento, Integer> {
 
     List<Evento> findByNome(String nome);
 
-    List<Evento> findByLuogo(String luogo);
+    List<Evento> findByNomeAndLuogo(String nome, String luogo);
 
 }

@@ -22,32 +22,32 @@ public class ControllerProdotto {
     }
 
     @PostMapping("/addProduct")
-    public ResponseEntity<Object> requestAdd(@RequestBody ProdottoSingoloDto prodotto) {
+    public ResponseEntity<String> requestAdd(@RequestBody ProdottoSingoloDto prodotto) {
         Prodotto p = ProdottoConverter.DtoToProdotto(prodotto);
         return serviceProdotto.addProduct(p);
     }
 
     @DeleteMapping(value = "/deleteProduct")
-    public ResponseEntity<Object> requestRemove(@PathParam("id") int id) {
+    public ResponseEntity<String> requestRemove(@PathParam("id") int id) {
         return serviceProdotto.removeProduct(id);
     }
 
     @PostMapping("/addPackage")
-    public ResponseEntity<Object> requestAddPackage(@RequestBody PacchettoDto prodotto) {
+    public ResponseEntity<String> requestAddPackage(@RequestBody PacchettoDto prodotto) {
         System.out.println(prodotto);
         Pacchetto pacchetto = ProdottoConverter.DtoToPacchetto(prodotto);
         return serviceProdotto.addProduct(pacchetto);
     }
 
     @RequestMapping(value="/update", method=RequestMethod.PUT)
-    public ResponseEntity<Object> requestModifyProduct(@PathParam("id") int id, @PathParam("nome") String nome,
+    public ResponseEntity<String> requestModifyProduct(@PathParam("id") int id, @PathParam("nome") String nome,
                                                        @PathParam("prezzo") double prezzo,
                                                        @PathParam("descrizione") String descrizione) {
         return serviceProdotto.modifyProduct(id, nome, prezzo, descrizione);
     }
 
     @RequestMapping(value="/reload", method=RequestMethod.PUT)
-    public ResponseEntity<Object> requestReloadProduct(@PathParam("id") int id,
+    public ResponseEntity<String> requestReloadProduct(@PathParam("id") int id,
                                                        @PathParam("quantita") int quantita) {
         return serviceProdotto.reloadQuantity(id, quantita);
     }

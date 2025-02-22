@@ -4,6 +4,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import unicam.filieraAgricola_ids.api.utenti.Ruolo;
 import unicam.filieraAgricola_ids.api.utenti.Utente;
 
+import java.util.List;
+
 public interface UtenteRepository extends JpaRepository<Utente, Integer> {
-    Utente findByRuolo(Ruolo ruolo);
+
+    List<Utente> findByRuoloIn(List<Ruolo> ruoli);
+
+    List<Utente> findByNomeAndEmail(String nome, String email);
 }

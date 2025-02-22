@@ -14,8 +14,7 @@ public class ControllerPrenotazione {
     private ServiceRegistrazioneEvento serviceRegistrazioneEvento;
 
     @Autowired
-    public ControllerPrenotazione(ServiceRegistrazioneEvento
-                                              serviceRegistrazioneEvento) {
+    public ControllerPrenotazione(ServiceRegistrazioneEvento serviceRegistrazioneEvento) {
         this.serviceRegistrazioneEvento = serviceRegistrazioneEvento;
     }
 
@@ -26,7 +25,8 @@ public class ControllerPrenotazione {
     }
 
     @RequestMapping("/RegAcquirenteEvento")
-    public ResponseEntity<String> requestBookEvent(int idEvento){
-        return serviceRegistrazioneEvento.addPartecipant(idEvento);
+    public ResponseEntity<String> requestBookEvent(@PathParam("idEvento") int idEvento,
+                                                   @PathParam("idAcquirente") int idAcquirente){
+        return serviceRegistrazioneEvento.addPartecipant(idEvento,idAcquirente);
     }
 }

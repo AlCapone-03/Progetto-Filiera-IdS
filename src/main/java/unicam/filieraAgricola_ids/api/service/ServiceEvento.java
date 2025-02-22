@@ -1,31 +1,49 @@
 package unicam.filieraAgricola_ids.api.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import unicam.filieraAgricola_ids.api.dto.EventoAziendaleDto;
+import unicam.filieraAgricola_ids.api.dto.EventoConverter;
 import unicam.filieraAgricola_ids.api.eventi.Evento;
+import unicam.filieraAgricola_ids.api.eventi.EventoAziendale;
 import unicam.filieraAgricola_ids.api.eventi.EventsPlace;
+import unicam.filieraAgricola_ids.api.repository.UtenteRepository;
+import unicam.filieraAgricola_ids.api.utenti.Venditore;
+
 import java.util.List;
 
 @Service
 public class ServiceEvento {
 
     private final EventsPlace eventsPlace;
+    private final ServiceUtenti SvU;
+
 
     @Autowired
-    public ServiceEvento(EventsPlace eventsPlace) {
+    public ServiceEvento(EventsPlace eventsPlace, ServiceUtenti SvU) {
         this.eventsPlace = eventsPlace;
+        this.SvU = SvU;
     }
 
     public ResponseEntity<String> addEvent(Evento evento) {
-        List<Evento> eventi = eventsPlace.getEventRepository().findByNome((evento.getNome()));
-        List<Evento> eventi1 = eventsPlace.getEventRepository().findByLuogo(evento.getLuogo());
-        if(eventi.isEmpty() || eventi1.isEmpty()) {
+        List<Evento> eventi = eventsPlace.getEventRepository().
+                findByNomeAndLuogo(evento.getNome(), evento.getLuogo());
+        if(eventi.isEmpty()) {
             eventsPlace.getEventRepository().save(evento);
             return new ResponseEntity<>("Evento creato", HttpStatus.CREATED);
         }
         return new ResponseEntity<>("Evento esistente", HttpStatus.BAD_REQUEST);
+    }
+
+    @Transactional
+    public ResponseEntity<String> addEventoAziendale(EventoAziendaleDto evento) {
+        EventoAziendale eventoAziendale = EventoConverter.dtoToEventoAziendale(evento);
+        List<Venditore> vend = SvU.getVenditoriByIds(evento.getListaInvitati());
+        eventoAziendale.setListaInvitati(vend);
+        return addEvent(eventoAziendale);
     }
 
     public ResponseEntity<String> removeEvent(int id) {

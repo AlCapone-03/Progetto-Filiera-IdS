@@ -14,7 +14,6 @@ public class Pacchetto extends Prodotto{
             joinColumns = @JoinColumn(name = "pacchetto_id"),
             inverseJoinColumns = @JoinColumn(name = "prodotto_id")
     )
-
     private List<Prodotto> prodottiPacchetto = new ArrayList<>();
 
     public void setProdottiPacchetto(List<Prodotto> prodotti) {

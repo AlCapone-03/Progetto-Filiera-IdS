@@ -18,7 +18,7 @@ public class ServiceValidazione {
         this.marketplace = marketplace;
     }
 
-    public ResponseEntity<Object> validateRequest(int id) {
+    public ResponseEntity<String> validateRequest(int id) {
         if(!marketplace.getRepository().existsById(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
         }
