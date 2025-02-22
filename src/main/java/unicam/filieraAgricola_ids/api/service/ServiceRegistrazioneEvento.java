@@ -6,6 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import unicam.filieraAgricola_ids.api.eventi.Evento;
 import unicam.filieraAgricola_ids.api.eventi.EventsPlace;
+import unicam.filieraAgricola_ids.api.eventi.Fiera;
+import unicam.filieraAgricola_ids.api.utenti.Acquirente;
+import unicam.filieraAgricola_ids.api.utenti.Venditore;
+import java.util.List;
 
 @Service
 public class ServiceRegistrazioneEvento {
@@ -22,17 +26,31 @@ public class ServiceRegistrazioneEvento {
     //Registrazione Acquirente all'evento
     public ResponseEntity<String> addPartecipant(int idEvento, int idAcquirente) {
         Evento evento = eventsPlace.getEventRepository().findById(idEvento).orElse(null);
-
-
-
-        return new ResponseEntity<>("", HttpStatus.OK);
+        Acquirente acquirente = (Acquirente) serviceUtenti.getRepository().findById(idAcquirente).orElse(null);
+        if (evento != null) {
+            if (evento.getListaPartecipanti().contains(acquirente)) {
+                return new ResponseEntity<>("Acquirente già iscritto", HttpStatus.BAD_REQUEST);
+            }
+            evento.getListaPartecipanti().add(acquirente);
+            eventsPlace.getEventRepository().save(evento);
+            return new ResponseEntity<>("Acquirente inserito", HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>("Evento inesistente", HttpStatus.BAD_REQUEST);
     }
 
     //Registrazione Venditore alla fiera
     public ResponseEntity<String> newRegistration(int idEvento, int idVenditore) {
-
-
-            return new ResponseEntity<>("", HttpStatus.OK);
-
+        Fiera evento = eventsPlace.getEventRepository().findFieraById(idEvento);
+        Venditore venditore = serviceUtenti.getVenditoriByIds(List.of(idVenditore)).get(0);
+        if (evento != null) {
+            if (evento.getListaFieristi().contains(venditore)) {
+                return new ResponseEntity<>("Venditore già iscritto", HttpStatus.BAD_REQUEST);
+            }
+            evento.getListaFieristi().add(venditore);
+            eventsPlace.getEventRepository().save(evento);
+            return new ResponseEntity<>("Venditore inserito", HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>("Fiera inesistente", HttpStatus.BAD_REQUEST);
     }
+
 }

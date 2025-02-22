@@ -20,7 +20,6 @@ public abstract class Evento {
             joinColumns = @JoinColumn(name = "evento_id"),
             inverseJoinColumns = @JoinColumn(name = "acquirente_id")
     )
-
     private List<Acquirente> listaPartecipanti = new ArrayList<>();
 
     private String data_inizio;

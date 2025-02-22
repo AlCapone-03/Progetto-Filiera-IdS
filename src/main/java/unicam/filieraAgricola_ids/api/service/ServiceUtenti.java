@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import unicam.filieraAgricola_ids.api.repository.UtenteRepository;
 import unicam.filieraAgricola_ids.api.utenti.*;
-
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -41,7 +40,7 @@ public class ServiceUtenti {
                 .collect(Collectors.toList());
     }
 
-    private Venditore convertiInVenditore(Utente utente) {
+    public Venditore convertiInVenditore(Utente utente) {
         switch (utente.getRuolo()) {
             case PRODUTTORE:
                 Produttore produttore = new Produttore();
@@ -96,9 +95,5 @@ public class ServiceUtenti {
         acquirente.setRuolo(utente.getRuolo());
         return acquirente;
     }
-
-
-
-
 
 }
