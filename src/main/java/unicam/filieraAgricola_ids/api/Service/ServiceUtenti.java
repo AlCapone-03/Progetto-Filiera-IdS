@@ -23,7 +23,7 @@ public class ServiceUtenti {
         return utenti;
     }
 
-    public List<Venditore> getUtenti() {
+    public List<Venditore> getVenditori() {
         List<Ruolo> ruoli = List.of(Ruolo.PRODUTTORE, Ruolo.TRASFORMATORE, Ruolo.DISTRIBUTORE);
         return utenti.findByRuoloIn(ruoli)
                 .stream()
@@ -35,7 +35,7 @@ public class ServiceUtenti {
     @Transactional
     public List<Venditore> getVenditoriByIds(List<Integer> ids) {
         Set<Integer> idSet = Set.copyOf(ids); // Converte in Set per ricerca veloce
-        return getUtenti().stream()
+        return getVenditori().stream()
                 .filter(venditore -> idSet.contains(venditore.getId())) // Filtra solo quelli con ID nella lista
                 .collect(Collectors.toList());
     }
