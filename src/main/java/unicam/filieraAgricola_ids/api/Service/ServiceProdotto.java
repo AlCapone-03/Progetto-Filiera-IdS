@@ -8,7 +8,6 @@ import unicam.filieraAgricola_ids.api.Dto.ProdottoConverter;
 import unicam.filieraAgricola_ids.api.Dto.ProdottoDto;
 import unicam.filieraAgricola_ids.api.Prodotti.Marketplace;
 import unicam.filieraAgricola_ids.api.Prodotti.Prodotto;
-import unicam.filieraAgricola_ids.api.Repository.UtenteRepository;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -17,16 +16,16 @@ import java.util.NoSuchElementException;
 public class ServiceProdotto {
 
     private final Marketplace marketplace;
-    private final UtenteRepository utenteRepository;
+    private final ServiceUtenti serviceUtenti;
 
     @Autowired
-    public ServiceProdotto(Marketplace marketplace, UtenteRepository utenteRepository) {
+    public ServiceProdotto(Marketplace marketplace, ServiceUtenti serviceUtenti) {
         this.marketplace = marketplace;
-        this.utenteRepository = utenteRepository;
+        this.serviceUtenti = serviceUtenti;
     }
 
     public ResponseEntity<String> addProduct(Prodotto prodotto) {
-        if (utenteRepository.existsById(prodotto.getIdProduttore())) {
+        if (serviceUtenti.getRepository().existsById(prodotto.getIdProduttore())) {
             List<Prodotto> prodotti = marketplace.getRepository().findByNomeAndDescrizioneAndPrezzo(prodotto.getNome(),
                     prodotto.getDescrizione(),prodotto.getPrezzo());
             if (prodotti.isEmpty()) {
