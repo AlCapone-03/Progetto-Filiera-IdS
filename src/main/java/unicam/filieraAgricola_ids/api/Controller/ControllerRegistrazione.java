@@ -4,7 +4,9 @@ import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import unicam.filieraAgricola_ids.api.Dto.UtenteDto;
 import unicam.filieraAgricola_ids.api.Service.ServiceRegistrazioneUtenti;
 import unicam.filieraAgricola_ids.api.Utenti.FactoryUtente;
 import unicam.filieraAgricola_ids.api.Utenti.Ruolo;
@@ -21,14 +23,11 @@ public class ControllerRegistrazione {
     }
 
     @PostMapping("/register")
-    public ResponseEntity<String> requestUserRegistration(@PathParam("nome")String nome,
-                                                          @PathParam("email")String email,
-                                                          @PathParam("password")String password,
-                                                          @PathParam("ruolo") Ruolo ruolo)
-    {
+    public ResponseEntity<String> requestUserRegistration(@RequestBody UtenteDto utente) {
         FactoryUtente factoryUtente = new FactoryUtente();
-        Utente utente = factoryUtente.createUser(nome, email, password, ruolo);
-        return serviceRegistrazioneUtenti.registraUtente(utente);
+        Utente utente1 = factoryUtente.createUser(utente.getNome(), utente.getEmail(),
+                utente.getPassword(), utente.getRuolo());
+        return serviceRegistrazioneUtenti.registraUtente(utente1);
     }
 
 }

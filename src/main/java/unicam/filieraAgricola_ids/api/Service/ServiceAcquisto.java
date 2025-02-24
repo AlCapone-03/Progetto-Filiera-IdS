@@ -20,14 +20,10 @@ public class ServiceAcquisto {
         this.marketplace = marketplace;
     }
 
-    public ResponseEntity<Object> subtractProductQuantity(int id, int quantita) {
-        if(!marketplace.getRepository().existsById(id)){
-            return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
-        }
+    public ResponseEntity<String> subtractProductQuantity(int id, int quantita) {
+        ResponseEntity<String> BAD_REQUEST = getObjectResponseEntity(id, quantita);
+        if (BAD_REQUEST != null) return BAD_REQUEST;
         Prodotto prodotto = marketplace.getRepository().findById(id).get();
-        if(prodotto.getQuantita() < quantita || !prodotto.isValidato()){
-            return new ResponseEntity<>("Errore nella richiesta del prodotto", HttpStatus.BAD_REQUEST);
-        }
         prodotto.setQuantita(prodotto.getQuantita()-quantita);
         marketplace.getRepository().save(prodotto);
         return new ResponseEntity<>("Prodotto acquistato", HttpStatus.OK);
@@ -40,4 +36,24 @@ public class ServiceAcquisto {
         return new ResponseEntity<>(prod, HttpStatus.OK);
     }
 
+    private ResponseEntity<String> getObjectResponseEntity(int id, int quantita) {
+        if(!marketplace.getRepository().existsById(id)){
+            return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
+        }
+        Prodotto prodotto = marketplace.getRepository().findById(id).get();
+        if(prodotto.getQuantita() < quantita || !prodotto.isValidato()){
+            return new ResponseEntity<>("Errore nella richiesta del prodotto", HttpStatus.BAD_REQUEST);
+        }
+        return findSingleProductsInPackage(id);
+    }
+
+    private ResponseEntity<String> findSingleProductsInPackage(int id) {
+        List<Prodotto> prodotti = marketplace.getRepository().findProdottiSingoliInPacchetti();
+        for (Prodotto p : prodotti) {
+            if (p.getId() == id) {
+                return new ResponseEntity<>("Prodotto non acquistabile", HttpStatus.BAD_REQUEST);
+            }
+        }
+        return null;
+    }
 }

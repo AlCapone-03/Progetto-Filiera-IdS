@@ -47,16 +47,19 @@ public class ServiceEvento {
     }
 
     public ResponseEntity<String> removeEvent(int id) {
-        if(!eventsPlace.getEventRepository().existsById(id))
+        if(isABoolean(id))
             return new ResponseEntity<>("Evento non trovato", HttpStatus.BAD_REQUEST);
         eventsPlace.getEventRepository().deleteById(id);
         return new ResponseEntity<>("Evento rimosso", HttpStatus.OK);
     }
 
-    public ResponseEntity<String> modifyEvent(int id, String data_inizio,
-                                              String data_fine, String nome,
-                                              String luogo) {
-        if(!eventsPlace.getEventRepository().existsById(id))
+    private boolean isABoolean(int id) {
+        return !eventsPlace.getEventRepository().existsById(id);
+    }
+
+    public ResponseEntity<String> modifyEvent(int id, String data_inizio, String data_fine,
+                                              String nome, String luogo) {
+        if(isABoolean(id))
             return new ResponseEntity<>("Evento non trovato", HttpStatus.BAD_REQUEST);
 
         Evento evento = eventsPlace.getEventRepository().findById(id).get();

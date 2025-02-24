@@ -11,6 +11,7 @@ import unicam.filieraAgricola_ids.api.Prodotti.Prodotto;
 import unicam.filieraAgricola_ids.api.Repository.UtenteRepository;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ServiceProdotto {
@@ -39,18 +40,17 @@ public class ServiceProdotto {
     }
 
     public ResponseEntity<String> removeProduct(int id) {
-        if(!marketplace.getRepository().existsById(id)){
-            return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
-        }
+        ResponseEntity<String> BAD_REQUEST = getStringResponseEntity(id);
+        if (BAD_REQUEST != null) return BAD_REQUEST;
         marketplace.getRepository().deleteById(id);
         return new ResponseEntity<>("Product "+id+" Deleted", HttpStatus.OK);
     }
 
     public ResponseEntity<String> modifyProduct(int id, String nome, double prezzo, String descrizione) {
-        if(!marketplace.getRepository().existsById(id)){
-            return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
-        }
-        Prodotto prodotto = marketplace.getRepository().findById(id).get();
+        ResponseEntity<String> BAD_REQUEST = getStringResponseEntity(id);
+        if (BAD_REQUEST != null) return BAD_REQUEST;
+        Prodotto prodotto = marketplace.getRepository().findById(id).
+                orElseThrow(() -> new NoSuchElementException("Product Not Found"));
         prodotto.setNome(nome);
         prodotto.setPrezzo(prezzo);
         prodotto.setDescrizione(descrizione);
@@ -63,13 +63,20 @@ public class ServiceProdotto {
     //            .orElseThrow(() -> new NoSuchElementException("Product Not Found"));
 
     public ResponseEntity<String> reloadQuantity(int id, int quantita) {
-        if(!marketplace.getRepository().existsById(id)){
-            return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
-        }
-        Prodotto prodotto = marketplace.getRepository().findById(id).get();
+        ResponseEntity<String> BAD_REQUEST = getStringResponseEntity(id);
+        if (BAD_REQUEST != null) return BAD_REQUEST;
+        Prodotto prodotto = marketplace.getRepository().findById(id).
+                orElseThrow(() -> new NoSuchElementException("Product Not Found"));
         prodotto.setQuantita(prodotto.getQuantita()+quantita);
         marketplace.getRepository().save(prodotto);
         return new ResponseEntity<>("Prodotto ricaricato", HttpStatus.OK);
+    }
+
+    private ResponseEntity<String> getStringResponseEntity(int id) {
+        if(!marketplace.getRepository().existsById(id)){
+            return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
+        }
+        return null;
     }
 
     public ResponseEntity<List<ProdottoDto>> showList(){

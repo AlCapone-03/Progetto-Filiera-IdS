@@ -21,7 +21,7 @@ public class ControllerAcquisto {
     }
 
     @RequestMapping("/buyProduct")
-    public ResponseEntity<Object> requestBuy(@PathParam("id") int id,
+    public ResponseEntity<String> requestBuy(@PathParam("id") int id,
                                              @PathParam("quantita") int quantita) {
         return serviceAcquisto.subtractProductQuantity(id, quantita);
     }
