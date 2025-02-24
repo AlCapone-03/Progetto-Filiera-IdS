@@ -1,6 +1,5 @@
 package unicam.filieraAgricola_ids.api.Controller;
 
-import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -9,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 import unicam.filieraAgricola_ids.api.Dto.UtenteDto;
 import unicam.filieraAgricola_ids.api.Service.ServiceRegistrazioneUtenti;
 import unicam.filieraAgricola_ids.api.Utenti.FactoryUtente;
-import unicam.filieraAgricola_ids.api.Utenti.Ruolo;
 import unicam.filieraAgricola_ids.api.Utenti.Utente;
 
 @RestController

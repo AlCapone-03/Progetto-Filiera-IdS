@@ -71,29 +71,4 @@ public class ServiceUtenti {
         }
     }
 
-/*
-    public List<Acquirente> getAcquirentiByIds(List<Integer> ids) {
-        Set<Integer> idSet = Set.copyOf(ids);
-        return getAcquirenti().stream()
-                .filter(acquirente -> idSet.contains(acquirente.getId()))
-                .collect(Collectors.toList());
-    }
-
-    public List<Acquirente> getAcquirenti() {
-        return utenti.findByRuoloIn(List.of(Ruolo.ACQUIRENTE))
-                .stream()
-                .map(this::convertiInAcquirente)
-                .collect(Collectors.toList());
-    }
-
-    private Acquirente convertiInAcquirente(Utente utente) {
-        Acquirente acquirente = new Acquirente();
-        acquirente.setId(utente.getId());
-        acquirente.setNome(utente.getNome());
-        acquirente.setEmail(utente.getEmail());
-        acquirente.setPassword(utente.getPassword());
-        acquirente.setRuolo(utente.getRuolo());
-        return acquirente;
-    } */
-
 }

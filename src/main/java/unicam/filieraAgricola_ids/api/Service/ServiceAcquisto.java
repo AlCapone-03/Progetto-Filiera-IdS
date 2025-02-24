@@ -9,6 +9,7 @@ import unicam.filieraAgricola_ids.api.Dto.ProdottoDto;
 import unicam.filieraAgricola_ids.api.Prodotti.Marketplace;
 import unicam.filieraAgricola_ids.api.Prodotti.Prodotto;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ServiceAcquisto {
@@ -23,7 +24,8 @@ public class ServiceAcquisto {
     public ResponseEntity<String> subtractProductQuantity(int id, int quantita) {
         ResponseEntity<String> BAD_REQUEST = getObjectResponseEntity(id, quantita);
         if (BAD_REQUEST != null) return BAD_REQUEST;
-        Prodotto prodotto = marketplace.getRepository().findById(id).get();
+        Prodotto prodotto = marketplace.getRepository().findById(id).
+                orElseThrow(() -> new NoSuchElementException("Prodotto non trovato"));
         prodotto.setQuantita(prodotto.getQuantita()-quantita);
         marketplace.getRepository().save(prodotto);
         return new ResponseEntity<>("Prodotto acquistato", HttpStatus.OK);
@@ -40,7 +42,8 @@ public class ServiceAcquisto {
         if(!marketplace.getRepository().existsById(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
         }
-        Prodotto prodotto = marketplace.getRepository().findById(id).get();
+        Prodotto prodotto = marketplace.getRepository().findById(id).
+                orElseThrow(() -> new NoSuchElementException("Prodotto non trovato"));
         if(prodotto.getQuantita() < quantita || !prodotto.isValidato()){
             return new ResponseEntity<>("Errore nella richiesta del prodotto", HttpStatus.BAD_REQUEST);
         }

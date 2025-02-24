@@ -8,6 +8,8 @@ import unicam.filieraAgricola_ids.api.Prodotti.Marketplace;
 import unicam.filieraAgricola_ids.api.Prodotti.Pacchetto;
 import unicam.filieraAgricola_ids.api.Prodotti.Prodotto;
 
+import java.util.NoSuchElementException;
+
 @Service
 public class ServiceValidazione {
 
@@ -22,7 +24,8 @@ public class ServiceValidazione {
         if(!marketplace.getRepository().existsById(id)){
             return new ResponseEntity<>("Product Not Found", HttpStatus.BAD_REQUEST);
         }
-        Prodotto prodotto = marketplace.getRepository().findById(id).get();
+        Prodotto prodotto = marketplace.getRepository().findById(id).
+                orElseThrow(() -> new NoSuchElementException("Prodotto non trovato"));
         prodotto.setValidato(true);
         if(prodotto instanceof Pacchetto){
             for(Prodotto p: ((Pacchetto) prodotto).getProdottiPacchetto()){

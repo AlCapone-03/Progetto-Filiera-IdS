@@ -14,6 +14,7 @@ import unicam.filieraAgricola_ids.api.Eventi.EventsPlace;
 import unicam.filieraAgricola_ids.api.Utenti.Venditore;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class ServiceEvento {
@@ -62,7 +63,8 @@ public class ServiceEvento {
         if(isABoolean(id))
             return new ResponseEntity<>("Evento non trovato", HttpStatus.BAD_REQUEST);
 
-        Evento evento = eventsPlace.getEventRepository().findById(id).get();
+        Evento evento = eventsPlace.getEventRepository().findById(id).
+                orElseThrow(() -> new NoSuchElementException("Evento non trovato"));
         evento.setData_inizio(data_inizio);
         evento.setData_fine(data_fine);
         evento.setNome(nome);

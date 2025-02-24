@@ -58,10 +58,6 @@ public class ServiceProdotto {
         return new ResponseEntity<>("Prodotto modificato", HttpStatus.OK);
     }
 
-    //todo inserire questo
-    //Prodotto prodotto = marketplace.getRepository().findById(id)
-    //            .orElseThrow(() -> new NoSuchElementException("Product Not Found"));
-
     public ResponseEntity<String> reloadQuantity(int id, int quantita) {
         ResponseEntity<String> BAD_REQUEST = getStringResponseEntity(id);
         if (BAD_REQUEST != null) return BAD_REQUEST;
