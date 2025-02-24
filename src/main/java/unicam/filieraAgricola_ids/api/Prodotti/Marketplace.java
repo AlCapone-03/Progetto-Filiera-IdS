@@ -7,15 +7,15 @@ import unicam.filieraAgricola_ids.api.Repository.ProdottoRepository;
 @Service
 public class Marketplace {
 
-    private final ProdottoRepository repository;
+    private final ProdottoRepository prodottoRepository;
 
     @Autowired
     public Marketplace(ProdottoRepository repository) {
-        this.repository = repository;
+        this.prodottoRepository = repository;
     }
 
     public ProdottoRepository getRepository() {
-        return repository;
+        return prodottoRepository;
     }
 
 }
